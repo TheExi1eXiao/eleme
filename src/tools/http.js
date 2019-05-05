@@ -27,49 +27,124 @@ axios.interceptors.response.use(
 let timeout = 10000;
 let header = {
 	'Content-Type': 'application/json',
-	'Accept': '*'
+	'Accept': '/*/',
+	"Access-Control-Allow-Origin": "*",
+  "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
 }
-
-export default Http {
-	get(url,params,success,fail,complate){
-		let headers = Object.asigin({},header);
+var headerFile = {
+  "Access-Control-Allow-Origin": "*",
+  "Content-Type": "multipart/form-data",
+};
+export const Http = {
+	get(
+		url,
+		params = {},
+		success = function () {},
+		fail = function () {},
+		complate = function () {}
+		) {
+		if ( storage.getLocalStorage("uesrinfo") && storage.getLocalStorage("userinfo").token ){
+			let token = storage.getLocalStorage("userinfo").token;
+			var headers = Object.assign({},header,{
+				token:token
+			});
+		}
+		else{
+			var headers = header;
+		}
 		axios({
 			url:url,
 			params:params,
 			method:"get",
+			headers:headers,
+			timeout:timeout
 		}).then((res)=>{
-			if(res.data.code == 0){
-				let all = res.data;
-				let data = res.data.data;
-				success(all,data);
+			var all = res.data;
+			var data = res.data.data;
+			if(all.code == 0){
+				success(data,all);
 			}
 			else{
-				fail && fail();
+				fail(data,all);
 			}
 		}).catch((err)=>{
-
-		}).all(()=>{
-			complate && complate();
+			
+		}).finally(()=>{
+			complate();
 		})
 	},
-	post(url,params,success,fail,complate){
+	post(
+		url,
+		data = {},
+		success = function () {},
+		fail = function () {},
+		complate = function () {}
+		) {
+		if ( storage.getLocalStorage("uesrinfo") && storage.getLocalStorage("userinfo").token ){
+			let token = storage.getLocalStorage("userinfo").token;
+			var headers = Object.assign({},header,{
+				token:token
+			});
+		}
+		else{
+			var headers = header;
+		}
 		axios({
 			url:url,
-			data:params,
-			method:"post"
+			data:data,
+			method:"post",
+			headers:headers,
+			timeout:timeout
 		}).then((res)=>{
 			if(res.data.code == 0){
 				let all = res.data;
 				let data = res.data.data;
-				success(all,data);
+				success(data,all);
 			}
 			else{
-				fail && fail();
+				fail(data,all);
 			}
 		}).catch((err)=>{
+			
+		}).finally(()=>{
+			complate();
+		})
+	},
+	filePost(
+		url,
+		data = {},
+		success = function () {},
+		fail = function () {},
+		complate = function () {}
+		) {
+		if(storage.getLocalStorage("userinfo") &&storage.getLocalStorage("userinfo").token){
+			let token = storage.getLocalStorage("userinfo").token;
+			var headers = Object.assign({},headerFile,{
+				token:token
+			})
+		}
+		else{
+			var headers = headerFile;
+		}
+		axios({
+			method:"post",
+			data:data,
+			headers:headers,
+			timeout:timeout,
+			url:url,
+		}).then((res)=>{
+			var all = res.data;
+			var data = res.data.data;
+			if(all.code == 0){
+				success(data,all);
+			}
+			else{
+				fail(data,all);
+			}
+		}).catch(()=>{
 
-		}).all(()=>{
-			complate && complate();
+		}).finally(()=>{
+			complate();
 		})
 	}
 }

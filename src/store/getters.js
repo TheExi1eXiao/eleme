@@ -1,1 +1,3 @@
-getters.js
+export default {
+	
+}

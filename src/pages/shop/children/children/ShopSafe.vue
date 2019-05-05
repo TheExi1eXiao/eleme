@@ -1,0 +1,1 @@
+ShopSafe.vue

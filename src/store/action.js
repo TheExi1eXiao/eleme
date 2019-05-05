@@ -1,1 +1,3 @@
-action.js
+export default {
+	
+}
