@@ -59,9 +59,9 @@ export const Http = {
 			headers:headers,
 			timeout:timeout
 		}).then((res)=>{
-			var all = res.data;
-			var data = res.data.data;
-			if(all.code == 0){
+			var all = res;//根据服务端改变
+			var data = res.data;//根据服务端改变
+			if(all.status == 200){
 				success(data,all);
 			}
 			else{
@@ -96,9 +96,9 @@ export const Http = {
 			headers:headers,
 			timeout:timeout
 		}).then((res)=>{
-			if(res.data.code == 0){
-				let all = res.data;
-				let data = res.data.data;
+			let all = res;
+			let data = res.data;
+			if(res.status == 200){	
 				success(data,all);
 			}
 			else{

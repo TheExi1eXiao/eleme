@@ -57,8 +57,15 @@ export default {
   },
   mounted(){
   	this.getData(Url.city,{
-  		type:'guess'
-  	},()=>{})
+  		type:'hot'
+  	},(data)=>{
+      this.hotcity = data
+    })
+    this.getData(Url.city,{
+      type:"group"
+    },(data)=>{
+      this.groupcity = data
+    })
   },
   computed:{
   	sortgroupcity(){
@@ -80,8 +87,8 @@ export default {
   			url,
   			params,
   			(data,all)=>{
-  				console.log(data)
   				// this.guessCity = data;
+          callback(data)
   			},
   			()=>{
   			},
@@ -95,7 +102,7 @@ export default {
 </script>
 
 <style type="text/css" lang="scss" scoped>
-	@import '../../style/mixin';
+	@import '../../style/mixin.scss';
   .head_logo{
     left: 0.4rem;
     font-weight: 400;
