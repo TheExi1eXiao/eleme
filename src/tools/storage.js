@@ -9,7 +9,7 @@ export default class Storage {
 			time:time ? time.getTime() + 1000 * 60 * 60 * 24 : date.getTime()
 		}
 		localStorage.setItem(JSON.stringify(value))
-	},
+	}
 	//获取localStorage方法
 	getLocalStorage(key){
 		let data = JSON.parse(localStorage.getItem(key));
@@ -32,7 +32,7 @@ export default class Storage {
 				return data.value;
 			}
 		}
-	},
+	}
 	//删除localStorage方法
 	removeLocalStorage(key){
 		localStorage.removeItem(key);

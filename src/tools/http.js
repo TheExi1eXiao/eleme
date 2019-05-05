@@ -27,7 +27,7 @@ axios.interceptors.response.use(
 let timeout = 10000;
 let header = {
 	'Content-Type': 'application/json',
-	'Accept': '/*/',
+	Accept: '*',
 	"Access-Control-Allow-Origin": "*",
   "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
 }
