@@ -1,8 +1,8 @@
 <template>
   <div class="home">
- 		<!-- <head-top signin-up='home'>
-        <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
-    </head-top> -->
+    <head-top signin-up='home'>
+      <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
+    </head-top>
     <nav class="city_nav">
       <div class="city_tip">
         <span>当前定位城市：</span>
@@ -29,11 +29,11 @@
           <h4 class="city_title">{{key}}
             <span v-if="index == 0">（按字母排序）</span>
           </h4>
-            <ul class="groupcity_name_container citylistul clear">
-              <router-link  tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
-                  {{item.name}}
-              </router-link>
-            </ul>
+          <ul class="groupcity_name_container citylistul clear">
+            <router-link  tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
+              {{item.name}}
+            </router-link>
+          </ul>
         </li>
       </ul>
     </section>
@@ -41,19 +41,20 @@
 </template>
 
 <script>
-import { Url, Http } from "../../tools/http.js";
-export default {
-  name: 'home',
-  components: {
-    
-  },
-  data(){
-  	return {
+  import { Url , Http } from "../../tools/http.js";
+  import headTop from '../../components/header/Header.vue'
+  export default {
+    name: 'home',
+    components: {
+      headTop
+    },
+    data(){
+     return {
   		guessCity: '',   //当前城市
       guessCityid: '', //当前城市id
       hotcity: [],     //热门城市列表
       groupcity: {},   //所有城市列表
-  	}
+    }
   },
   mounted(){
   	this.getData(Url.city,{
@@ -66,6 +67,12 @@ export default {
     },(data)=>{
       this.groupcity = data
     })
+    this.getData(Url.city,{
+      type:"guess"
+    },(data)=>{
+      this.guessCity = data.name;
+      this.guessCityid = data.id;
+    })
   },
   computed:{
   	sortgroupcity(){
@@ -76,26 +83,26 @@ export default {
         }
       }
       return sortobj
-  	}
+    }
   },
   methods:{
   	reload(){
       window.location.reload();
-  	},
-  	getData(url,params,callback=function(){}){
-  		Http.get(
-  			url,
-  			params,
-  			(data,all)=>{
+    },
+    getData(url,params,callback=function(){}){
+      Http.get(
+       url,
+       params,
+       (data,all)=>{
   				// this.guessCity = data;
           callback(data)
-  			},
-  			()=>{
-  			},
-  			()=>{
+        },
+        ()=>{
+        },
+        ()=>{
 
-  			})
-  	}
+        })
+    }
   }
 
 }
@@ -120,11 +127,11 @@ export default {
       line-height: 1.45rem;
       padding: 0 0.45rem;
       span:nth-of-type(1){
-          @include sc(0.55rem, #666);
+        @include sc(0.55rem, #666);
       }
       span:nth-of-type(2){
-          font-weight: 900;
-          @include sc(0.475rem, #9f9f9f);
+        font-weight: 900;
+        @include sc(0.475rem, #9f9f9f);
       }
     }
     .guess_city{
@@ -136,11 +143,11 @@ export default {
       border-bottom: 2px solid $bc;
       @include font(0.75rem, 1.8rem);
       span:nth-of-type(1){
-          color: $blue;
+        color: $blue;
       }
       .arrow_right{
-          @include wh(.6rem, .6rem);
-          fill: #999;
+        @include wh(.6rem, .6rem);
+        fill: #999;
       }
     }
   }
@@ -170,7 +177,7 @@ export default {
     border-bottom: 1px solid $bc;
     @include font(0.55rem, 1.45rem, "Helvetica Neue");
     span{
-        @include sc(0.475rem, #999);
+      @include sc(0.475rem, #999);
     }
   }
   .letter_classify_li{
