@@ -8,7 +8,7 @@ export default class Storage {
 			value:data,
 			time:time ? time.getTime() + 1000 * 60 * 60 * 24 : date.getTime()
 		}
-		localStorage.setItem(JSON.stringify(value))
+		localStorage.setItem(key,JSON.stringify(value))
 	}
 	//获取localStorage方法
 	getLocalStorage(key){

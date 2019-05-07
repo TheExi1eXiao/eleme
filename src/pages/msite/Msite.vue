@@ -48,7 +48,7 @@
 	import shopList from '@/components/common/ShopList'
 	// import {msiteAddress, msiteFoodTypes, cityGuess} from 'src/service/getData'
 	import { Url , Http } from "@/tools/http"
-	import '@/plugins/swiper.min.js'
+	// import '@/plugins/swiper.min.js'
 	import '@/style/swiper.min.css'
 
 	export default {
@@ -115,16 +115,15 @@
 		   			foodArr[j] = resArr.splice(0, 8);
 		   		}
 		   		this.foodTypes = foodArr;
+		   		//初始化swiper
+		    	new Swiper('.swiper-container', {
+		    		pagination: '.swiper-pagination',
+		    		loop: true
+		    	});
       	},
       	()=>{},
       	()=>{}
-      ).then(()=>{
-      	//初始化swiper
-	    	new Swiper('.swiper-container', {
-	    		pagination: '.swiper-pagination',
-	    		loop: true
-	    	});
-      })
+      )
 	    // msiteFoodTypes(this.geohash).then(res => {
 	    // 	let resLength = res.length;
 	   	// 	let resArr = [...res]; // 返回一个新的数组

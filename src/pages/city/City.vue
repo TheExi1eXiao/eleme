@@ -29,8 +29,7 @@
 	// import {getStore, setStore, removeStore} from 'src/config/mUtils'
 	import { Url , Http } from "@/tools/http"
 	import Storage from "@/tools/storage"
-	let storage = new Storage()
-
+	let storage = new Storage
 	export default {
 		data(){
 			return{
@@ -51,7 +50,7 @@
 	    // 	this.cityname = res.name;
 	    // })
 	    Http.get(
-	    	Url.city+''+ this.cityid,
+	    	Url.city+'/'+ this.cityid,
 	    	{},
 	    	(data)=>{
 	    		this.cityname = data.name
@@ -82,11 +81,26 @@
 	    postpois(){
         //输入值不为空时才发送信息
         if (this.inputVaule) {
-        	searchplace(this.cityid, this.inputVaule).then(res => {
-        		this.historytitle = false;
-        		this.placelist = res;
-        		this.placeNone = res.length? false : true;
-        	})
+        	// searchplace(this.cityid, this.inputVaule).then(res => {
+        	// 	this.historytitle = false;
+        	// 	this.placelist = res;
+        	// 	this.placeNone = res.length? false : true;
+        	// })
+        	Http.get(
+        		Url.pois,
+        		{
+        			type: 'search',
+							city_id: this.cityid,
+							keyword: this.inputVaule
+        		},
+        		(data)=>{
+      				this.historytitle = false;
+	        		this.placelist = data;
+	        		this.placeNone = data.length? false : true;
+        		},
+        		()=>{},
+        		()=>{}
+        	)
         }
       },
 	    /**
