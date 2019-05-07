@@ -67,9 +67,9 @@
 
 import { mapState } from 'vuex'
 // import {shopList} from 'src/service/getData'
-import { Url , Http } from "src/tools/http";
-import { imgBaseUrl } from 'src/api/config'
-import { showBack , animate } from 'src/tools/tools'
+import { Url , Http } from "@/tools/http";
+import { imgBaseUrl } from '@/api/config'
+import { showBack , animate } from '@/tools/tools'
 import { loadMore , getImgPath } from './mixin'
 import loading from './Loading'
 import ratingStar from './RatingStar'

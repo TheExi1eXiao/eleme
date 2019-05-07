@@ -33,9 +33,10 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {getService} from 'src/service/getData'
- 	import {mapMutations} from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	// import {getService} from 'src/service/getData'
+ 	import { Url, Http } from "@/tools/http"
+ 	import { mapMutations } from 'vuex'
 
  	export default {
  		data(){
@@ -59,23 +60,32 @@
     		'SAVE_QUESTION'
     	]),
 	    //获取信息
-	    async initData(){
-	    	this.serviceData = await getService();
-	    	Object.keys(this.serviceData).forEach(item => {
-	    		let avoidRepeat = false;
-	    		this.questionTitle.forEach((insertItem) => {
-            //防止重复的数据，后台返回的数据有些是重复的
-            if (insertItem == this.serviceData[item]) {
-            	avoidRepeat = true;
-            }
-          })
-          //将标题和内容分别放进数组中
-          if (item.indexOf('Caption') !== -1 && !avoidRepeat) {
-          	this.questionTitle.push(this.serviceData[item]);
-          }else if(!avoidRepeat){
-          	this.questionDetail.push(this.serviceData[item]);
-          }
-        })
+	    initData(){
+	    	// this.serviceData = await getService();
+	    	Http.get(
+	    		Url.getService,
+	    		{},
+	    		(data)=>{
+	    			this.serviceData = data;
+	    			Object.keys(this.serviceData).forEach(item => {
+			    		let avoidRepeat = false;
+			    		this.questionTitle.forEach((insertItem) => {
+		            //防止重复的数据，后台返回的数据有些是重复的
+		            if (insertItem == this.serviceData[item]) {
+		            	avoidRepeat = true;
+		            }
+		          })
+		          //将标题和内容分别放进数组中
+		          if (item.indexOf('Caption') !== -1 && !avoidRepeat) {
+		          	this.questionTitle.push(this.serviceData[item]);
+		          }else if(!avoidRepeat){
+		          	this.questionDetail.push(this.serviceData[item]);
+		          }
+		        })
+	    		},
+	    		()=>{},
+	    		()=>{}
+	    	)
 	    },
 	    //保存问题详情
 	    toQuestionDetail(title, index){

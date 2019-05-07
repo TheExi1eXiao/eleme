@@ -7,9 +7,9 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/Header'
- 	import { getImgPath } from 'src/components/common/mixin'
- 	import footGuide from 'src/components/footer/Footer'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import footGuide from '@/components/footer/Footer'
 
  	export default {
  		data(){

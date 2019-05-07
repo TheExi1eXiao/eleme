@@ -25,10 +25,11 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import {searchNearby} from 'src/service/getData'
- 	import {mapMutations, mapState} from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	// import {searchNearby} from 'src/service/getData'
+ 	import { Url, Http } from "@/tools/http"
+ 	import { mapMutations, mapState } from 'vuex'
  	export default {
  		data(){
  			return{
@@ -71,17 +72,37 @@
   		]),
       //搜索地址
       inputThing(){
-      	searchNearby(this.inputAdress).then(res => {
-      		this.adressList=res;
-      		this.warning=true;
-      		if(this.adressList.length > 0){
-      			this.warning=false;
-      			if(this.inputAdress == ''){
-      				this.adressList=[];
-      				this.warning=true;
-      			}
-      		}
-      	});
+      	// searchNearby(this.inputAdress).then(res => {
+      	// 	this.adressList=res;
+      	// 	this.warning=true;
+      	// 	if(this.adressList.length > 0){
+      	// 		this.warning=false;
+      	// 		if(this.inputAdress == ''){
+      	// 			this.adressList=[];
+      	// 			this.warning=true;
+      	// 		}
+      	// 	}
+      	// });
+      	Http.get(
+      		Url.pois,
+      		{
+      			type: 'nearby',
+						keyword: this.inputAdress
+      		},
+      		(data)=>{
+      			this.adressList = data;
+	      		this.warning = true;
+	      		if(this.adressList.length > 0){
+	      			this.warning = false;
+	      			if(this.inputAdress == ''){
+	      				this.adressList = [];
+	      				this.warning = true;
+	      			}
+	      		}
+      		},
+      		()=>{},
+      		()=>{}
+      	)
       },
       //选择地址
       listClick(index){

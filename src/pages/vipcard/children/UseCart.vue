@@ -20,10 +20,11 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/head'
- 	import {mapState, mapMutations} from 'vuex'
- 	import {vipCart} from 'src/service/getData'
- 	import alertTip from 'src/components/common/alertTip'
+ 	import headTop from '@/components/header/Header'
+ 	import { mapState, mapMutations } from 'vuex'
+ 	// import {vipCart} from 'src/service/getData'
+ 	import { Url, Http } from "@/tools/http"
+ 	import alertTip from '@/components/common/AlertTip'
 
  	export default {
  		data(){
@@ -50,16 +51,28 @@
  			alertTip,
  		},
  		methods: {
- 			async confrimPay(){
+ 			confrimPay(){
  				if (this.couldPay) {
- 					let res = await vipCart(this.userInfo.id, this.cartNumber, this.passWord);
- 					if (res.message) {
- 						this.showAlert = true;
- 						this.alertText = res.message;
- 					}else if(res.name){
- 						this.showAlert = true;
- 						this.alertText = res.name;
- 					}
+ 					// let res = await vipCart(this.userInfo.id, this.cartNumber, this.passWord);
+ 					Http.post(
+ 						Url.vipCart + this.userInfo.id + '/delivery_card/physical_card/bind',
+ 						{
+ 							number: this.cartNumber,
+							password: this.passWord
+ 						},
+ 						(data)=>{
+ 							let res = data;
+ 							if (res.message) {
+		 						this.showAlert = true;
+		 						this.alertText = res.message;
+		 					}else if(res.name){
+		 						this.showAlert = true;
+		 						this.alertText = res.name;
+		 					}
+ 						},
+ 						()=>{},
+ 						()=>{}
+ 					)
  				}
  			}
  		}

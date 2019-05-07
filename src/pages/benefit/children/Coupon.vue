@@ -20,11 +20,11 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
- 	// import {payRequest} from 'src/service/getData'
- 	import alertTip from 'src/components/common/AlertTip'
- 	import loading from 'src/components/common/Loading'
+ 	// import {payRequest} from '@/service/getData'
+ 	import alertTip from '@/components/common/AlertTip'
+ 	import loading from '@/components/common/Loading'
 
  	export default {
  		data(){

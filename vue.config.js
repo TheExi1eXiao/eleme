@@ -4,9 +4,53 @@ module.exports = {
 		port:8000,
 		proxy:{
 			'/v1':{
-				target:"http://cangdu.org:8001",
+				target:"http://elm.cangdu.org",
 				changeOrigin:true
-			}
+			},
+			'/shopping':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/ugc':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/v2':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/v3':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/v4':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/bos':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/member':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/promotion':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/eus':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/payapi':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
+			'/img':{
+				target:"http://elm.cangdu.org",
+				changeOrigin:true
+			},
 		}
 	}
 }

@@ -137,11 +137,11 @@
 </template>
 
 <script>
-	import headTop from 'src/components/header/head'
-	import footGuide from 'src/components/footer/footGuide'
-	import {mapState, mapMutations} from 'vuex'
-	import {imgBaseUrl} from 'src/config/env'
-	import {getImgPath} from 'src/components/common/mixin'
+	import headTop from '@/components/header/Header'
+	import footGuide from '@/components/footer/Footer'
+	import { mapState, mapMutations } from 'vuex'
+	import { imgBaseUrl } from '@/api/config'
+	import { getImgPath } from '@/components/common/mixin'
 
 	export default {
 		data(){

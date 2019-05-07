@@ -21,10 +21,10 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	// import {getRemark} from 'src/service/getData'
- 	import { Url , Http } from "src/tools/tools"
- 	import loading from 'src/components/common/Loading'
+ 	import { Url , Http } from "@/tools/http"
+ 	import loading from '@/components/common/Loading'
  	import { mapMutations } from 'vuex'
 
  	export default {

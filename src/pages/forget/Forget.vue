@@ -33,10 +33,10 @@
 </template>
 
 <script>
-	import headTop from 'src/components/header/Header'
-	import alertTip from 'src/components/common/AlertTip'
+	import headTop from '@/components/header/Header'
+	import alertTip from '@/components/common/AlertTip'
 	// import {mobileCode, checkExsis, sendMobile, getcaptchas, changePassword} from 'src/service/getData'
-	import { Url , Http } from "src/tools/tools"
+	import { Url , Http } from "@/tools/http"
 
 	export default {
 		data(){
@@ -87,8 +87,8 @@
           Http.get(
           	Url.checkExsis,
           	{
-          		[type]: this.phoneNumber,
-							type： this.accountType
+          		"[type]": this.phoneNumber,
+							type: this.accountType
           	},
           	(data)=>{
           		let res = data;

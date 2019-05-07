@@ -24,11 +24,11 @@
 </template>
 
 <script>
-	import headTop from 'src/components/header/Header'
+	import headTop from '@/components/header/Header'
 	// import {currentcity, searchplace} from 'src/service/getData'
 	// import {getStore, setStore, removeStore} from 'src/config/mUtils'
-	import { Url , Http } from "src/tools/tools"
-	import Storage from "src/tools/storage"
+	import { Url , Http } from "@/tools/http"
+	import Storage from "@/tools/storage"
 	let storage = new Storage()
 
 	export default {
@@ -51,7 +51,7 @@
 	    // 	this.cityname = res.name;
 	    // })
 	    Http.get(
-	    	Url.city+''+ this.cityid
+	    	Url.city+''+ this.cityid,
 	    	{},
 	    	(data)=>{
 	    		this.cityname = data.name

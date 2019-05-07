@@ -55,12 +55,14 @@
 </template>
 
 <script>
-	import headTop from '../../components/header/head'
-	import footGuide from '../../components/footer/footGuide'
-	import {searchRestaurant} from '../../service/getData'
-	import {imgBaseUrl} from '../../config/env'
-	import {getStore, setStore} from '../../config/mUtils'
-
+	import headTop from '../../components/header/Header'
+	import footGuide from '../../components/footer/Footer'
+	// import {searchRestaurant} from '../../service/getData'
+	import { Url, Http } from "@/tools/http"
+	import { imgBaseUrl } from '@/api/config'
+	// import { getStore, setStore } from '../../config/mUtils'
+	import Storage from "@/tools/storage"
+	let storage = new Storage()
 	export default {
 		data(){
 			return {
@@ -79,8 +81,8 @@
     mounted(){
     	this.geohash = this.$route.params.geohash;
 	    //获取搜索历史记录
-	    if (getStore('searchHistory')) {
-	    	this.searchHistory = JSON.parse(getStore('searchHistory'));
+	    if (storage.getLocalStorage('searchHistory')) {
+	    	this.searchHistory = storage.getLocalStorage('searchHistory');
 	    }
 	  },
 	  components:{
@@ -89,7 +91,7 @@
 	  },
 	  methods:{
 	    //点击提交按钮，搜索结果并显示，同时将搜索内容存入历史记录
-	    async searchTarget(historyValue){
+	    searchTarget(historyValue){
 	    	if (historyValue) {
 	    		this.searchValue = historyValue;
 	    	}else if (!this.searchValue) {
@@ -98,28 +100,42 @@
         //隐藏历史记录
         this.showHistory = false;
         //获取搜索结果
-        this.restaurantList = await searchRestaurant(this.geohash, this.searchValue);
-        this.emptyResult = !this.restaurantList.length;
-        /**
-         * 点击搜索结果进入下一页面时进行判断是否已经有一样的历史记录
-         * 如果没有则新增，如果有则不做重复储存，判断完成后进入下一页
-        */
-        let history = getStore('searchHistory');
-        if (history) { 
-         	let checkrepeat = false;
-         	this.searchHistory = JSON.parse(history);
-         	this.searchHistory.forEach(item => {
-         		if (item == this.searchValue) {
-         			checkrepeat = true;
-         		}
-         	})
-         	if (!checkrepeat) {
-         		this.searchHistory.push(this.searchValue)
-         	}
-        }else {
-         	this.searchHistory.push(this.searchValue)
-        }
-        setStore('searchHistory',this.searchHistory)
+        // this.restaurantList = await searchRestaurant(this.geohash, this.searchValue);
+        Http.get(
+        	Url.searchRestaurant,
+        	{
+        		'extras[]': 'restaurant_activity',
+						geohash: this.geohash,
+						keyword: this.searchValue,
+						type: 'search'
+        	},
+        	(data)=>{
+        		this.restaurantList = data;
+        		this.emptyResult = !this.restaurantList.length;
+		        /**
+		         * 点击搜索结果进入下一页面时进行判断是否已经有一样的历史记录
+		         * 如果没有则新增，如果有则不做重复储存，判断完成后进入下一页
+		        */
+		        let history = storage.getLocalStorage('searchHistory');
+		        if (history) { 
+		         	let checkrepeat = false;
+		         	this.searchHistory = history;
+		         	this.searchHistory.forEach(item => {
+		         		if (item == this.searchValue) {
+		         			checkrepeat = true;
+		         		}
+		         	})
+		         	if (!checkrepeat) {
+		         		this.searchHistory.push(this.searchValue)
+		         	}
+		        }else {
+		         	this.searchHistory.push(this.searchValue)
+		        }
+		        storage.setLocalStorage('searchHistory',this.searchHistory)
+        	},
+        	()=>{},
+        	()=>{}
+        )
       },
 	    //搜索结束后，删除搜索内容直到为空时清空搜索结果，并显示历史记录
 	    checkInput(){
@@ -132,12 +148,12 @@
 	    //点击删除按钮，删除当前历史记录
 	    deleteHistory(index){
 	    	this.searchHistory.splice(index, 1);
-	    	setStore('searchHistory',this.searchHistory);
+	    	storage.setLocalStorage('searchHistory',this.searchHistory);
 	    },
 	    //清除所有历史记录
 	    clearAllHistory(){
 	    	this.searchHistory = [];
-	    	setStore('searchHistory',this.searchHistory);
+	    	storage.setLocalStorage('searchHistory',this.searchHistory);
 	    }
 	  }
 	}

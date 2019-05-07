@@ -78,10 +78,10 @@
 </template>
 
 <script>
-	import headTop from 'src/components/header/head'
-	import {mapState} from 'vuex'
-	import {getImgPath} from 'src/components/common/mixin'
-	import {imgBaseUrl} from 'src/config/env'
+	import headTop from '@/components/header/Header'
+	import { mapState } from 'vuex'
+	import { getImgPath } from '@/components/common/mixin'
+	import { imgBaseUrl } from '@/api/config'
 
 	export default {
 		data(){

@@ -42,14 +42,14 @@
 
 <script>
 	import { mapMutations } from 'vuex'
-	import { imgBaseUrl } from 'src/api/config'
-	import headTop from 'src/components/header/Header'
-	import footGuide from 'src/components/footer/Footer'
-	import shopList from 'src/components/common/ShopList'
+	import { imgBaseUrl } from '@/api/config'
+	import headTop from '@/components/header/Header'
+	import footGuide from '@/components/footer/Footer'
+	import shopList from '@/components/common/ShopList'
 	// import {msiteAddress, msiteFoodTypes, cityGuess} from 'src/service/getData'
-	import { Url , Http } from "src/tools/tools"
-	import 'src/plugins/swiper.min.js'
-	import 'src/style/swiper.min.css'
+	import { Url , Http } from "@/tools/http"
+	import '@/plugins/swiper.min.js'
+	import '@/style/swiper.min.css'
 
 	export default {
 		data(){

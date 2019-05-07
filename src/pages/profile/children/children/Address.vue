@@ -33,10 +33,11 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import {mapState,mapActions,} from 'vuex'
- 	import {getAddressList, deleteAddress} from 'src/service/getData'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import { mapState, mapActions } from 'vuex'
+ 	// import {getAddressList, deleteAddress} from 'src/service/getData'
+  import { Url , Http } from "@/tools/http"
 
  	export default {
  		data(){
@@ -83,10 +84,18 @@
       	}
       },
       //删除地址
-      async deleteSite(index, item){
+      deleteSite(index, item){
       	if (this.userInfo && this.userInfo.user_id) {
-      		await deleteAddress(this.userInfo.user_id, item.id);
-      		this.removeAddress.splice(index, 1);
+      		// await deleteAddress(this.userInfo.user_id, item.id);
+          Http.get(
+            Url.addresses + this.userInfo.user_id + '/addresses/' + item.id ,
+            {},
+            (data) =>{
+              this.removeAddress.splice(index, 1);
+            },
+            ()=>{},
+            ()=>{}
+          )	
       	}
       }
     },

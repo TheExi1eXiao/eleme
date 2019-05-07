@@ -101,11 +101,11 @@
 </template>
 
 <script>
- 	import {mapState} from 'vuex'
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
+ 	import { mapState } from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
  	import BScroll from 'better-scroll'
- 	import { localapi, proapi, imgBaseUrl} from 'src/config/env'
+ 	import { imgBaseUrl } from '@/api/config'
 
 
  	export default {

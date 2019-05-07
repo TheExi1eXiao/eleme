@@ -12,7 +12,7 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	import { mapMutations } from 'vuex'
 
  	export default {

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import alertTip from 'src/components/common/AlertTip'
+  import alertTip from '@/components/common/AlertTip'
   export default {
   	data(){
       return{

@@ -8,8 +8,8 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {mapState, mapMutations} from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	import { mapState, mapMutations } from 'vuex'
  	import showdown from 'showdown'
  	import BScroll from 'better-scroll'
 

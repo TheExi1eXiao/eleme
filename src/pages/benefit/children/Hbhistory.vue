@@ -32,11 +32,11 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {getExpired} from 'src/service/getData'
- 	import { Url , Http } from "src/tools/tools"
- 	import loading from 'src/components/common/Loading'
+ 	import { Url , Http } from "@/tools/http"
+ 	import loading from '@/components/common/Loading'
  	import BScroll from 'better-scroll'
 
  	export default {

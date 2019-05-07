@@ -59,7 +59,34 @@ const Url = {
 	accountLogin: `${APIBaseUrl}/v2/login`,
 
 	//获取msite页面食品分类列表
-	msiteFoodTypes: `${APIBaseUrl}/v2/index_entry`
+	msiteFoodTypes: `${APIBaseUrl}/v2/index_entry`,
+
+	//获取订单列表
+	getOrderList: `${APIBaseUrl}/bos/v2/users/`,
+
+	//获取订单详情
+	getOrderDetail: `${APIBaseUrl}/bos/v1/users/`,
+
+	//退出登录
+	signout: `${APIBaseUrl}/v2/signout`,
+
+	//获取search页面搜索结果
+	searchRestaurant: `${APIBaseUrl}/v4/restaurants`,
+
+	//获取服务中心信息
+	getService: `${APIBaseUrl}/v3/profile/explain`,
+
+	//获取shop页面商铺详情
+	shopDetails: `${APIBaseUrl}/shopping/restaurant/`,
+
+	//获取shop页面菜单列表
+	foodMenu: `${APIBaseUrl}/shopping/v2/menu`,
+
+	//获取商铺评价列表
+	getRatingList: `${APIBaseUrl}/ugc/v2/restaurants/`,
+
+	//兑换会员卡
+	vipCart: `${APIBaseUrl}/member/v1/users/`
 }
 
 export default Url;

@@ -17,9 +17,9 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import {mapMutations,mapState} from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import { mapMutations, mapState } from 'vuex'
  	export default {
  		data(){
  			return{

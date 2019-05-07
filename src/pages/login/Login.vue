@@ -52,10 +52,10 @@
 <script>
 	import headTop from '../../components/header/Header'
 	import alertTip from '../../components/common/AlertTip'
-	import { imgBaseUrl } from 'src/api/config'
+	import { imgBaseUrl } from '@/api/config'
 	import { mapState, mapMutations } from 'vuex'
 	// import {mobileCode, checkExsis, sendLogin, getcaptchas, accountLogin} from '../../service/getData'
-	import { Url , Http } from "src/tools/tools"
+	import { Url , Http } from "@/tools/http"
 	export default {
 		data(){
 			return {
@@ -129,8 +129,8 @@
 	        Http.get(
           	Url.checkExsis,
           	{
-          		[type]: this.phoneNumber,
-							type： 'mobile'
+          		"[type]": this.phoneNumber,
+							type: 'mobile'
           	},
           	(data)=>{
           		let exsis = data;

@@ -39,11 +39,12 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import {mapState, mapMutations} from 'vuex'
- 	import {postAddAddress} from 'src/service/getData'
- 	import alertTip from 'src/components/common/alertTip'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import { mapState, mapMutations } from 'vuex'
+ 	// import { postAddAddress } from 'src/service/getData'
+ 	import { Url, Http } from "@/tools/http"
+ 	import alertTip from '@/components/common/AlertTip'
 
 
  	export default {
@@ -134,25 +135,43 @@
 		  	}
 		  },
 		  //保存地址
-		  async submitThing(){
-		  	let res = await postAddAddress(this.userInfo.user_id, this.mesthree, this.addAddress, this.geohash, this.message, this.telenum, this.standbytelenum, 0, 1, '公司', 4);
-		  	if (res.message) {
-		  		this.showAlert = true;
-		  		this.alertText = res.message;
-		  	}else if(this.butpart){
-          //保存的地址存入vuex
-          this.ADD_ADDRESS({
-          	name: this.message,
-          	address: this.mesthree,
-          	address_detail: this.addAddress,
-          	geohash: 'wtw37r7cxep4',
-          	phone: this.telenum,
-          	phone_bk: this.standbytelenum,
-          	poi: this.addAddress,
-          	poi_type: 0,
-          });
-          this.$router.go(-1);
-        }
+		  submitThing(){
+		  	// let res = await postAddAddress(this.userInfo.user_id, this.mesthree, this.addAddress, this.geohash, this.message, this.telenum, this.standbytelenum, 0, 1, '公司', 4);
+		  	Http.post(
+		  		Url.addresses + this.userInfo.user_id + '/addresses',
+		  		{
+		  			address: this.mesthree,
+						address_detail: this.addAddress,
+						geohash: this.geohash,
+						name: this.message,
+						phone: this.telenum,
+						phone_bk: this.standbytelenum,
+						poi_type: 0,
+						sex: 1,
+						tag: '公司',
+						tag_type: 4
+		  		},
+		  		(data)=>{
+		  			let res = data;
+		  			if (res.message) {
+				  		this.showAlert = true;
+				  		this.alertText = res.message;
+				  	}else if(this.butpart){
+		          //保存的地址存入vuex
+		          this.ADD_ADDRESS({
+		          	name: this.message,
+		          	address: this.mesthree,
+		          	address_detail: this.addAddress,
+		          	geohash: 'wtw37r7cxep4',
+		          	phone: this.telenum,
+		          	phone_bk: this.standbytelenum,
+		          	poi: this.addAddress,
+		          	poi_type: 0,
+		          });
+		          this.$router.go(-1);
+		        }
+		  		}
+		  	)
       }
     }
   }

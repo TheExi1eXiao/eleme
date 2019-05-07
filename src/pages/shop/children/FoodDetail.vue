@@ -30,11 +30,11 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import ratingStar from 'src/components/common/ratingStar'
- 	import buyCart from 'src/components/common/buyCart'
- 	import {imgBaseUrl} from 'src/config/env'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import ratingStar from '@/components/common/RatingStar'
+ 	import buyCart from '@/components/common/BuyCart'
+ 	import { imgBaseUrl } from '@/api/config'
 
  	export default {
  		data(){

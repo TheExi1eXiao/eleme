@@ -176,16 +176,16 @@
 
 <script>
 	import { mapState, mapMutations } from "vuex";
-	import headTop from "src/components/header/Header";
-	import shopList from "src/components/common/ShopList";
-	import { getImgPath } from "src/components/common/mixin";
+	import headTop from "@/components/header/Header";
+	import shopList from "@/components/common/ShopList";
+	import { getImgPath } from "@/components/common/mixin";
 	// import {
 	// 	msiteAddress,
 	// 	foodCategory,
 	// 	foodDelivery,
 	// 	foodActivity
 	// } from "src/service/getData";
-	import { Url , Http } from "src/tools/tools"
+	import { Url , Http } from "@/tools/http"
 
 	export default {
 		data() {

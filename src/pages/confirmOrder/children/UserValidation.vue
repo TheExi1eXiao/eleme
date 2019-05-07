@@ -22,11 +22,11 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
- 	// import {rePostVerify, validateOrders} from 'src/service/getData'
- 	import { Url , Http } from "src/tools/tools"
- 	import alertTip from 'src/components/common/AlertTip'
+ 	// import {rePostVerify, validateOrders} from '@/service/getData'
+ 	import { Url , Http } from "@/tools/http"
+ 	import alertTip from '@/components/common/AlertTip'
 
  	export default {
  		data(){

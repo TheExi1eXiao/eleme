@@ -132,13 +132,13 @@
 
 <script>
 	import { mapState, mapMutations } from 'vuex'
-	import headTop from 'src/components/header/Header'
-	import alertTip from 'src/components/common/AlertTip'
-	import loading from 'src/components/common/Loading'
+	import headTop from '@/components/header/Header'
+	import alertTip from '@/components/common/AlertTip'
+	import loading from '@/components/common/Loading'
 	// import {checkout, getAddress, placeOrders, getAddressList} from 'src/service/getData'
 	// import {imgBaseUrl} from 'src/config/env'
-	import { Url , Http } from "src/tools/tools"
-	import { imgBaseUrl } from "src/api/config"
+	import { Url , Http } from "@/tools/http"
+	import { imgBaseUrl } from "@/api/config"
 
 	export default {
 		data(){

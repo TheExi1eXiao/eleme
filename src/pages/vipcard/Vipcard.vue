@@ -72,10 +72,10 @@
 </template>
 
 <script>
- 	import headTop from 'src/components/header/head'
- 	import {mapState, mapMutations} from 'vuex'
- 	import {getOrderList} from 'src/service/getData'
-
+ 	import headTop from '@/components/header/Header'
+ 	import { mapState, mapMutations } from 'vuex'
+ 	// import {getOrderList} from 'src/service/getData'
+ 	import { Url, Http } from "@/tools/http"
  	export default {
  		data(){
  			return{

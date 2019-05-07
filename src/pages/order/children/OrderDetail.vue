@@ -87,13 +87,14 @@
  </template>
 
  <script>
- 	import {mapState, mapMutations} from 'vuex'
- 	import headTop from 'src/components/header/head'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import {getOrderDetail} from 'src/service/getData'
- 	import loading from 'src/components/common/loading'
+ 	import { mapState, mapMutations } from 'vuex'
+ 	import headTop from '@/components/header/Header'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	// import { getOrderDetail } from 'src/service/getData'
+ 	import { Url , Http } from "@/tools/http"
+ 	import loading from '@/components/common/Loading'
  	import BScroll from 'better-scroll'
- 	import {imgBaseUrl} from 'src/config/env'
+ 	import { imgBaseUrl } from '@/api/config'
 
 
  	export default {
@@ -119,18 +120,27 @@
     		]),
     },
     methods: {
-    	async initData(){
+    	initData(){
     		if (this.userInfo && this.userInfo.user_id) {
-    			this.orderData = await getOrderDetail(this.userInfo.user_id, this.orderDetail.unique_id);
-    			this.showLoading = false;
-    			this.$nextTick(() => {
-    				new BScroll('#scroll_section', {  
-    					deceleration: 0.001,
-    					bounce: true,
-    					swipeTime: 1800,
-    					click: true,
-    				}); 
-    			})
+    			// this.orderData = await getOrderDetail(this.userInfo.user_id, this.orderDetail.unique_id);
+    			Http.get(
+    				Url.getOrderDetail + this.userInfo.user_id + '/orders/' + this.orderDetail.unique_id + '/snapshot',
+    				{},
+    				(data)=>{
+    					this.orderData = data;
+    					this.showLoading = false;
+		    			this.$nextTick(() => {
+		    				new BScroll('#scroll_section', {  
+		    					deceleration: 0.001,
+		    					bounce: true,
+		    					swipeTime: 1800,
+		    					click: true,
+		    				}); 
+		    			})
+    				},
+    				()=>{},
+    				()=>{}
+    			)
     		}
     	},
     },

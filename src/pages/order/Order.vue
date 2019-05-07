@@ -45,15 +45,15 @@
 
  <script>
  	import {mapState, mapMutations} from 'vuex'
- 	import headTop from 'src/components/header/Header'
- 	import computeTime from 'src/components/common/ComputeTime'
- 	import loading from 'src/components/common/Loading'
- 	import {getImgPath} from 'src/components/common/mixin'
- 	import footGuide from 'src/components/footer/Footer'
+ 	import headTop from '@/components/header/Header'
+ 	import computeTime from '@/components/common/ComputeTime'
+ 	import loading from '@/components/common/Loading'
+ 	import { getImgPath } from '@/components/common/mixin'
+ 	import footGuide from '@/components/footer/Footer'
  	// import {getOrderList} from 'src/service/getData'
- 	import { Url , Http } from "src/tools/tools"
- 	import {loadMore} from 'src/components/common/mixin'
- 	import {imgBaseUrl} from 'src/api/config'
+ 	import { Url , Http } from "@/tools/http"
+ 	import { loadMore } from '@/components/common/mixin'
+ 	import { imgBaseUrl } from '@/api/config'
 
 
  	export default {
@@ -86,17 +86,30 @@
     		'SAVE_ORDER'
     	]),
 	    //初始化获取信息
-	    async initData(){
+	    initData(){
 	    	if (this.userInfo && this.userInfo.user_id) {
-	    		let res = await getOrderList(this.userInfo.user_id, this.offset);
-	    		this.orderList = [...res];
-	    		this.hideLoading();
+	    		// let res = await getOrderList(this.userInfo.user_id, this.offset);
+	    		Http.get(
+	    			Url.getOrderList + this.userInfo.user_id + '/orders',
+	    			{
+	    				limit: 10,
+							offset: this.offset
+	    			},
+	    			(data)=>{
+	    				let res = data;
+	    				this.orderList = [...res];
+	    				this.hideLoading();
+	    			},
+	    			()=>{},
+	    			()=>{}
+	    		)
+	    		
 	    	}else{
 	    		this.hideLoading();
 	    	}
 	    },
 	    //加载更多
-	    async loaderMore(){
+	    loaderMore(){
 	    	if (this.preventRepeat) {
 	    		return
 	    	}
@@ -104,13 +117,25 @@
 	    	this.showLoading = true;
 	    	this.offset += 10;
         //获取信息
-        let res = await getOrderList(this.userInfo.user_id, this.offset);
-        this.orderList = [...this.orderList, ...res];
-        this.hideLoading();
-        if (res.length < 10) {
-        	return
-        }
-        this.preventRepeat = false;
+        // let res = await getOrderList(this.userInfo.user_id, this.offset);
+        Http.get(
+    			Url.getOrderList + this.userInfo.user_id + '/orders',
+    			{
+    				limit: 10,
+						offset: this.offset
+    			},
+    			(data)=>{
+    				let res = data;
+    				this.orderList = [...this.orderList, ...res];
+		        this.hideLoading();
+		        if (res.length < 10) {
+		        	return
+		        }
+		        this.preventRepeat = false;
+    			},
+    			()=>{},
+    			()=>{}
+    		)
 	    },
 	    //显示详情页
 	    showDetail(item){

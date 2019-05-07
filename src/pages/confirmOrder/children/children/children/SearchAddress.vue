@@ -22,9 +22,9 @@
  </template>
 
  <script>
- 	import headTop from 'src/components/header/Header'
+ 	import headTop from '@/components/header/Header'
  	// import {searchNearby} from 'src/service/getData'
- 	import { Url , Http } from "src/tools/tools"
+ 	import { Url , Http } from "@/tools/http"
  	import { mapMutations } from 'vuex'
 
  	export default {
