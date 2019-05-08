@@ -27,7 +27,9 @@
   import { mapState, mapActions } from 'vuex'
   export default {
   	data(){
-      return{}
+      return {
+
+      }
     },
     mounted(){
       //获取用户信息
@@ -37,13 +39,13 @@
     computed: {
       ...mapState([
         'userInfo'
-      ]),
+      ])
     },
     methods: {
       ...mapActions([
         'getUserInfo'
-      ]),
-    },
+      ])
+    }
   }
 </script>
 

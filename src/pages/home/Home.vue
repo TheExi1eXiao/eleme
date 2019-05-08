@@ -58,23 +58,23 @@
   },
   mounted(){
   	this.getData(Url.city,{
-  		type:'hot'
+  		type: 'hot'
   	},(data)=>{
       this.hotcity = data
     })
     this.getData(Url.city,{
-      type:"group"
+      type: "group"
     },(data)=>{
       this.groupcity = data
     })
     this.getData(Url.city,{
-      type:"guess"
+      type: "guess"
     },(data)=>{
       this.guessCity = data.name;
       this.guessCityid = data.id;
     })
   },
-  computed:{
+  computed: {
   	sortgroupcity(){
       let sortobj = {};
       for (let i = 65; i <= 90; i++) {
@@ -85,7 +85,7 @@
       return sortobj
     }
   },
-  methods:{
+  methods: {
   	reload(){
       window.location.reload();
     },

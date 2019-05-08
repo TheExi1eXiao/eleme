@@ -54,7 +54,7 @@
     components: {
     	headTop
     },
-    props:[],
+    props: [],
     methods: {
     	...mapMutations([
     		'SAVE_QUESTION'
@@ -91,7 +91,7 @@
 	    toQuestionDetail(title, index){
 	    	this.SAVE_QUESTION({title, detail: this.questionDetail[index]});
 	    	this.$router.push('/service/questionDetail');
-	    },
+	    }
 	  }
 	}
 </script>

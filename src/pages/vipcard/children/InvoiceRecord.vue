@@ -16,18 +16,20 @@
 
  	export default {
  		data(){
- 			return {}
+ 			return {
+
+ 			}
  		},
  		mounted(){
 
  		},
  		computed: {
  			...mapState([
- 				'userInfo', 
+ 				'userInfo'
  			]),
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
  		methods: {
  			...mapMutations([

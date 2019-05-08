@@ -48,7 +48,7 @@
  				satisfy_rate: null,
  				foods: null,
  				shopId: null,
- 				imgBaseUrl,
+ 				imgBaseUrl
  			}
  		},
  		created(){
@@ -66,10 +66,12 @@
  		components: {
  			headTop,
  			ratingStar,
- 			buyCart,
+ 			buyCart
  		},
- 		props:[],
- 		methods: {}
+ 		props: [],
+ 		methods: {
+ 			
+ 		}
  	}
 </script>
 

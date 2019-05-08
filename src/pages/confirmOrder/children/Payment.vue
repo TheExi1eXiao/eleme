@@ -55,12 +55,12 @@
        	alertText: null,
         payWay: 1, //付款方式
         countNum: 900, //倒计时15分钟
-        gotoOrders: false, //去付款
+        gotoOrders: false //去付款
       }
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
     created(){
     	this.initData();
@@ -75,7 +75,7 @@
     beforeDestroy(){
     	clearInterval(this.timer);
     },
-    props:[],
+    props: [],
     computed: {
     	...mapState([
     		'orderMessage', 'userInfo', 'shopid', 'cartPrice'
@@ -145,7 +145,7 @@
       	if (this.gotoOrders) {
       		this.$router.push('/order');
       	}
-      },
+      }
     }
   }
 </script>

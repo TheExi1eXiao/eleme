@@ -35,7 +35,7 @@
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {getExpired} from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import loading from '@/components/common/Loading'
  	import BScroll from 'better-scroll'
 
@@ -45,7 +45,7 @@
  				showAlert: false,
  				alertText: null,
  				showLoading: true,
-      	expiredList: null, //历史红包列表
+      	expiredList: null //历史红包列表
     	}
 	  },
 	  mounted(){
@@ -53,12 +53,12 @@
 	  },
 	  components: {
 	  	headTop,
-	  	loading,
+	  	loading
 	  },
 	  computed: {
 	  	...mapState([
 	  		'userInfo',
-	  		]),
+	  	])
 	  },
 	  methods: {
 	  	...mapMutations([

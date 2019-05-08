@@ -91,7 +91,9 @@
 				imgBaseUrl
 			}
 		},
-		mounted(){},
+		mounted(){
+
+		},
 		computed: {
 			...mapState([
 				'shopDetail'
@@ -105,7 +107,7 @@
 			showLicenseImg(img){
 				this.licenseImg = img;
 				this.showlicenseImg = true;
-			},
+			}
 		}
 	}
 </script>

@@ -117,13 +117,13 @@
  	export default {
  		data(){
  			return {
-        username:'',    //用户名
-        resetname:'', //重置用户名
-        infotel:'',     //用户手机
-        avatar:'',      //用户头像
-        show:false,     //显示提示框
-        isEnter:true,  //是否登录
-        isLeave:false, //是否退出
+        username: '',    //用户名
+        resetname: '', //重置用户名
+        infotel: '',     //用户手机
+        avatar: '',      //用户头像
+        show: false,     //显示提示框
+        isEnter: true,  //是否登录
+        isLeave: false, //是否退出
         showAlert: false,
         alertText: null,
         imgBaseUrl
@@ -134,13 +134,13 @@
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
     mixins: [getImgPath],
     computed:{
     	...mapState([
     		'userInfo', 'imgPath'
-    	]),
+    	])
     },
     methods: {
     	...mapMutations([

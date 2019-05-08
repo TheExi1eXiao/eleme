@@ -29,13 +29,13 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				id: null,
  				sig: null,
  				remarkList: null,
  				showLoading: true,
  				remarkText: {},
- 				inputText: null,
+ 				inputText: null
  			}
  		},
  		created(){
@@ -50,7 +50,7 @@
  			headTop,
  			loading,
  		},
- 		props:[],
+ 		props: [],
  		methods: {
  			...mapMutations([
  				'CONFIRM_REMARK'

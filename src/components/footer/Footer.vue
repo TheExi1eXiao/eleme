@@ -51,7 +51,7 @@
   import { mapState } from 'vuex'
   export default {
   	data(){
-      return{
+      return {
           
       }
     },
@@ -64,13 +64,13 @@
     computed: {
       ...mapState([
         'geohash'
-      ]),
+      ])
     },
     methods: {
     	gotoAddress(path){
     		this.$router.push(path)
     	}
-    },
+    }
   }
 </script>
 

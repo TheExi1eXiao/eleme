@@ -29,15 +29,15 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
        	searchValue: null, //输入的搜索内容
-        searchData: null, //搜索的结果
+        searchData: null //搜索的结果
       }
     },
     components: {
-    	headTop,
+    	headTop
     },
-    props:[],
+    props: [],
     methods: {
     	...mapMutations([
     		'CHOOSE_SEARCH_ADDRESS'
@@ -64,7 +64,7 @@
 	    choooedAddress(item){
 	    	this.CHOOSE_SEARCH_ADDRESS(item);
 	    	this.$router.go(-1);
-	    },
+	    }
 	  }
 	}
 </script>

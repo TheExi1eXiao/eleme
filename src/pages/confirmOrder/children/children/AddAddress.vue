@@ -64,7 +64,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
         name: null, //姓名
         sex: 1, //性别
         phone: null, //电话
@@ -75,7 +75,7 @@
         anntherPhoneNumber: '', //备注电话
         showAlert: false, //弹出框
         alertText: null, //弹出框信息
-        poi_type: 0, //地址类型
+        poi_type: 0 //地址类型
       }
     },
     created(){
@@ -83,12 +83,12 @@
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
     computed: {
     	...mapState([
-    		'searchAddress', 'geohash', 'userInfo',
-    	]),
+    		'searchAddress', 'geohash', 'userInfo'
+    	])
     },
     methods: {
     	...mapMutations([
@@ -150,7 +150,7 @@
 		        }
 	    		}
 	    	)
-      },
+      }
     }
   }
 </script>

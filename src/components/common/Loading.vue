@@ -11,9 +11,9 @@
 <script>
   export default {
   	data(){
-      return{
+      return {
         positionY: 0,
-        timer: null,
+        timer: null
       }
     },
     mounted(){

@@ -23,17 +23,17 @@
  	import headTop from '@/components/header/Header'
  	import { mapState } from 'vuex'
  	// import { getcaptchas, exChangeHongbao } from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import alertTip from '@/components/common/AlertTip'
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				showAlert: false,
  				alertText: null,
  				exchangeCode: null,
  				codeNumber: '',
- 				captchaCodeImg: null,
+ 				captchaCodeImg: null
  			}
  		},
  		mounted(){
@@ -41,11 +41,11 @@
  		},
  		components: {
  			headTop,
- 			alertTip,
+ 			alertTip
  		},
  		computed: {
  			...mapState([
- 				'userInfo',
+ 				'userInfo'
  			]),
  			status: function (){
  				let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber))

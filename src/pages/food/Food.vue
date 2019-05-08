@@ -188,7 +188,7 @@
 	import { Url, Http } from "@/tools/http"
 
 	export default {
-		data() {
+		data(){
 			return {
 	      geohash: "", // city页面传递过来的地址geohash
 	      headTitle: "", // msiet页面头部标题
@@ -207,7 +207,7 @@
 	      confirmStatus: false // 确认选择
 	    };
 	  },
-	  created() {
+	  created(){
 	  	this.initData();
 	  },
 	  mixins: [getImgPath],

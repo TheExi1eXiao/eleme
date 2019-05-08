@@ -42,9 +42,9 @@
  	export default {
  		data(){
  			return {
-  			deletesite:false, //是否编辑状态
-  			editText:'编辑',
-  			adressList:[] //地址列表
+  			deletesite: false, //是否编辑状态
+  			editText: '编辑',
+  			adressList: [] //地址列表
   		}
   	},
   	mounted(){
@@ -55,14 +55,14 @@
 
   	},
   	components: {
-  		headTop,
+  		headTop
   	},
   	computed:{
   		...mapState([
   			'userInfo','removeAddress'
-  		]),
+  		])
   	},
-  	props:[],
+  	props: [],
   	methods: {
   		...mapActions([
   			'saveAddress'

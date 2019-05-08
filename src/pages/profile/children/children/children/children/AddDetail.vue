@@ -33,9 +33,9 @@
  	export default {
  		data(){
  			return {
- 				warning:true,
- 				inputAdress:'',
-    		adressList:[],			//地址列表
+ 				warning: true,
+ 				inputAdress: '',
+    		adressList: [],			//地址列表
     	}
     },
   	created(){
@@ -59,12 +59,12 @@
 	  components: {
 	  	headTop
 	  },
-	  computed:{
+	  computed: {
 	  	...mapState([
 	  		'addAddress'
 	  	])
 	  },
-	  props:[],
+	  props: [],
 	  methods: {
 	  	...mapMutations([
 	  		'SAVE_ADDDETAIL'

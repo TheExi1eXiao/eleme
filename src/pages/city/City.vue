@@ -27,19 +27,19 @@
 	import headTop from '@/components/header/Header'
 	// import {currentcity, searchplace} from 'src/service/getData'
 	// import {getStore, setStore, removeStore} from 'src/config/mUtils'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 	import Storage from "@/tools/storage"
 	let storage = new Storage
 	export default {
 		data(){
-			return{
-        inputValue:'', // 搜索地址
-        cityid:'', // 当前城市id
-        cityname:'', // 当前城市名字
-        placelist:[], // 搜索城市列表
-        placeHistory:[], // 历史搜索记录
+			return {
+        inputValue: '', // 搜索地址
+        cityid: '', // 当前城市id
+        cityname: '', // 当前城市名字
+        placelist: [], // 搜索城市列表
+        placeHistory: [], // 历史搜索记录
         historytitle: true, // 默认显示搜索历史头部，点击搜索后隐藏
-        placeNone: false, // 搜索无结果，显示提示信息
+        placeNone: false // 搜索无结果，显示提示信息
       }
     },
 
@@ -60,15 +60,15 @@
 	    this.initData();
 	  },
 
-	  components:{
+	  components: {
 	  	headTop
 	  },
 
-	  computed:{
+	  computed: {
 
 	  },
 
-	  methods:{
+	  methods: {
 	  	initData(){
         //获取搜索历史记录
         if (storage.getLocalStorage('placeHistory')) {

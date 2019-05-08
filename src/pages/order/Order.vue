@@ -58,7 +58,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
         orderList: null, //订单列表
         offset: 0, 
         preventRepeat: false,  //防止重复获取

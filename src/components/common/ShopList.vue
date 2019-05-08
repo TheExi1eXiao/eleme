@@ -67,10 +67,10 @@
 
 import { mapState } from 'vuex'
 // import {shopList} from 'src/service/getData'
-import { Url , Http } from "@/tools/http";
+import { Url, Http } from "@/tools/http";
 import { imgBaseUrl } from '@/api/config'
-import { showBack , animate } from '@/tools/tools'
-import { loadMore , getImgPath } from './mixin'
+import { showBack, animate } from '@/tools/tools'
+import { loadMore, getImgPath } from './mixin'
 import loading from './Loading'
 import ratingStar from './RatingStar'
 
@@ -78,12 +78,12 @@ export default {
 	data(){
 		return {
 			offset: 0, // 批次加载店铺列表，每次加载20个 limit = 20
-			shopListArr:[], // 店铺列表数据
+			shopListArr: [], // 店铺列表数据
 			preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
 			showBackStatus: false, //显示返回顶部按钮
 			showLoading: true, //显示加载动画
 			touchend: false, //没有更多数据
-			imgBaseUrl,
+			imgBaseUrl
 		}
 	},
 	mounted(){
@@ -91,14 +91,14 @@ export default {
 	},
 	components: {
 		loading,
-		ratingStar,
+		ratingStar
 	},
 	props: ['restaurantCategoryId', 'restaurantCategoryIds', 'sortByType', 'deliveryMode', 'supportIds', 'confirmSelect', 'geohash'],
 	mixins: [loadMore, getImgPath],
 	computed: {
 		...mapState([
 			'latitude','longitude'
-		]),
+		])
 	},
 	updated(){
 		// console.log(this.supportIds, this.sortByType)
@@ -135,7 +135,7 @@ export default {
 				},
 				()=>{},
 				()=>{}
-				)
+			)
 		},
 		//到达底部加载更多数据
 		loaderMore(){
@@ -233,7 +233,7 @@ export default {
 				zhunStatus = false;
 			}
 			return zhunStatus
-		},
+		}
 	},
 	watch: {
 		//监听父级传来的restaurantCategoryIds，当值发生变化的时候重新获取餐馆数据，作用于排序和筛选

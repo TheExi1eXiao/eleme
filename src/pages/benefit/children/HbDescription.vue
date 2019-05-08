@@ -56,7 +56,9 @@
 
  	export default {
  		data(){
- 			return{}
+ 			return {
+
+ 			}
  		},
  		mounted(){
  			this.$nextTick(() => {
@@ -64,13 +66,13 @@
  					deceleration: 0.001,
  					bounce: true,
  					swipeTime: 1800,
- 					click: true,
+ 					click: true
  				}); 
  			})
  		},
  		components: {
- 			headTop,
- 		},
+ 			headTop
+ 		}
  	}
 </script>
 

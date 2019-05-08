@@ -52,12 +52,12 @@
 	      showAlert: false, //显示提示组件
 	      alertText: null, //提示的内容
 	      accountType: 'mobile',//注册方式
-	      captchaCodeImg: null,
+	      captchaCodeImg: null
     	}
 	  },
 	  components: {
 	  	headTop,
-	  	alertTip,
+	  	alertTip
 	  },
 	  created(){
 	  	this.getCaptchaCode()

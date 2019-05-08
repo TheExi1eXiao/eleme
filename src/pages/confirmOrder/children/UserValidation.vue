@@ -30,7 +30,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
        	validate: null, //验证码
         countDown: 60, //倒计时
         sig: null, //sig值
@@ -38,12 +38,12 @@
         showAlert: false, 
         alertText: null,
         showVoiceTip: false, //显示语音验证
-        type: 'sms',
+        type: 'sms'
       }
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
     created(){
     	this.sig = this.$route.query.sig;
@@ -55,7 +55,7 @@
     beforeDestroy(){
     	clearInterval(this.timer);
     },
-    props:[],
+    props: [],
     computed: {
     	...mapState([
     		'needValidation', 'cart_id', 'sig', 'orderParam'
@@ -138,7 +138,7 @@
 		        this.$router.push('/confirmOrder/payment');
 	    		}
 	    	)
-      },
+      }
     }
   }
 </script>

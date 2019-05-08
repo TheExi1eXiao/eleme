@@ -71,7 +71,7 @@
         captchaCodeImg: null, //验证码地址
         codeNumber: null, //验证码
         showAlert: false, //显示提示组件
-        alertText: null, //提示的内容
+        alertText: null //提示的内容
       }
     },
     created(){
@@ -79,7 +79,7 @@
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
     computed: {
 	    //判断手机号码
@@ -89,7 +89,7 @@
 	  },
   	methods: {
 	  	...mapMutations([
-	  		'RECORD_USERINFO',
+	  		'RECORD_USERINFO'
 	  	]),
 	    //改变登录方式
 	    changeLoginWay(){

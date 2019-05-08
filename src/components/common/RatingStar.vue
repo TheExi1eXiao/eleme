@@ -18,14 +18,14 @@
 <script>
   export default {
   	data(){
-      return{
+      return {
          
       }
     },
     mounted(){
     	
     },
-    props:['rating'],
+    props: ['rating']
   }
 </script>
 

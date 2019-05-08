@@ -45,9 +45,9 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				showAlert: false,
- 				alertText: null,
+ 				alertText: null
  			}
  		},
  		mounted(){
@@ -55,11 +55,11 @@
  		},
  		components: {
  			headTop,
- 			alertTip,
+ 			alertTip
  		},
  		computed: {
  			...mapState([
- 				'userInfo',
+ 				'userInfo'
  			]),
  		},
  		methods: {

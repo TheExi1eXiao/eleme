@@ -78,16 +78,20 @@
  	import { Url, Http } from "@/tools/http"
  	export default {
  		data(){
- 			return {}
+ 			return {
+
+ 			}
  		},
- 		mounted(){},
+ 		mounted(){
+
+ 		},
  		computed: {
  			...mapState([
- 				'userInfo', 
+ 				'userInfo'
  			]),
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
  		methods: {
  			...mapMutations([

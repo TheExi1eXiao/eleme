@@ -59,7 +59,7 @@
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {getAddress, getAddressList} from '@/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import alertTip from '@/components/common/AlertTip'
  	import BScroll from 'better-scroll'
 
@@ -72,7 +72,7 @@
         id: null, //ID
         sig: null,
         showAlert: false,
-        alertText: null,
+        alertText: null
       }
     },
     created(){
@@ -81,9 +81,9 @@
     },
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
-    props:[],
+    props: [],
     computed: {
     	...mapState([
     		'userInfo', 'addressIndex', 'newAddress'
@@ -156,7 +156,7 @@
     	},
     	newAddress: function (value) {
     		this.initData();
-    	},
+    	}
     }
   }
 </script>

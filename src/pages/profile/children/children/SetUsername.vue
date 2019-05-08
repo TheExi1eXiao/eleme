@@ -22,7 +22,7 @@
  	import { mapMutations, mapState } from 'vuex'
  	export default {
  		data(){
- 			return{
+ 			return {
         earn: true,     //输入框提醒
         bordercolor: false,  //输入框边框颜色
         opacityall: false,   //字体透明度
@@ -35,17 +35,17 @@
     },
     mixins: [getImgPath],
     components: {
-    	headTop,
+    	headTop
     },
     mounted(){
 
     },
-    computed:{
+    computed: {
     	...mapState([
     		'userInfo'
     	])
     },
-    props:[],
+    props: [],
     methods: {
     	...mapMutations([
     		'RETSET_NAME'

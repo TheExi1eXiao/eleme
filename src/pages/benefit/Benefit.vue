@@ -86,18 +86,18 @@
 	import headTop from '@/components/header/Header'
 	import { mapState, mapMutations } from 'vuex'
 	// import {getHongbaoNum} from 'src/service/getData'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 	import alertTip from '@/components/common/AlertTip'
 	import loading from '@/components/common/Loading'
 
 	export default {
 		data(){
-			return{
+			return {
         showAlert: false, //弹出框
         alertText: null, //弹出框文字
         showLoading: true, //加载动画
         hongbaoList: null, //红包列表
-        categoryType: 1, //红包与商家代金券切换
+        categoryType: 1 //红包与商家代金券切换
       }
     },
     mounted(){
@@ -106,11 +106,11 @@
     components: {
     	headTop,
     	alertTip,
-    	loading,
+    	loading
     },
     computed: {
     	...mapState([
-    		'userInfo',
+    		'userInfo'
     	]),
     },
     methods: {

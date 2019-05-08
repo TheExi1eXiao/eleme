@@ -137,7 +137,7 @@
 	import loading from '@/components/common/Loading'
 	// import {checkout, getAddress, placeOrders, getAddressList} from 'src/service/getData'
 	// import {imgBaseUrl} from 'src/config/env'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 	import { imgBaseUrl } from "@/api/config"
 
 	export default {
@@ -152,7 +152,7 @@
         showPayWay: false,//显示付款方式
         payWayId: 1, //付款方式
         showAlert: false, //弹出框
-        alertText: null, //弹出框内容
+        alertText: null //弹出框内容
       }
     },
     created(){
@@ -178,20 +178,20 @@
     components: {
     	headTop,
     	alertTip,
-    	loading,
+    	loading
     },
     computed: {
     	...mapState([
     		'cartList', 'remarkText', 'inputText', 'invoice', 'choosedAddress', 'userInfo'
     	]),
-    //备注页返回的信息进行处理
-    remarklist: function (){
-    	let str = new String;
-    	if (this.remarkText) {
-    		Object.values(this.remarkText).forEach(item => {
-    			str += item[1] + '，';
-    		})
-    	}
+		  //备注页返回的信息进行处理
+		  remarklist: function (){
+		  	let str = new String;
+		  	if (this.remarkText) {
+		  		Object.values(this.remarkText).forEach(item => {
+		  			str += item[1] + '，';
+		  		})
+		  	}
         //是否有自定义备注，分开处理
         if (this.inputText) {
         	return str + this.inputText;
@@ -340,7 +340,7 @@
     		if (value && value.user_id) {
     			this.initAddress();
     		}
-    	},
+    	}
     }
   }
 

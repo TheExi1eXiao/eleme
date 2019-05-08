@@ -15,7 +15,9 @@
 
  	export default {
  		data(){
- 			return{}
+ 			return {
+
+ 			}
  		},
  		components: {
  			headTop
@@ -26,13 +28,13 @@
  					deceleration: 0.001,
  					bounce: true,
  					swipeTime: 1800,
- 					click: true,
+ 					click: true
  				}); 
  			})
  		},
  		computed: {
  			...mapState([
- 				'question', 
+ 				'question'
  			]),
  			markdownText: function (){
         //转换markDown格式
@@ -40,7 +42,9 @@
         return converter.makeHtml(this.question.detail);  
       }
     },
-    methods: {}
+    methods: {
+    	
+    }
   }
 </script>
 

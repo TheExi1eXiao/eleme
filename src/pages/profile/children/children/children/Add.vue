@@ -49,22 +49,22 @@
 
  	export default {
  		data(){
- 			return{
-  			verify:false,			//姓名
-  			verifytwo:false,		//备注
-  			verifythree:false,		//地址
-  			verifyfour:false,		//电话
-  			verifyfive:false,		//备用电话
-  			butpart:false,			//新增地址按钮的透明度
-  			sendaddress:'',  //地址
-  			message:'', //信息
-  			mesthree:'', //送餐地址
-  			telenum:'', //手机号
-  			telephone:'', //手机号提示
-  			standbytele:'', //备用手机号提示 
-  			standbytelenum:'', //备用手机号
-  			addSearch:false, //添加搜索地址
-  			newAddress:{},			//增加数组的元素
+ 			return {
+  			verify: false,			//姓名
+  			verifytwo: false,		//备注
+  			verifythree: false,		//地址
+  			verifyfour: false,		//电话
+  			verifyfive: false,		//备用电话
+  			butpart: false,			//新增地址按钮的透明度
+  			sendaddress: '',  //地址
+  			message: '', //信息
+  			mesthree: '', //送餐地址
+  			telenum: '', //手机号
+  			telephone: '', //手机号提示
+  			standbytele: '', //备用手机号提示 
+  			standbytelenum: '', //备用手机号
+  			addSearch: false, //添加搜索地址
+  			newAddress: {},			//增加数组的元素
 	      showAlert: false, //弹出框
 	      alertText: null //弹出信息
 	    }
@@ -77,12 +77,12 @@
 	  	headTop,
 	  	alertTip
 	  },
-	  computed:{
+	  computed: {
 	  	...mapState([
 	  		'userInfo', 'addAddress','removeAddress','newAddress', 'geohash'
   		]),
   	},
-  	props:[],
+  	props: [],
 	  methods: {
 	  	...mapMutations([
 	  		'ADD_ADDRESS'

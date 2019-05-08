@@ -100,7 +100,7 @@
  	export default {
 
  		data(){
- 			return{
+ 			return {
         showLoading: true, //显示加载动画
         orderData: null,
         imgBaseUrl

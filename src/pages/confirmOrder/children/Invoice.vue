@@ -17,14 +17,14 @@
 
  	export default {
  		data(){
- 			return{
-       	invoice: false, //是否需要发票
+ 			return {
+       	invoice: false //是否需要发票
        }
     },
     components: {
-	   	headTop,
+	   	headTop
 	  },
-    props:[],
+    props: [],
     methods: {
      	...mapMutations([
      		'CONFIRM_INVOICE'
@@ -37,7 +37,7 @@
 	    confrimInvoice(){
 	    	this.CONFIRM_INVOICE(this.invoice);
 	    	this.$router.go(-1);
-    	},
+    	}
   	}
 	}
 </script>

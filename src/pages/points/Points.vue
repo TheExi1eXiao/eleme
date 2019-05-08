@@ -36,7 +36,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				showAlert: false,
  				alertText: null
  			}
@@ -46,9 +46,11 @@
  		},
  		components: {
  			headTop,
- 			alertTip,
+ 			alertTip
  		},
- 		computed: {},
+ 		computed: {
+ 			
+ 		},
  		methods: {
  			usePoint(){
  				this.showAlert = true;

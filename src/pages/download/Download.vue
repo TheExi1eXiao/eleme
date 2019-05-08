@@ -16,10 +16,10 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				system: null,
  				showAlert: false,
- 				alertText: null,
+ 				alertText: null
  			}
  		},
  		created(){
@@ -38,9 +38,9 @@
     mixins: [],
     components: {
     	headTop,
-    	alertTip,
+    	alertTip
     },
-    props:[],
+    props: [],
     methods: {
     	download(){
         //如果是ios用户则提示，否则直接下载

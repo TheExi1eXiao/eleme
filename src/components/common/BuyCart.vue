@@ -35,11 +35,12 @@
   import { mapState, mapMutations } from 'vuex'
   export default {
   	data(){
-      return{
+      return {
         showMoveDot: [], //控制下落的小圆点显示隐藏
       }
     },
     mounted(){
+
     },
     computed: {
       ...mapState([
@@ -64,9 +65,9 @@
         }else {
           return 0;
         }
-      },
+      }
     },
-    props:['foods', 'shopId'],
+    props: ['foods', 'shopId'],
     methods: {
       ...mapMutations([
         'ADD_CART','REDUCE_CART',
@@ -92,8 +93,8 @@
       //点击多规格商品的减按钮，弹出提示
       showReduceTip(){
         this.$emit('showReduceTip')
-      },
-    },
+      }
+    }
   }
 </script>
 

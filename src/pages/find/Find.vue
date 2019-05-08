@@ -13,7 +13,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
 
  			}
  		},
@@ -23,9 +23,9 @@
  		mixins: [getImgPath],
  		components: {
  			headTop,
- 			footGuide,
+ 			footGuide
  		},
- 		props:[],
+ 		props: [],
  		methods: {
 
  		}

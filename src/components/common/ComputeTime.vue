@@ -11,10 +11,10 @@
   import alertTip from '@/components/common/AlertTip'
   export default {
   	data(){
-      return{
+      return {
         countNum: 900,
         showAlert: false,
-        alertText: null,
+        alertText: null
       }
     },
     mounted(){
@@ -23,7 +23,7 @@
     },
     props: ['time'],
     components: {
-      alertTip,
+      alertTip
     },
     methods: {
       closeTip(){
@@ -67,7 +67,7 @@
           return parseInt(this.time);
         }
       }
-    },
+    }
   }
 </script>
 

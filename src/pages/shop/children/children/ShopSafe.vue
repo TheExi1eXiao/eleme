@@ -139,7 +139,7 @@
  			showLicenseImg(img){
  				this.licenseImg = img;
  				this.showlicenseImg = true;
- 			},
+ 			}
  		}
  	}
 </script>
