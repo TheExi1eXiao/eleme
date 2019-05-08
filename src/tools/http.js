@@ -9,16 +9,16 @@ axios.interceptors.response.use(
     // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
     // 否则的话抛出错误
     if (response.status === 200) {
-        return Promise.resolve(response);
+      return Promise.resolve(response);
     } else {
-        return Promise.reject(response);
+      return Promise.reject(response);
     }
   },
   error => {
     router.replace({
       path: '/login',
       query: {
-          redirect: router.currentRoute.fullPath
+        redirect: router.currentRoute.fullPath
       }
     });
   return Promise.reject(error.response);
@@ -33,7 +33,7 @@ let header = {
 }
 var headerFile = {
   "Access-Control-Allow-Origin": "*",
-  "Content-Type": "multipart/form-data",
+  "Content-Type": "multipart/form-data"
 };
 export const Http = {
 	get(
@@ -43,28 +43,28 @@ export const Http = {
 		fail = function () {},
 		complate = function () {}
 		) {
-		if ( storage.getLocalStorage("uesrinfo") && storage.getLocalStorage("userinfo").token ){
+		if ( storage.getLocalStorage("uesrinfo") && storage.getLocalStorage("userinfo").token ) {
 			let token = storage.getLocalStorage("userinfo").token;
 			var headers = Object.assign({},header,{
 				token:token
 			});
 		}
-		else{
+		else {
 			var headers = header;
 		}
 		axios({
-			url:url,
-			params:params,
-			method:"get",
-			headers:headers,
-			timeout:timeout
+			url: url,
+			params: params,
+			method: "get",
+			headers: headers,
+			timeout: timeout
 		}).then((res)=>{
 			var all = res;//根据服务端改变
 			var data = res.data;//根据服务端改变
-			if(all.status == 200){
+			if ( all.status == 200 ) {
 				success(data,all);
 			}
-			else{
+			else {
 				fail(data,all);
 			}
 		}).catch((err)=>{
@@ -86,22 +86,22 @@ export const Http = {
 				token:token
 			});
 		}
-		else{
+		else {
 			var headers = header;
 		}
 		axios({
-			url:url,
-			data:data,
-			method:"post",
-			headers:headers,
-			timeout:timeout
+			url: url,
+			data: data,
+			method: "post",
+			headers: headers,
+			timeout: timeout
 		}).then((res)=>{
 			let all = res;
 			let data = res.data;
-			if(res.status == 200){	
+			if ( res.status == 200 ) {	
 				success(data,all);
 			}
-			else{
+			else {
 				fail(data,all);
 			}
 		}).catch((err)=>{
@@ -117,28 +117,28 @@ export const Http = {
 		fail = function () {},
 		complate = function () {}
 		) {
-		if(storage.getLocalStorage("userinfo") &&storage.getLocalStorage("userinfo").token){
+		if ( storage.getLocalStorage("userinfo") &&storage.getLocalStorage("userinfo").token ) {
 			let token = storage.getLocalStorage("userinfo").token;
 			var headers = Object.assign({},headerFile,{
 				token:token
 			})
 		}
-		else{
+		else {
 			var headers = headerFile;
 		}
 		axios({
-			method:"post",
-			data:data,
-			headers:headers,
-			timeout:timeout,
-			url:url,
+			method: "post",
+			data: data,
+			headers: headers,
+			timeout: timeout,
+			url: url
 		}).then((res)=>{
 			var all = res.data;
 			var data = res.data.data;
-			if(all.code == 0){
+			if ( all.code == 0 ) {
 				success(data,all);
 			}
-			else{
+			else {
 				fail(data,all);
 			}
 		}).catch(()=>{
