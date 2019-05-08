@@ -41,7 +41,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				showAlert: false,
  				alertText: null,
  				showLoading: true,
@@ -57,7 +57,7 @@
 	  },
 	  computed: {
 	  	...mapState([
-	  		'userInfo',
+	  		'userInfo'
 	  	])
 	  },
 	  methods: {
