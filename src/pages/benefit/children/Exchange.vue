@@ -46,7 +46,7 @@
  		computed: {
  			...mapState([
  				'userInfo',
- 				]),
+ 			]),
  			status: function (){
  				let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber))
  				return status;
@@ -63,8 +63,8 @@
 						this.captchaCodeImg = data.code;
 					},
 					()=>{},
-					()=>{})
-				
+					()=>{}
+				)
 			},
 			//兑换红包
 			exchange(){
@@ -81,7 +81,7 @@
 						},
 						()=>{},
 						()=>{}
-						)
+					)
 	        //不成功则弹出提示框
 	        if (res.message) {
 	        	this.getCaptchaCode();

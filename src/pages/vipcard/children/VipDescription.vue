@@ -44,7 +44,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
 
  			}
  		},
@@ -53,16 +53,16 @@
  		},
  		computed: {
  			...mapState([
- 				'userInfo', 
+ 				'userInfo'
  			]),
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
  		methods: {
  			...mapMutations([
  				'SAVE_AVANDER'
- 			]),
+ 			])
  		}
  	}
 </script>

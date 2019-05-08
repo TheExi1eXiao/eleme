@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="address_page">
  		<head-top head-title="添加地址" go-back='true'></head-top>
  		<section class="page_text_container">
@@ -53,13 +53,13 @@
  			<router-view></router-view>
  		</transition>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {getAddress, getUser, postAddAddress} from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import alertTip from '@/components/common/AlertTip'
 
  	export default {
@@ -88,7 +88,7 @@
     computed: {
     	...mapState([
     		'searchAddress', 'geohash', 'userInfo',
-    		]),
+    	]),
     },
     methods: {
     	...mapMutations([

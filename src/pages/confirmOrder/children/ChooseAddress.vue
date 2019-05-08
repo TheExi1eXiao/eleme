@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="选择地址" go-back='true'></head-top>
  		<router-link to="/confirmOrder/chooseAddress/addAddress" class="add_icon_footer" >
@@ -53,9 +53,9 @@
  			<router-view></router-view>
  		</transition>  
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {getAddress, getAddressList} from '@/service/getData'
@@ -87,7 +87,7 @@
     computed: {
     	...mapState([
     		'userInfo', 'addressIndex', 'newAddress'
-    		]),
+    	]),
       //选择地址
       defaultIndex: function (){
       	if (this.addressIndex) {
@@ -100,7 +100,7 @@
     methods: {
     	...mapMutations([
     		'CHOOSE_ADDRESS'
-    		]),
+    	]),
       //初始化信息
       async initData(){
       	this.addressList = [];

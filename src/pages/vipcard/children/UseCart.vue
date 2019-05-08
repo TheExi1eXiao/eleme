@@ -32,7 +32,7 @@
  				cartNumber: null,
  				passWord: null,
  				showAlert: false,
- 				alertText: null,
+ 				alertText: null
  			}
  		},
  		mounted(){
@@ -40,7 +40,7 @@
  		},
  		computed: {
  			...mapState([
- 				'userInfo', 
+ 				'userInfo'
  			]),
  			couldPay: function (){
  				return (/^\d{10}$/.test(this.cartNumber))&&(/^\d{6}$/.test(this.passWord)) ;
@@ -48,7 +48,7 @@
  		},
  		components: {
  			headTop,
- 			alertTip,
+ 			alertTip
  		},
  		methods: {
  			confrimPay(){

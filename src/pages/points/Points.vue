@@ -38,7 +38,7 @@
  		data(){
  			return{
  				showAlert: false,
- 				alertText: null,
+ 				alertText: null
  			}
  		},
  		mounted(){
@@ -48,9 +48,7 @@
  			headTop,
  			alertTip,
  		},
- 		computed: {
-
- 		},
+ 		computed: {},
  		methods: {
  			usePoint(){
  				this.showAlert = true;

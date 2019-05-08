@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="download_page">
  		<head-top head-title="下载" go-back='true'></head-top>
  		<section class="dowload_container">
@@ -8,9 +8,9 @@
  		</section>
  		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import alertTip from '@/components/common/AlertTip'
 

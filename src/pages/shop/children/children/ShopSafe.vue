@@ -110,7 +110,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				localapi,
  				proapi,
  				imgBaseUrl
@@ -122,19 +122,19 @@
  					deceleration: 0.001,
  					bounce: true,
  					swipeTime: 1800,
- 					click: true,
+ 					click: true
  				}); 
  			})
  		},
  		computed: {
  			...mapState([
  				'shopDetail'
- 				]),
+ 			])
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
- 		mixins:[getImgPath],
+ 		mixins: [getImgPath],
  		methods: {
  			showLicenseImg(img){
  				this.licenseImg = img;

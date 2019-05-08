@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<section v-if="!showLoading">
  			<head-top head-title="订单备注" go-back='true'></head-top>
@@ -18,12 +18,12 @@
  		</section>
  		<loading v-if="showLoading"></loading>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	// import {getRemark} from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import loading from '@/components/common/Loading'
  	import { mapMutations } from 'vuex'
 
@@ -54,7 +54,7 @@
  		methods: {
  			...mapMutations([
  				'CONFIRM_REMARK'
- 				]),
+ 			]),
       //初始化信息
       initData(){
       	// this.remarkList = await getRemark(this.id, this.sig);

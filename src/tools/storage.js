@@ -6,7 +6,7 @@ export default class Storage {
 		let date = new Date();
 		let value = {
 			value:data,
-			time:time ? time.getTime() + 1000 * 60 * 60 * 24 : date.getTime()
+			time:time ? time.getTime() + 1000 * 60 * 60 * 24 : date.getTime() + 1000 * 60 * 60 * 24
 		}
 		localStorage.setItem(key,JSON.stringify(value))
 	}

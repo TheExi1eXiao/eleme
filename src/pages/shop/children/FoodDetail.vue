@@ -38,7 +38,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
  				image_path: null,
  				description: null,
  				month_sales: null,
@@ -69,9 +69,7 @@
  			buyCart,
  		},
  		props:[],
- 		methods: {
-
- 		}
+ 		methods: {}
  	}
 </script>
 

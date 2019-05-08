@@ -78,13 +78,9 @@
  	import { Url, Http } from "@/tools/http"
  	export default {
  		data(){
- 			return{
-
- 			}
+ 			return {}
  		},
- 		mounted(){
-
- 		},
+ 		mounted(){},
  		computed: {
  			...mapState([
  				'userInfo', 
@@ -101,7 +97,7 @@
  				this.ORDER_SUCCESS({order_id: '399525134200981325'});
  				this.BUY_CART(20);
  				this.$router.push('/confirmOrder/payment');
- 			},
+ 			}
  		}
  	}
 </script>

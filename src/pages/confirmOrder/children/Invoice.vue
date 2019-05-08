@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="选择发票抬头" go-back='true'></head-top>
  		<section class="choose_invoice">
@@ -9,9 +9,9 @@
  		</section>
  		<div class="determine" @click="confrimInvoice">确定</div>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapMutations } from 'vuex'
 
@@ -28,7 +28,7 @@
     methods: {
      	...mapMutations([
      		'CONFIRM_INVOICE'
-     		]),
+     	]),
 	    //是否选择发票
 	    chooseInvoice(){
 	    	this.invoice = !this.invoice;
@@ -43,47 +43,47 @@
 </script>
 
 <style lang="scss" scoped>
-@import 'src/style/mixin';
+	@import 'src/style/mixin';
 
-.rating_page{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #f5f5f5;
-	z-index: 204;
-	padding-top: 1.95rem;
-	p, span{
-		font-family: Helvetica Neue,Tahoma,Arial;
+	.rating_page{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #f5f5f5;
+		z-index: 204;
+		padding-top: 1.95rem;
+		p, span{
+			font-family: Helvetica Neue,Tahoma,Arial;
+		}
 	}
-}
-.choose_invoice{
-	@include fj;
-	align-items: center;
-	background-color: #fff;
-	line-height: 2.5rem;
-	margin-top: 0.5rem;
-	padding: 0 .7rem;
-	span{
-		@include sc(.75rem, #333);
+	.choose_invoice{
+		@include fj;
+		align-items: center;
+		background-color: #fff;
+		line-height: 2.5rem;
+		margin-top: 0.5rem;
+		padding: 0 .7rem;
+		span{
+			@include sc(.75rem, #333);
+		}
+		svg{
+			@include wh(.8rem, .8rem);
+			fill: #999;
+		}
+		.choosed{
+			fill: #4cd964;
+		}
 	}
-	svg{
-		@include wh(.8rem, .8rem);
-		fill: #999;
+	.determine{
+		background-color: #4cd964;
+		@include sc(.7rem, #fff);
+		text-align: center;
+		margin: 0 .7rem;
+		line-height: 1.8rem;
+		border-radius: 0.2rem;
+		margin-top: 0.5rem;
 	}
-	.choosed{
-		fill: #4cd964;
-	}
-}
-.determine{
-	background-color: #4cd964;
-	@include sc(.7rem, #fff);
-	text-align: center;
-	margin: 0 .7rem;
-	line-height: 1.8rem;
-	border-radius: 0.2rem;
-	margin-top: 0.5rem;
-}
 
 </style>

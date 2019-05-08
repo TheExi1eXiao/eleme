@@ -1,13 +1,13 @@
- <template>
+<template>
  	<div class="detail_page">
  		<head-top :head-title="question.title" go-back='true'></head-top>
  		<section id="scroll_section" class="scroll_container">
  			<section v-html="markdownText" class="markdown"></section>
  		</section>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	import showdown from 'showdown'
@@ -15,12 +15,10 @@
 
  	export default {
  		data(){
- 			return{
- 				
- 			}
+ 			return{}
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
  		mounted(){
  			this.$nextTick(() => {
@@ -35,16 +33,14 @@
  		computed: {
  			...mapState([
  				'question', 
- 				]),
+ 			]),
  			markdownText: function (){
         //转换markDown格式
         let converter = new showdown.Converter();  
         return converter.makeHtml(this.question.detail);  
       }
     },
-    methods: {
-    	
-    }
+    methods: {}
   }
 </script>
 

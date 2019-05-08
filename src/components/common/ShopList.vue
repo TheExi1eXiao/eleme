@@ -138,29 +138,46 @@ export default {
 				)
 		},
 		//到达底部加载更多数据
-		// async loaderMore(){
-		// 	if (this.touchend) {
-		// 		return
-		// 	}
-		// 	//防止重复请求
-		// 	if (this.preventRepeatReuqest) {
-		// 		return
-		// 	}
-		// 	this.showLoading = true;
-		// 	this.preventRepeatReuqest = true;
+		loaderMore(){
+			if (this.touchend) {
+				return
+			}
+			//防止重复请求
+			if (this.preventRepeatReuqest) {
+				return
+			}
+			this.showLoading = true;
+			this.preventRepeatReuqest = true;
 
-		// 	//数据的定位加20位
-		// 	this.offset += 20;
-		// 	let res = await shopList(this.latitude, this.longitude, this.offset, this.restaurantCategoryId);
-		// 	this.hideLoading();
-		// 	this.shopListArr = [...this.shopListArr, ...res];
-		// 	//当获取数据小于20，说明没有更多数据，不需要再次请求数据
-		// 	if (res.length < 20) {
-		// 		this.touchend = true;
-		// 		return
-		// 	}
-		// 	this.preventRepeatReuqest = false;
-		// },
+			//数据的定位加20位
+			this.offset += 20;
+			// let res = await shopList(this.latitude, this.longitude, this.offset, this.restaurantCategoryId);
+			Http.get(
+				Url.restaurants,
+				{
+					latitude: this.latitude,
+					longitude: this.longitude,
+					offset: this.offset,
+					limit: '20',
+					'extras[]': 'activities',
+					keyword: '',
+					restaurant_category_id: this.restaurantCategoryId,
+					'restaurant_category_ids[]': '',
+					order_by: '',
+					'delivery_mode[]': ''
+				},
+				(data)=>{
+					this.hideLoading();
+					this.shopListArr = [...this.shopListArr, ...res];
+					//当获取数据小于20，说明没有更多数据，不需要再次请求数据
+					if (res.length < 20) {
+						this.touchend = true;
+						return
+					}
+					this.preventRepeatReuqest = false;
+				}
+			)
+		},
 		//返回顶部
 		backTop(){
 			animate(document.body, {scrollTop: '0'}, 400,'ease-out');
@@ -175,6 +192,7 @@ export default {
 					supportStr += '&support_ids[]=' + item.id;
 				}
 			});
+			//let res = await shopList(this.latitude, this.longitude, this.offset, '', this.restaurantCategoryIds, this.sortByType, this.deliveryMode, this.supportIds);
 			Http.get(
 				Url.restaurants,
 				{
@@ -190,7 +208,6 @@ export default {
 					'delivery_mode[]': this.deliveryMode + supportStr
 				},
 				(data)=>{
-					//let res = await shopList(this.latitude, this.longitude, this.offset, '', this.restaurantCategoryIds, this.sortByType, this.deliveryMode, this.supportIds);
 					let res = data;
 					this.hideLoading();
 					//考虑到本地模拟数据是引用类型，所以返回一个新的数组
@@ -198,8 +215,7 @@ export default {
 				},
 				()=>{},
 				()=>{}
-				)
-			
+			)		
 		},
 		//开发环境与编译环境loading隐藏方式不同
 		hideLoading(){

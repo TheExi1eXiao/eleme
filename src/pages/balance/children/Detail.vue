@@ -23,9 +23,7 @@
 
   export default {
     data(){
-      return{
-         
-      }
+      return{}
     },
     components: {
       headTop,

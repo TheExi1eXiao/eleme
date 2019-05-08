@@ -1,4 +1,4 @@
-export const state = {
+const state = {
 	latitude: '', // 当前位置纬度
 	longitude: '', // 当前位置经度
 	cartList: {}, // 加入购物车的商品列表
@@ -26,3 +26,4 @@ export const state = {
 	question: null,//问题详情
 	cartPrice: null, //会员卡价格
 }
+export default state

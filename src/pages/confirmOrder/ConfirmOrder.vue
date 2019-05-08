@@ -183,7 +183,7 @@
     computed: {
     	...mapState([
     		'cartList', 'remarkText', 'inputText', 'invoice', 'choosedAddress', 'userInfo'
-    		]),
+    	]),
     //备注页返回的信息进行处理
     remarklist: function (){
     	let str = new String;
@@ -203,7 +203,7 @@
     methods: {
     	...mapMutations([
     		'INIT_BUYCART', 'SAVE_GEOHASH', 'CHOOSE_ADDRESS', 'NEED_VALIDATION', 'SAVE_CART_ID_SIG', 'SAVE_ORDER_PARAM', 'ORDER_SUCCESS', 'SAVE_SHOPID'
-    		]),
+    	]),
 	    //初始化数据
 	    initData(){
 	    	let newArr = new Array;

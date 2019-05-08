@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="search_address_page">
  		<section>
  			<head-top head-title="搜索" go-back='true'></head-top>
@@ -19,12 +19,12 @@
  			</div>
  		</section>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	// import {searchNearby} from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import { mapMutations } from 'vuex'
 
  	export default {
@@ -41,7 +41,7 @@
     methods: {
     	...mapMutations([
     		'CHOOSE_SEARCH_ADDRESS'
-    		]),
+    	]),
 	    //搜索
 	    searchPlace(){
 	    	if (this.searchValue) {
@@ -70,63 +70,63 @@
 </script>
 
 <style lang="scss" scoped>
-@import 'src/style/mixin';
+	@import 'src/style/mixin';
 
-.search_address_page{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #fff;
-	z-index: 204;
-	overflow-y: auto;
-	padding-top: 1.95rem;
-	p, span{
-		font-family: Helvetica Neue,Tahoma,Arial;
-	}
-}
-.search_form{
-	display: flex;
-	padding: .7rem;
-	input{
-		@include sc(.65rem, #999);
-		flex: 4;
-		background-color: #f1f1f1;
-		margin-right: .6rem;
-		height: 1.5rem;
-		border-radius: 0.15rem;
-		padding: 0 .4rem;
-	}
-	button{
-		flex: 1;
-		@include sc(.65rem, #fff);
-		background-color: $blue;
-		border-radius: 0.15rem;
-	}
-}
-.address_list{
-	padding: .7rem;
-	li{
-		padding: .7rem 0;
-		border-bottom: 0.025rem solid #f5f5f5;
-		line-height: 1rem;
-		h4{
-			@include sc(.75rem, #555);
+	.search_address_page{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #fff;
+		z-index: 204;
+		overflow-y: auto;
+		padding-top: 1.95rem;
+		p, span{
+			font-family: Helvetica Neue,Tahoma,Arial;
 		}
-		p{
+	}
+	.search_form{
+		display: flex;
+		padding: .7rem;
+		input{
 			@include sc(.65rem, #999);
+			flex: 4;
+			background-color: #f1f1f1;
+			margin-right: .6rem;
+			height: 1.5rem;
+			border-radius: 0.15rem;
+			padding: 0 .4rem;
+		}
+		button{
+			flex: 1;
+			@include sc(.65rem, #fff);
+			background-color: $blue;
+			border-radius: 0.15rem;
 		}
 	}
-}
-.empty_tips{
-	@include center;
-	width: 100%;
-	p{
-		@include sc(.5rem, #aaa);
-		line-height: .7rem;
-		text-align: center;
-
+	.address_list{
+		padding: .7rem;
+		li{
+			padding: .7rem 0;
+			border-bottom: 0.025rem solid #f5f5f5;
+			line-height: 1rem;
+			h4{
+				@include sc(.75rem, #555);
+			}
+			p{
+				@include sc(.65rem, #999);
+			}
+		}
 	}
-}
+	.empty_tips{
+		@include center;
+		width: 100%;
+		p{
+			@include sc(.5rem, #aaa);
+			line-height: .7rem;
+			text-align: center;
+
+		}
+	}
 </style>

@@ -47,7 +47,8 @@
 	import footGuide from '@/components/footer/Footer'
 	import shopList from '@/components/common/ShopList'
 	// import {msiteAddress, msiteFoodTypes, cityGuess} from 'src/service/getData'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
+	import Swiper from "swiper"
 	// import '@/plugins/swiper.min.js'
 	import '@/style/swiper.min.css'
 
@@ -65,17 +66,17 @@
 	  	if (!this.$route.query.geohash) {
 	  		// const address = await cityGuess();
 	  		Http.get(
-          	Url.city,
-          	{
-          		type: 'guess'
-          	},
-          	(data)=>{
-          		const address = data;
-          		this.geohash = address.latitude + ',' + address.longitude;
-          	},
-          	()=>{},
-          	()=>{}
-          )
+        	Url.city,
+        	{
+        		type: 'guess'
+        	},
+        	(data)=>{
+        		const address = data;
+        		this.geohash = address.latitude + ',' + address.longitude;
+        	},
+        	()=>{},
+        	()=>{}
+        )
 	  	}else{
 	  		this.geohash = this.$route.query.geohash
 	  	}
@@ -143,15 +144,13 @@
 	 	components: {
 	   	headTop,
 	   	shopList,
-	   	footGuide,
+	   	footGuide
 	   },
-	   computed: {
-
-	   },
+	   computed: {},
 	  methods: {
 	   	...mapMutations([
 	   		'RECORD_ADDRESS', 'SAVE_GEOHASH'
-	   		]),
+	   	]),
 	  	// 解码url地址，求去restaurant_category_id值
 	  	getCategoryId(url){
 	  		let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
@@ -162,9 +161,7 @@
 	  		}
 	  	}
 	  },
-	  watch: {
-
-	  }
+	  watch: {}
 	}
 
 </script>

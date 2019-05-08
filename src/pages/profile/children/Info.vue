@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="账户信息" go-back='true'></head-top>
  		<section class="profile-info">
@@ -100,13 +100,13 @@
  			<router-view></router-view>
  		</transition>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import { mapMutations, mapState } from 'vuex'
  	import headTop from '@/components/header/Header'
  	// import {signout} from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import alertTip from '@/components/common/AlertTip'
  	import { getImgPath } from '@/components/common/mixin'
  	import { imgBaseUrl } from '@/api/config'
@@ -116,7 +116,7 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
         username:'',    //用户名
         resetname:'', //重置用户名
         infotel:'',     //用户手机
@@ -126,7 +126,7 @@
         isLeave:false, //是否退出
         showAlert: false,
         alertText: null,
-        imgBaseUrl,
+        imgBaseUrl
       }
     },
     beforeDestroy(){

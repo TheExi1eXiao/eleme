@@ -145,7 +145,7 @@
 
 	export default {
 		data(){
-			return{
+			return {
 				profiletitle: '我的',
         username: '登录/注册',           //用户名
         resetname: '',
@@ -154,7 +154,7 @@
         count : 0,             //优惠券个数
         pointNumber : 0,       //积分数
         avatar: '',             //头像地址
-        imgBaseUrl,
+        imgBaseUrl
       }
     },
     mounted(){
@@ -163,15 +163,15 @@
     mixins: [getImgPath],
     components:{
     	headTop,
-    	footGuide,
+    	footGuide
     },
 
-    computed:{
+    computed: {
     	...mapState([
-    		'userInfo',
+    		'userInfo'
     	]),
 	    //后台会返回两种头像地址格式，分别处理
-	    imgpath:function () {
+	    imgpath: function () {
 	    	let path;
 	    	if(this.avatar.indexOf('/') !==-1){
 	    		path = imgBaseUrl +　this.avatar;
@@ -183,10 +183,10 @@
 	    }
 	  },
 
-	  methods:{
+	  methods: {
 	  	...mapMutations([
 	  		'SAVE_AVANDER'
-	  		]),
+	  	]),
 	  	initData(){
 	  		if (this.userInfo && this.userInfo.user_id) {
 	  			this.avatar = this.userInfo.avatar;

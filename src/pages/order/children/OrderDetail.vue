@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="order_detail_page">
  		<head-top head-title="订单详情" go-back='true'></head-top>
  		<section v-if="!showLoading" id="scroll_section" class="scroll_container">
@@ -84,14 +84,14 @@
  			<loading v-if="showLoading"></loading>
  		</transition>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import { mapState, mapMutations } from 'vuex'
  	import headTop from '@/components/header/Header'
  	import { getImgPath } from '@/components/common/mixin'
  	// import { getOrderDetail } from 'src/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import loading from '@/components/common/Loading'
  	import BScroll from 'better-scroll'
  	import { imgBaseUrl } from '@/api/config'
@@ -112,12 +112,12 @@
     mixins: [getImgPath],
     components: {
     	headTop,
-    	loading,
+    	loading
     },
     computed: {
     	...mapState([
     		'orderDetail', 'geohash', 'userInfo'
-    		]),
+    	]),
     },
     methods: {
     	initData(){

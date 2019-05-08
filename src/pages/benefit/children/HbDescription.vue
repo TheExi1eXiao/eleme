@@ -56,9 +56,7 @@
 
  	export default {
  		data(){
- 			return{
-
- 			}
+ 			return{}
  		},
  		mounted(){
  			this.$nextTick(() => {

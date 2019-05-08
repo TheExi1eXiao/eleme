@@ -45,8 +45,8 @@
  				showAlert: false,
  				alertText: null,
  				showLoading: true,
-      expiredList: null, //历史红包列表
-    }
+      	expiredList: null, //历史红包列表
+    	}
 	  },
 	  mounted(){
 	  	this.initData();
@@ -63,7 +63,7 @@
 	  methods: {
 	  	...mapMutations([
 	  		'CLEAR_CART'
-	  		]),
+	  	]),
 	  	initData(){
 	      //获取历史红包
 	      if (this.userInfo) {

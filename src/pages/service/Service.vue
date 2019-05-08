@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="服务中心" go-back='true'></head-top>
  		<section class="service_connect">
@@ -30,9 +30,9 @@
  			<router-view></router-view>
  		</transition>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	// import {getService} from 'src/service/getData'
  	import { Url, Http } from "@/tools/http"
@@ -40,10 +40,10 @@
 
  	export default {
  		data(){
- 			return{
+ 			return {
         serviceData: null, //服务信息
         questionTitle: [], //问题标题
-        questionDetail: [], //问题详情
+        questionDetail: [] //问题详情
       }
     },
 
@@ -52,7 +52,7 @@
     },
     mixins: [],
     components: {
-    	headTop,
+    	headTop
     },
     props:[],
     methods: {
@@ -97,63 +97,63 @@
 </script>
 
 <style lang="scss" scoped>
-@import 'src/style/mixin';
+	@import 'src/style/mixin';
 
-.rating_page{
-	background-color: #fff;
-	padding-top: 1.95rem;
-	p, span{
-		font-family: Helvetica Neue,Tahoma,Arial;
-	}
-}
-.service_connect{
-	@include fj;
-	a{
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		height: 4rem;
-		border-bottom: 1px solid #f5f5f5;
-		svg{
-			@include wh(1rem, 1rem);
-		}
-		span{
-			margin-top: .4rem;
-			@include sc(.6rem, #666);
+	.rating_page{
+		background-color: #fff;
+		padding-top: 1.95rem;
+		p, span{
+			font-family: Helvetica Neue,Tahoma,Arial;
 		}
 	}
-	.service_left{
-		border-right: 1px solid #f5f5f5;
-	}
-}
-.hot_questions{
-	.qustion_header{
-		@include sc(.75rem, #333);
-		line-height: 3rem;
-		border-bottom: 1px solid #f5f5f5;
-		padding-left: .7rem;
-	}
-	.question_title{
-		padding: 0 .7rem;
-		line-height: 2rem;
-		border-bottom: 1px solid #f5f5f5;
+	.service_connect{
 		@include fj;
-		align-items: center;
-		span{
-			@include sc(.6rem, #666);
+		a{
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 4rem;
+			border-bottom: 1px solid #f5f5f5;
+			svg{
+				@include wh(1rem, 1rem);
+			}
+			span{
+				margin-top: .4rem;
+				@include sc(.6rem, #666);
+			}
 		}
-		svg{
-			@include wh(.6rem, .6rem);
+		.service_left{
+			border-right: 1px solid #f5f5f5;
 		}
 	}
-}
-.router-slid-enter-active, .router-slid-leave-active {
-	transition: all .4s;
-}
-.router-slid-enter, .router-slid-leave-active {
-	transform: translate3d(2rem, 0, 0);
-	opacity: 0;
-}
+	.hot_questions{
+		.qustion_header{
+			@include sc(.75rem, #333);
+			line-height: 3rem;
+			border-bottom: 1px solid #f5f5f5;
+			padding-left: .7rem;
+		}
+		.question_title{
+			padding: 0 .7rem;
+			line-height: 2rem;
+			border-bottom: 1px solid #f5f5f5;
+			@include fj;
+			align-items: center;
+			span{
+				@include sc(.6rem, #666);
+			}
+			svg{
+				@include wh(.6rem, .6rem);
+			}
+		}
+	}
+	.router-slid-enter-active, .router-slid-leave-active {
+		transition: all .4s;
+	}
+	.router-slid-enter, .router-slid-leave-active {
+		transform: translate3d(2rem, 0, 0);
+		opacity: 0;
+	}
 </style>

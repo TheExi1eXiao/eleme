@@ -85,22 +85,20 @@
 
 	export default {
 		data(){
-			return{
+			return {
 				licenseImg: null,
 				showlicenseImg: false,
 				imgBaseUrl
 			}
 		},
-		mounted(){
-
-		},
+		mounted(){},
 		computed: {
 			...mapState([
 				'shopDetail'
-				]),
+			]),
 		},
 		components: {
-			headTop,
+			headTop
 		},
 		mixins:[getImgPath],
 		methods: {

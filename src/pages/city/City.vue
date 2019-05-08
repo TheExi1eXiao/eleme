@@ -5,7 +5,7 @@
 		</head-top>
 		<form class="city_form" v-on:submit.prevent>
 			<div>
-				<input type="search" name="city" placeholder="输入学校、商务楼、地址" class="city_input input_style" required v-model='inputVaule'>
+				<input type="search" name="city" placeholder="输入学校、商务楼、地址" class="city_input input_style" required v-model='inputValue'>
 			</div>
 			<div>
 				<input type="submit" name="submit" class="city_submit input_style" @click='postpois' value="提交">
@@ -33,7 +33,7 @@
 	export default {
 		data(){
 			return{
-        inputVaule:'', // 搜索地址
+        inputValue:'', // 搜索地址
         cityid:'', // 当前城市id
         cityname:'', // 当前城市名字
         placelist:[], // 搜索城市列表
@@ -77,11 +77,11 @@
         	this.placelist = [];
         }
       },
-    	//发送搜索信息inputVaule
+    	//发送搜索信息inputValue
 	    postpois(){
         //输入值不为空时才发送信息
-        if (this.inputVaule) {
-        	// searchplace(this.cityid, this.inputVaule).then(res => {
+        if (this.inputValue) {
+        	// searchplace(this.cityid, this.inputValue).then(res => {
         	// 	this.historytitle = false;
         	// 	this.placelist = res;
         	// 	this.placeNone = res.length? false : true;
@@ -91,7 +91,7 @@
         		{
         			type: 'search',
 							city_id: this.cityid,
-							keyword: this.inputVaule
+							keyword: this.inputValue
         		},
         		(data)=>{
       				this.historytitle = false;

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import { Url , Http } from "../../tools/http.js";
+  import { Url, Http } from "../../tools/http.js";
   import headTop from '../../components/header/Header.vue'
   export default {
     name: 'home',
@@ -53,7 +53,7 @@
   		guessCity: '',   //当前城市
       guessCityid: '', //当前城市id
       hotcity: [],     //热门城市列表
-      groupcity: {},   //所有城市列表
+      groupcity: {}   //所有城市列表
     }
   },
   mounted(){
@@ -91,17 +91,15 @@
     },
     getData(url,params,callback=function(){}){
       Http.get(
-       url,
-       params,
-       (data,all)=>{
+        url,
+        params,
+        (data,all)=>{
   				// this.guessCity = data;
           callback(data)
         },
-        ()=>{
-        },
-        ()=>{
-
-        })
+        ()=>{},
+        ()=>{}
+      )
     }
   }
 

@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="新增地址" go-back='true'></head-top>
  		<section class="adddetail">
@@ -36,9 +36,9 @@
  		</transition>
  		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { getImgPath } from '@/components/common/mixin'
  	import { mapState, mapMutations } from 'vuex'
@@ -66,7 +66,7 @@
   			addSearch:false, //添加搜索地址
   			newAddress:{},			//增加数组的元素
 	      showAlert: false, //弹出框
-	      alertText: null, //弹出信息
+	      alertText: null //弹出信息
 	    }
 	  },
 	  created(){
@@ -75,7 +75,7 @@
 	  mixins: [getImgPath],
 	  components: {
 	  	headTop,
-	  	alertTip,
+	  	alertTip
 	  },
 	  computed:{
 	  	...mapState([
@@ -86,7 +86,7 @@
 	  methods: {
 	  	...mapMutations([
 	  		'ADD_ADDRESS'
-	  		]),
+	  	]),
 	  	inputThing(){
 	  		(!this.message) ? this.verify=true : this.verify=false;
 	  		this.bindThing()

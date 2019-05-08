@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="validation_page">
  		<head-top head-title="用户手机验证" go-back='true'></head-top>
  		<section class="validataion_container">
@@ -19,13 +19,13 @@
  		<div class="determine" @click="confrimOrder">确定</div>
  		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {rePostVerify, validateOrders} from '@/service/getData'
- 	import { Url , Http } from "@/tools/http"
+ 	import { Url, Http } from "@/tools/http"
  	import alertTip from '@/components/common/AlertTip'
 
  	export default {
@@ -106,8 +106,7 @@
 	    		},
 	    		()=>{},
 	    		()=>{}
-	    	)
-	    	
+	    	) 	
 	    },
 	    //确认订单
 	    confrimOrder(){

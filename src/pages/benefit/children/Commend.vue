@@ -60,7 +60,7 @@
  		computed: {
  			...mapState([
  				'userInfo',
- 				]),
+ 			]),
  		},
  		methods: {
  			fenxiang(){

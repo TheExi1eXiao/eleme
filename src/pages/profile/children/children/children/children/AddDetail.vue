@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="搜索地址" go-back='true'></head-top>
  		<section>
@@ -22,9 +22,9 @@
  			</ul>
  		</section> 
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { getImgPath } from '@/components/common/mixin'
  	// import {searchNearby} from 'src/service/getData'
@@ -32,7 +32,7 @@
  	import { mapMutations, mapState } from 'vuex'
  	export default {
  		data(){
- 			return{
+ 			return {
  				warning:true,
  				inputAdress:'',
     		adressList:[],			//地址列表
@@ -40,7 +40,6 @@
     },
   	created(){
   		this.inputAdress = this.addAddress ? this.addAddress : this.inputAdress
-
   	},
   	mounted(){
 
@@ -58,7 +57,7 @@
     },
 	  mixins: [getImgPath],
 	  components: {
-	  	headTop,
+	  	headTop
 	  },
 	  computed:{
 	  	...mapState([

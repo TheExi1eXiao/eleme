@@ -1,4 +1,4 @@
- <template>
+<template>
 	<div>
 		<section v-if="!showLoading" class="shop_container">
 			<nav class="goback" @click="goback">
@@ -329,7 +329,7 @@
 
 	export default {
 		data(){
-			return{
+			return {
 				geohash: '', //geohash位置信息
 				shopId: null, //商店id值
 				showLoading: true, //显示加载动画
@@ -364,7 +364,7 @@
 				elLeft: 0, //当前点击加按钮在网页中的绝对top值
 				elBottom: 0, //当前点击加按钮在网页中的绝对left值
 				ratingScroll: null, //评论页Scroll
-				imgBaseUrl,
+				imgBaseUrl
 			}
 		},
 		created(){
@@ -383,7 +383,7 @@
 		components: {
 			loading,
 			ratingStar,
-			buyCart,
+			buyCart
 		},
 		computed: {
 			...mapState([
@@ -410,7 +410,7 @@
 			},
 			//当前商店购物信息
 			shopCart: function (){
-				return {...this.cartList[this.shopId]};
+				return { ...this.cartList[this.shopId] };
 			},
 			//购物车中总共商品的数量
 			totalNum: function (){

@@ -185,7 +185,7 @@
 	// 	foodDelivery,
 	// 	foodActivity
 	// } from "src/service/getData";
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 
 	export default {
 		data() {

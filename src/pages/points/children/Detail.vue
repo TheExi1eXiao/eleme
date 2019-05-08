@@ -29,12 +29,10 @@
 
  	export default {
  		data(){
- 			return{
-
- 			}
+ 			return{}
  		},
  		components: {
- 			headTop,
+ 			headTop
  		},
  	}
 </script>

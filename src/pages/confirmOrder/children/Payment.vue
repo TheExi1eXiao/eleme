@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="在线支付" go-back='true'></head-top>
  		<section class="show_time_amount">
@@ -39,9 +39,9 @@
  		<p class="determine" @click="confrimPay">确认支付</p>
  		<alert-tip v-if="showAlert" @closeTip="closeTipFun" :alertText="alertText"></alert-tip>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { mapState, mapMutations } from 'vuex'
  	// import {payRequest} from 'src/service/getData'

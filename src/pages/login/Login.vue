@@ -55,7 +55,7 @@
 	import { imgBaseUrl } from '@/api/config'
 	import { mapState, mapMutations } from 'vuex'
 	// import {mobileCode, checkExsis, sendLogin, getcaptchas, accountLogin} from '../../service/getData'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 	export default {
 		data(){
 			return {

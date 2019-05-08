@@ -111,7 +111,7 @@
     computed: {
     	...mapState([
     		'userInfo',
-    		]),
+    	]),
     },
     methods: {
     	...mapMutations([
@@ -129,8 +129,7 @@
 						},
 						()=>{},
 						()=>{}
-    				)
-    			
+    			)	
     		}
     	}
     },

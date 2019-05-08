@@ -1,4 +1,4 @@
- <template>
+<template>
  	<div class="rating_page">
  		<head-top head-title="编辑地址" go-back='true'>
  			<span slot="edit" class="edit" @click="editThing">{{editText}}</span>
@@ -30,21 +30,21 @@
  			<router-view></router-view>
  		</transition>
  	</div>
- </template>
+</template>
 
- <script>
+<script>
  	import headTop from '@/components/header/Header'
  	import { getImgPath } from '@/components/common/mixin'
  	import { mapState, mapActions } from 'vuex'
  	// import {getAddressList, deleteAddress} from 'src/service/getData'
-  import { Url , Http } from "@/tools/http"
+  import { Url, Http } from "@/tools/http"
 
  	export default {
  		data(){
- 			return{
+ 			return {
   			deletesite:false, //是否编辑状态
   			editText:'编辑',
-  			adressList:[], //地址列表
+  			adressList:[] //地址列表
   		}
   	},
   	mounted(){
@@ -66,7 +66,7 @@
   	methods: {
   		...mapActions([
   			'saveAddress'
-  			]),
+  		]),
       //初始化信息
       initData(){
       	if (this.userInfo && this.userInfo.user_id) {
@@ -109,83 +109,83 @@
   }
   </script>
 
-  <style lang="scss" scoped>
-  	@import 'src/style/mixin';
+<style lang="scss" scoped>
+	@import 'src/style/mixin';
 
-  	.rating_page{
-  		position: absolute;
-  		top: 0;
-  		left: 0;
-  		right: 0;
-  		bottom: 0;
-  		background-color: #f2f2f2;
-  		z-index: 202;
-  		padding-top: 1.95rem;
-  		p, span{
-  			font-family: Helvetica Neue,Tahoma,Arial;
-  		}
-  	}
-  	.edit{
-  		right: 0.4rem;
-  		@include sc(0.7rem, #fff);
-  		@include ct;
-  	}
-  	.address{
-  		width:100%;
-  		margin-top:.4rem;
-  		border-top:1px solid #d9d9d9;
-  		border-bottom:1px solid #d9d9d9;
-  		.addresslist{
-  			background:#fff;
-  			li{
-  				border-bottom:1px solid #d9d9d9;
-  				padding:.4rem;
-  				@include fj(space-between);
-  				p{
-  					line-height:.9rem;
-  					@include sc(.6rem,#333);
-  					span{
-  						display:inline-block;
-  						@include sc(.6rem,#333);
-  					}
-  				}
-  				.deletesite{
-  					display:flex;
-  					align-items:center;
-  					span{
-  						display:block;
-  						@include sc(.8rem,#999)
-  					}
-  				}
-  			}
-  			li:nth-of-type(1){
-  				background:#FFF8C3;
-  			}
-  		}
-  		.addsite{
-  			margin-top:.4rem;
-  			background:#fff;
-  			padding:.2rem .4rem;
-  			border-top:1px solid #d9d9d9;
-  			@include fj(space-between);
-  			span{
-  				display:block;
-  				@include sc(.7rem,#333);
-  				line-height:1.4rem;
-  			}
-  			.addsvg{
-  				@include wh(.66667rem,1.4rem);
-  				svg{
-  					@include wh(100%,100%);
-  				}
-  			}
-  		}
-  	}
-  	.router-slid-enter-active, .router-slid-leave-active {
-  		transition: all .4s;
-  	}
-  	.router-slid-enter, .router-slid-leave-active {
-  		transform: translate3d(2rem, 0, 0);
-  		opacity: 0;
-  	}
-  </style>
+	.rating_page{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #f2f2f2;
+		z-index: 202;
+		padding-top: 1.95rem;
+		p, span{
+			font-family: Helvetica Neue,Tahoma,Arial;
+		}
+	}
+	.edit{
+		right: 0.4rem;
+		@include sc(0.7rem, #fff);
+		@include ct;
+	}
+	.address{
+		width:100%;
+		margin-top:.4rem;
+		border-top:1px solid #d9d9d9;
+		border-bottom:1px solid #d9d9d9;
+		.addresslist{
+			background:#fff;
+			li{
+				border-bottom:1px solid #d9d9d9;
+				padding:.4rem;
+				@include fj(space-between);
+				p{
+					line-height:.9rem;
+					@include sc(.6rem,#333);
+					span{
+						display:inline-block;
+						@include sc(.6rem,#333);
+					}
+				}
+				.deletesite{
+					display:flex;
+					align-items:center;
+					span{
+						display:block;
+						@include sc(.8rem,#999)
+					}
+				}
+			}
+			li:nth-of-type(1){
+				background:#FFF8C3;
+			}
+		}
+		.addsite{
+			margin-top:.4rem;
+			background:#fff;
+			padding:.2rem .4rem;
+			border-top:1px solid #d9d9d9;
+			@include fj(space-between);
+			span{
+				display:block;
+				@include sc(.7rem,#333);
+				line-height:1.4rem;
+			}
+			.addsvg{
+				@include wh(.66667rem,1.4rem);
+				svg{
+					@include wh(100%,100%);
+				}
+			}
+		}
+	}
+	.router-slid-enter-active, .router-slid-leave-active {
+		transition: all .4s;
+	}
+	.router-slid-enter, .router-slid-leave-active {
+		transform: translate3d(2rem, 0, 0);
+		opacity: 0;
+	}
+</style>

@@ -36,7 +36,7 @@
 	import headTop from '@/components/header/Header'
 	import alertTip from '@/components/common/AlertTip'
 	// import {mobileCode, checkExsis, sendMobile, getcaptchas, changePassword} from 'src/service/getData'
-	import { Url , Http } from "@/tools/http"
+	import { Url, Http } from "@/tools/http"
 
 	export default {
 		data(){
@@ -205,35 +205,61 @@
 </script>
 
 <style lang="scss" scoped>
-@import 'src/style/mixin';
+	@import 'src/style/mixin';
 
-.restContainer{
-	padding-top: 1.95rem;
-}
-.restForm{
-	background-color: #fff;
-	margin-top: .6rem;
-	.input_container{
-		display: flex;
-		justify-content: space-between;
-		padding: .6rem .8rem;
-		border-bottom: 1px solid #f1f1f1;
-		input{
-			@include sc(.7rem, #666);
-		}
-		button{
-			@include sc(.65rem, #fff);
-			font-family: Helvetica Neue,Tahoma,Arial;
-			padding: .28rem .4rem;
-			border: 1px;
-			border-radius: 0.15rem;
-		}
-		.right_phone_number{
-			background-color: #4cd964;
-		}
+	.restContainer{
+		padding-top: 1.95rem;
 	}
-	.phone_number{
-		padding: .3rem .8rem;
+	.restForm{
+		background-color: #fff;
+		margin-top: .6rem;
+		.input_container{
+			display: flex;
+			justify-content: space-between;
+			padding: .6rem .8rem;
+			border-bottom: 1px solid #f1f1f1;
+			input{
+				@include sc(.7rem, #666);
+			}
+			button{
+				@include sc(.65rem, #fff);
+				font-family: Helvetica Neue,Tahoma,Arial;
+				padding: .28rem .4rem;
+				border: 1px;
+				border-radius: 0.15rem;
+			}
+			.right_phone_number{
+				background-color: #4cd964;
+			}
+		}
+		.phone_number{
+			padding: .3rem .8rem;
+		}
+		.captcha_code_container{
+			height: 2.2rem;
+			.img_change_img{
+				display: flex;
+				align-items: center;
+				img{
+					@include wh(3.5rem, 1.5rem);
+					margin-right: .2rem;
+				}
+				.change_img{
+					display: flex;
+					flex-direction: 'column';
+					flex-wrap: wrap;
+					width: 2rem;
+					justify-content: center;
+					p{
+						@include sc(.55rem, #666);
+					}
+					p:nth-of-type(2){
+						color: #3b95e9;
+						margin-top: .2rem;
+					}
+				}
+			}
+		}
 	}
 	.captcha_code_container{
 		height: 2.2rem;
@@ -260,39 +286,13 @@
 			}
 		}
 	}
-}
-.captcha_code_container{
-	height: 2.2rem;
-	.img_change_img{
-		display: flex;
-		align-items: center;
-		img{
-			@include wh(3.5rem, 1.5rem);
-			margin-right: .2rem;
-		}
-		.change_img{
-			display: flex;
-			flex-direction: 'column';
-			flex-wrap: wrap;
-			width: 2rem;
-			justify-content: center;
-			p{
-				@include sc(.55rem, #666);
-			}
-			p:nth-of-type(2){
-				color: #3b95e9;
-				margin-top: .2rem;
-			}
-		}
+	.login_container{
+		margin: 1rem .5rem;
+		@include sc(.7rem, #fff);
+		background-color: #4cd964;
+		padding: .5rem 0;
+		border: 1px;
+		border-radius: 0.15rem;
+		text-align: center;
 	}
-}
-.login_container{
-	margin: 1rem .5rem;
-	@include sc(.7rem, #fff);
-	background-color: #4cd964;
-	padding: .5rem 0;
-	border: 1px;
-	border-radius: 0.15rem;
-	text-align: center;
-}
 </style>
