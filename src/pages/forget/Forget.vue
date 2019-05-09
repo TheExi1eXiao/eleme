@@ -4,32 +4,32 @@
 		<form class="restForm">
 			<section class="input_container phone_number">
 				<input type="text" placeholder="账号" name="phone" maxlength="11" v-model="phoneNumber" @input="inputPhone">
-      <!-- <button @click.prevent="getVerifyCode" :class="{right_phone_number:rightPhoneNumber}" v-show="!computedTime">获取验证码</button>
-      	<button  @click.prevent v-show="computedTime">已发送({{computedTime}}s)</button> -->
-      </section>
-      <section class="input_container">
-      	<input type="text" placeholder="旧密码" name="oldPassWord" v-model="oldPassWord">
-      </section>
-      <section class="input_container">
-      	<input type="text" placeholder="请输入新密码" name="newPassWord" v-model="newPassWord">
-      </section>
-      <section class="input_container">
-      	<input type="text" placeholder="请确认密码" name="confirmPassWord" v-model="confirmPassWord">
-      </section>
-      <section class="input_container captcha_code_container">
-      	<input type="text" placeholder="验证码" name="mobileCode" maxlength="6" v-model="mobileCode">
-      	<div class="img_change_img">
-      		<img v-show="captchaCodeImg" :src="captchaCodeImg">
-      		<div class="change_img" @click="getCaptchaCode">
-      			<p>看不清</p>
-      			<p>换一张</p>
-      		</div>
-      	</div>
-      </section>
-    </form>
-    <div class="login_container" @click="resetButton">确认修改</div>
-    <alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
-  </div>
+			<!-- <button @click.prevent="getVerifyCode" :class="{right_phone_number:rightPhoneNumber}" v-show="!computedTime">获取验证码</button>
+				<button  @click.prevent v-show="computedTime">已发送({{computedTime}}s)</button> -->
+			</section>
+			<section class="input_container">
+				<input type="text" placeholder="旧密码" name="oldPassWord" v-model="oldPassWord">
+			</section>
+			<section class="input_container">
+				<input type="text" placeholder="请输入新密码" name="newPassWord" v-model="newPassWord">
+			</section>
+			<section class="input_container">
+				<input type="text" placeholder="请确认密码" name="confirmPassWord" v-model="confirmPassWord">
+			</section>
+			<section class="input_container captcha_code_container">
+				<input type="text" placeholder="验证码" name="mobileCode" maxlength="6" v-model="mobileCode">
+				<div class="img_change_img">
+					<img v-show="captchaCodeImg" :src="captchaCodeImg">
+					<div class="change_img" @click="getCaptchaCode">
+						<p>看不清</p>
+						<p>换一张</p>
+					</div>
+				</div>
+			</section>
+		</form>
+		<div class="login_container" @click="resetButton">确认修改</div>
+		<alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
+	</div>
 </template>
 
 <script>
@@ -39,167 +39,167 @@
 	import { Url, Http } from "@/tools/http"
 
 	export default {
-		data(){
+		data () {
 			return {
-	      phoneNumber: null, //电话号码
-	      oldPassWord: null,
-	      newPassWord: null, //新密码
-	      rightPhoneNumber: false, //输入的手机号码是否符合要求
-	      confirmPassWord: null, //确认密码
-	      captchaCodeImg: null, //验证码地址
-	      mobileCode: null, //短信验证码
-	      computedTime: 0, //倒数记时
-	      showAlert: false, //显示提示组件
-	      alertText: null, //提示的内容
-	      accountType: 'mobile',//注册方式
-	      captchaCodeImg: null
-    	}
-	  },
-	  components: {
-	  	headTop,
-	  	alertTip
-	  },
-	  created(){
-	  	this.getCaptchaCode()
-	  },
-	  methods: {
-		  //判断输入的电话号码
-		  inputPhone(){
-		  	if(/.+/gi.test(this.phoneNumber)){
-		  		this.rightPhoneNumber = true;
-		  	}else{
-		  		this.rightPhoneNumber = false;
-		  	}
-		  },
-		  //获取验证吗
-		  getVerifyCode(){
-		  	if (this.rightPhoneNumber) {
-		  		this.computedTime = 30;
-          //倒计时
-          this.timer = setInterval(() => {
-          	this.computedTime --;
-          	if (this.computedTime == 0) {
-          		clearInterval(this.timer)
-          	}
-          }, 1000)
-          //判断用户是否存在
-          // let res = await checkExsis(this.phoneNumber, this.accountType);
-          Http.get(
-          	Url.checkExsis,
-          	{
-          		"[type]": this.phoneNumber,
+				phoneNumber: null, //电话号码
+				oldPassWord: null,
+				newPassWord: null, //新密码
+				rightPhoneNumber: false, //输入的手机号码是否符合要求
+				confirmPassWord: null, //确认密码
+				captchaCodeImg: null, //验证码地址
+				mobileCode: null, //短信验证码
+				computedTime: 0, //倒数记时
+				showAlert: false, //显示提示组件
+				alertText: null, //提示的内容
+				accountType: 'mobile',//注册方式
+				captchaCodeImg: null
+			}
+		},
+		components: {
+			headTop,
+			alertTip
+		},
+		created () {
+			this.getCaptchaCode()
+		},
+		methods: {
+			//判断输入的电话号码
+			inputPhone () {
+				if (/.+/gi.test(this.phoneNumber)) {
+					this.rightPhoneNumber = true;
+				} else {
+					this.rightPhoneNumber = false;
+				}
+			},
+			//获取验证吗
+			getVerifyCode () {
+				if (this.rightPhoneNumber) {
+					this.computedTime = 30;
+					//倒计时
+					this.timer = setInterval(() => {
+						this.computedTime --;
+						if (this.computedTime == 0) {
+							clearInterval(this.timer)
+						}
+					}, 1000)
+					//判断用户是否存在
+					// let res = await checkExsis(this.phoneNumber, this.accountType);
+					Http.get(
+						Url.checkExsis,
+						{
+							"[type]": this.phoneNumber,
 							type: this.accountType
-          	},
-          	(data)=>{
-          		let res = data;
-          		//判断返回的信息是否正确，用户是否注册
-		          if (res.message) {
-		          	this.showAlert = true;
-		          	this.alertText = res.message;
-		          	return
-		          }else if(!res.is_exists) {
-		          	this.showAlert = true;
-		          	this.alertText = '您输入的手机号尚未绑定';
-		          	return
-		          }
-          	},
-          	()=>{},
-          	()=>{}
-          )
-          //获取验证信息
-          // let getCode = await mobileCode(this.phoneNumber);
-          Http.post(
-          	Url.mobileCode,
-          	{
-          		mobile: this.phoneNumber,
+						},
+						(data) => {
+							let res = data;
+							//判断返回的信息是否正确，用户是否注册
+							if (res.message) {
+								this.showAlert = true;
+								this.alertText = res.message;
+								return
+							} else if (!res.is_exists) {
+								this.showAlert = true;
+								this.alertText = '您输入的手机号尚未绑定';
+								return
+							}
+						},
+						() => {},
+						() => {}
+					)
+					//获取验证信息
+					// let getCode = await mobileCode(this.phoneNumber);
+					Http.post(
+						Url.mobileCode,
+						{
+							mobile: this.phoneNumber,
 							scene: 'login',
 							type: 'sms'
-          	},
-          	(data)=>{
-          		let getCode = data;
-          		if (getCode.message) {
-		          	this.showAlert = true;
-		          	this.alertText = getCode.message;
-		          	return
-		          }
-		          this.validate_token = getCode.validate_token;
-          	},
-          	()=>{},
-          	()=>{}
-          )
-        }
-      },
-      getCaptchaCode(){
-      	// let res = await getcaptchas();
-      	Http.post(
-      		Url.captchas,
-      		{},
-      		(data)=>{
-      			let res = data;
-      			this.captchaCodeImg = res.code;
-      		},
-      		()=>{},
-      		()=>{}
-      	)
-      },
-		  //重置密码
-		  resetButton(){
-		  	if (!this.phoneNumber) {
-		  		this.showAlert = true;
-		  		this.alertText = '请输入正确的账号';
-		  		return
-		  	}else if(!this.oldPassWord){
-		  		this.showAlert = true;
-		  		this.alertText = '请输入旧密码';
-		  		return
-		  	}else if(!this.newPassWord){
-		  		this.showAlert = true;
-		  		this.alertText = '请输入新密码';
-		  		return
-		  	}else if(!this.confirmPassWord){
-		  		this.showAlert = true;
-		  		this.alertText = '请输确认密码';
-		  		return
-		  	}else if(this.newPassWord !== this.confirmPassWord){
-		  		this.showAlert = true;
-		  		this.alertText = '两次输入的密码不一致';
-		  		return
-		  	}else if(!this.mobileCode){
-		  		this.showAlert = true;
-		  		this.alertText = '请输验证码';
-		  		return
-		  	}
-	      // 发送重置信息
-	      // let res = await changePassword(this.phoneNumber, this.oldPassWord, this.newPassWord, this.confirmPassWord, this.mobileCode);
-	      Http.post(
-	      	Url.changePassword,
-	      	{
-	      		username: this.phoneNumber, 
-	      		oldpassWord: this.oldPassWord, 
-	      		newpassword: this.newpassword, 
-	      		confirmpassword: this.confirmpassword, 
-	      		captcha_code: this.mobileCode
-	      	},
-	      	(data)=>{
-	      		let res = data;
-	      		if (res.message) {
-			      	this.showAlert = true;
-			      	this.alertText = res.message;
-			      	this.getCaptchaCode()
-			      	return
-			      }else{
-			      	this.showAlert = true;
-			      	this.alertText = '密码修改成功';
-			      }
-	      	},
-	      	()=>{},
-	      	()=>{}
-	      )
-	    },
-	    closeTip(){
-	    	this.showAlert = false;
-	    }   
-	  }
+						},
+						(data) => {
+							let getCode = data;
+							if (getCode.message) {
+								this.showAlert = true;
+								this.alertText = getCode.message;
+								return
+							}
+							this.validate_token = getCode.validate_token;
+						},
+						() => {},
+						() => {}
+					)
+				}
+			},
+			getCaptchaCode () {
+				// let res = await getcaptchas();
+				Http.post(
+					Url.captchas,
+					{},
+					(data) => {
+						let res = data;
+						this.captchaCodeImg = res.code;
+					},
+					() => {},
+					() => {}
+				)
+			},
+			//重置密码
+			resetButton () {
+				if (!this.phoneNumber) {
+					this.showAlert = true;
+					this.alertText = '请输入正确的账号';
+					return
+				} else if (!this.oldPassWord) {
+					this.showAlert = true;
+					this.alertText = '请输入旧密码';
+					return
+				} else if (!this.newPassWord) {
+					this.showAlert = true;
+					this.alertText = '请输入新密码';
+					return
+				} else if (!this.confirmPassWord) {
+					this.showAlert = true;
+					this.alertText = '请输确认密码';
+					return
+				} else if (this.newPassWord !== this.confirmPassWord) {
+					this.showAlert = true;
+					this.alertText = '两次输入的密码不一致';
+					return
+				} else if (!this.mobileCode) {
+					this.showAlert = true;
+					this.alertText = '请输验证码';
+					return
+				}
+				// 发送重置信息
+				// let res = await changePassword(this.phoneNumber, this.oldPassWord, this.newPassWord, this.confirmPassWord, this.mobileCode);
+				Http.post(
+					Url.changePassword,
+					{
+						username: this.phoneNumber, 
+						oldpassWord: this.oldPassWord, 
+						newpassword: this.newpassword, 
+						confirmpassword: this.confirmpassword, 
+						captcha_code: this.mobileCode
+					},
+					(data) => {
+						let res = data;
+						if (res.message) {
+							this.showAlert = true;
+							this.alertText = res.message;
+							this.getCaptchaCode()
+							return
+						} else {
+							this.showAlert = true;
+							this.alertText = '密码修改成功';
+						}
+					},
+					() => {},
+					() => {}
+				)
+			},
+			closeTip () {
+				this.showAlert = false;
+			}   
+		}
 	}
 
 </script>

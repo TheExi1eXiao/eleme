@@ -50,15 +50,15 @@
 <script>
   import { mapState } from 'vuex'
   export default {
-  	data(){
+  	data () {
       return {
           
       }
     },
-    created(){
+    created () {
        
     },
-    mounted(){
+    mounted () {
         
     },
     computed: {
@@ -67,7 +67,7 @@
       ])
     },
     methods: {
-    	gotoAddress(path){
+    	gotoAddress (path) {
     		this.$router.push(path)
     	}
     }

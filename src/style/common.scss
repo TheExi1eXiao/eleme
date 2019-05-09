@@ -23,7 +23,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
 	height: 0px;  
 	background-color: #F5F5F5;  
 }  
-  
+	
 /*定义滚动条轨道 内阴影+圆角*/  
 ::-webkit-scrollbar-track  
 {  
@@ -31,7 +31,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
 	border-radius: 10px;  
 	background-color: #F5F5F5;  
 }  
-  
+	
 /*定义滑块 内阴影+圆角*/  
 ::-webkit-scrollbar-thumb  
 {  
@@ -99,11 +99,11 @@ html,body{
 }
 
 @keyframes backOpacity{
-  0%   { opacity: 1 }
-  25%  { opacity: .5 }
-  50%  { opacity: 1 }
-  75%  { opacity: .5 }
-  100% { opacity: 1 }
+	0%   { opacity: 1 }
+	25%  { opacity: .5 }
+	50%  { opacity: 1 }
+	75%  { opacity: .5 }
+	100% { opacity: 1 }
 }
 
 .animation_opactiy{

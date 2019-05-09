@@ -1,121 +1,121 @@
 <template>
- 	<div class="validation_page">
- 		<head-top head-title="用户手机验证" go-back='true'></head-top>
- 		<section class="validataion_container">
- 			<div class="voice_tip" v-if="showVoiceTip">
- 				<p>电话拨打中...</p>
- 				<p>请留意来自 <span>10105757</span> 或者 <span>021-315754XX</span> 的电话</p>
- 			</div>
- 			<header class="validataion_header">
- 				<span>收不到短信？使用</span>
- 				<span @click="sendVoice">语音验证码</span>
- 			</header>
- 			<form class="input_form">
- 				<input type="text" name="validate" v-model="validate" placeholder="验证码" maxlength="6">
- 				<span class="disable" v-if="countDown">{{countDown}} S</span>
- 				<span class="repost" v-else @click="recall">重新发送</span>
- 			</form>
- 		</section>
- 		<div class="determine" @click="confrimOrder">确定</div>
- 		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
- 	</div>
+	<div class="validation_page">
+		<head-top head-title="用户手机验证" go-back='true'></head-top>
+		<section class="validataion_container">
+			<div class="voice_tip" v-if="showVoiceTip">
+				<p>电话拨打中...</p>
+				<p>请留意来自 <span>10105757</span> 或者 <span>021-315754XX</span> 的电话</p>
+			</div>
+			<header class="validataion_header">
+				<span>收不到短信？使用</span>
+				<span @click="sendVoice">语音验证码</span>
+			</header>
+			<form class="input_form">
+				<input type="text" name="validate" v-model="validate" placeholder="验证码" maxlength="6">
+				<span class="disable" v-if="countDown">{{countDown}} S</span>
+				<span class="repost" v-else @click="recall">重新发送</span>
+			</form>
+		</section>
+		<div class="determine" @click="confrimOrder">确定</div>
+		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+	</div>
 </template>
 
 <script>
- 	import headTop from '@/components/header/Header'
- 	import { mapState, mapMutations } from 'vuex'
- 	// import {rePostVerify, validateOrders} from '@/service/getData'
- 	import { Url, Http } from "@/tools/http"
- 	import alertTip from '@/components/common/AlertTip'
+	import headTop from '@/components/header/Header'
+	import { mapState, mapMutations } from 'vuex'
+	// import {rePostVerify, validateOrders} from '@/service/getData'
+	import { Url, Http } from "@/tools/http"
+	import alertTip from '@/components/common/AlertTip'
 
- 	export default {
- 		data(){
- 			return {
-       	validate: null, //验证码
-        countDown: 60, //倒计时
-        sig: null, //sig值
-        reCallVerify: null, //重发验证信息
-        showAlert: false, 
-        alertText: null,
-        showVoiceTip: false, //显示语音验证
-        type: 'sms'
-      }
-    },
-    components: {
-    	headTop,
-    	alertTip
-    },
-    created(){
-    	this.sig = this.$route.query.sig;
-    },
-    mounted(){
-    	this.count();
-    	this.getData();
-    },
-    beforeDestroy(){
-    	clearInterval(this.timer);
-    },
-    props: [],
-    computed: {
-    	...mapState([
-    		'needValidation', 'cart_id', 'sig', 'orderParam'
-    	]),
-    },
-    methods: {
-    	...mapMutations([
-    		'CHANGE_ORDER_PARAM', 'ORDER_SUCCESS'
-    	]),
-	    //到计时
-	    count(){
-	    	this.countDown = 60;
-	    	clearInterval(this.timer);
-	    	this.timer = setInterval(() => {
-	    		this.countDown -- ;
-	    		if (this.countDown == 0) {
-	    			clearInterval(this.timer);
-	    		}
-	    	}, 1000);
-	    },
-	    //重新发送
-	    recall(){
-	    	this.count();
-	    	this.type = 'sms';
-	    	this.getData();
-	    },
-	    //发送语音验证
-	    sendVoice(){
-	    	this.showVoiceTip = true;
-	    	this.type = 'voice';
-	    	this.getData();
-	    },
-	    //获取验证信息
-	    getData(){
-	    	// this.reCallVerify = await rePostVerify(this.cart_id, this.sig, this.type);
-	    	Http.post(
-	    		Url.carts + this.cart_id + '/verify_code',
-	    		{
-	    			sig: this.sig,
+	export default {
+		data () {
+			return {
+				validate: null, //验证码
+				countDown: 60, //倒计时
+				sig: null, //sig值
+				reCallVerify: null, //重发验证信息
+				showAlert: false, 
+				alertText: null,
+				showVoiceTip: false, //显示语音验证
+				type: 'sms'
+			}
+		},
+		components: {
+			headTop,
+			alertTip
+		},
+		created () {
+			this.sig = this.$route.query.sig;
+		},
+		mounted () {
+			this.count();
+			this.getData();
+		},
+		beforeDestroy () {
+			clearInterval(this.timer);
+		},
+		props: [],
+		computed: {
+			...mapState([
+				'needValidation', 'cart_id', 'sig', 'orderParam'
+			])
+		},
+		methods: {
+			...mapMutations([
+				'CHANGE_ORDER_PARAM', 'ORDER_SUCCESS'
+			]),
+			//到计时
+			count () {
+				this.countDown = 60;
+				clearInterval(this.timer);
+				this.timer = setInterval(() => {
+					this.countDown -- ;
+					if (this.countDown == 0) {
+						clearInterval(this.timer);
+					}
+				}, 1000);
+			},
+			//重新发送
+			recall () {
+				this.count();
+				this.type = 'sms';
+				this.getData();
+			},
+			//发送语音验证
+			sendVoice () {
+				this.showVoiceTip = true;
+				this.type = 'voice';
+				this.getData();
+			},
+			//获取验证信息
+			getData () {
+				// this.reCallVerify = await rePostVerify(this.cart_id, this.sig, this.type);
+				Http.post(
+					Url.carts + this.cart_id + '/verify_code',
+					{
+						sig: this.sig,
 						type: this.type,
-	    		},
-	    		(data)=>{
-	    			this.reCallVerify = data;
-	    			if (this.reCallVerify.message) {
-			    		this.showAlert = true;
-			    		this.alertText = this.reCallVerify.message;
-			    	}
-	    		},
-	    		()=>{},
-	    		()=>{}
-	    	) 	
-	    },
-	    //确认订单
-	    confrimOrder(){
-	    	this.CHANGE_ORDER_PARAM({validation_code: this.validate, validation_token: this.reCallVerify.validate_token})
-	    	// let orderRes = await validateOrders(this.orderParam);
-	    	Http.post(
-	    		Url.addresses + this.orderParam.user_id + '/carts/' + this.orderParam.cart_id + '/orders',
-	    		{
-	    			address_id: this.orderParam.address_id,
+					},
+					(data) => {
+						this.reCallVerify = data;
+						if (this.reCallVerify.message) {
+							this.showAlert = true;
+							this.alertText = this.reCallVerify.message;
+						}
+					},
+					() => {},
+					() => {}
+				) 	
+			},
+			//确认订单
+			confrimOrder () {
+				this.CHANGE_ORDER_PARAM({validation_code: this.validate, validation_token: this.reCallVerify.validate_token})
+				// let orderRes = await validateOrders(this.orderParam);
+				Http.post(
+					Url.addresses + this.orderParam.user_id + '/carts/' + this.orderParam.cart_id + '/orders',
+					{
+						address_id: this.orderParam.address_id,
 						come_from: "mobile_web",
 						deliver_time: "",
 						description: this.orderParam.description,
@@ -125,22 +125,22 @@
 						sig: this.orderParam.sig,
 						validation_code: this.orderParam.validation_code,
 						validation_token: this.orderParam.validation_token,
-	    		},
-	    		(data)=>{
-	    			var orderRes = data;
-	    			//如果信息错误则提示，否则进入付款页面
-		        if (orderRes.message) {
-		        	this.showAlert = true;
-		        	this.alertText = orderRes.message;
-		        	return
-		        }
-		        this.ORDER_SUCCESS(orderRes);
-		        this.$router.push('/confirmOrder/payment');
-	    		}
-	    	)
-      }
-    }
-  }
+					},
+					(data) => {
+						var orderRes = data;
+						//如果信息错误则提示，否则进入付款页面
+						if (orderRes.message) {
+							this.showAlert = true;
+							this.alertText = orderRes.message;
+							return
+						}
+						this.ORDER_SUCCESS(orderRes);
+						this.$router.push('/confirmOrder/payment');
+					}
+				)
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>

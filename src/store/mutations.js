@@ -35,14 +35,14 @@ export default {
 			item[food_id]['num']++;
 		} else {
 			item[food_id] = {
-					"num" : 1,
-					"id" : food_id,
-					"name" : name,
-					"price" : price,
-					"specs" : specs,
-					"packing_fee" : packing_fee,
-					"sku_id" : sku_id,
-					"stock" : stock
+				"num": 1,
+				"id": food_id,
+				"name": name,
+				"price": price,
+				"specs": specs,
+				"packing_fee": packing_fee,
+				"sku_id": sku_id,
+				"stock": stock
 			};
 		}
 		state.cartList = {...cart};
@@ -206,5 +206,5 @@ export default {
 	//会员卡价格纪录
 	[type.BUY_CART](state, price) {
 		state.cartPrice = price;
-	},
+	}
 }

@@ -91,7 +91,7 @@
 	import loading from '@/components/common/Loading'
 
 	export default {
-		data(){
+		data () {
 			return {
         showAlert: false, //弹出框
         alertText: null, //弹出框文字
@@ -100,7 +100,7 @@
         categoryType: 1 //红包与商家代金券切换
       }
     },
-    mounted(){
+    mounted () {
     	this.initData();
     },
     components: {
@@ -111,30 +111,30 @@
     computed: {
     	...mapState([
     		'userInfo'
-    	]),
+    	])
     },
     methods: {
     	...mapMutations([
     		'CLEAR_CART'
     	]),
-    	initData(){
+    	initData () {
     		if (this.userInfo) {
     			Http.get(
 						Url.users + this.userInfo.user_id + '/hongbaos?limit=20&offset=0',
 						{},
-						(data)=>{
+						(data) => {
 							// this.hongbaoList = await getHongbaoNum(this.userInfo.user_id);
 							this.hongbaoList = data;
     					this.showLoading = false;
 						},
-						()=>{},
-						()=>{}
+						() => {},
+						() => {}
     			)	
     		}
     	}
     },
     watch: {
-    	userInfo: function (value){
+    	userInfo: function (value) {
     		this.initData();
     	}
     }

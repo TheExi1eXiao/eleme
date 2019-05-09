@@ -75,7 +75,7 @@ import loading from './Loading'
 import ratingStar from './RatingStar'
 
 export default {
-	data(){
+	data () {
 		return {
 			offset: 0, // 批次加载店铺列表，每次加载20个 limit = 20
 			shopListArr: [], // 店铺列表数据
@@ -86,7 +86,7 @@ export default {
 			imgBaseUrl
 		}
 	},
-	mounted(){
+	mounted () {
 		this.initData();
 	},
 	components: {
@@ -97,14 +97,14 @@ export default {
 	mixins: [loadMore, getImgPath],
 	computed: {
 		...mapState([
-			'latitude','longitude'
+			'latitude', 'longitude'
 		])
 	},
-	updated(){
+	updated () {
 		// console.log(this.supportIds, this.sortByType)
 	},
 	methods: {
-		initData(){
+		initData () {
 			//获取数据
 			Http.get(
 				Url.restaurants,
@@ -120,7 +120,7 @@ export default {
 					order_by: '',
 					'delivery_mode[]': ''
 				},
-				(data)=>{
+				(data) => {
 					// let res = await shopList(this.latitude, this.longitude, this.offset, this.restaurantCategoryId);
 					var res = data
 					this.shopListArr = [...res];
@@ -133,8 +133,8 @@ export default {
 						this.showBackStatus = status;
 					});
 				},
-				()=>{},
-				()=>{}
+				() => {},
+				() => {}
 			)
 		},
 		//到达底部加载更多数据
@@ -166,7 +166,7 @@ export default {
 					order_by: '',
 					'delivery_mode[]': ''
 				},
-				(data)=>{
+				(data) => {
 					this.hideLoading();
 					this.shopListArr = [...this.shopListArr, ...res];
 					//当获取数据小于20，说明没有更多数据，不需要再次请求数据
@@ -179,11 +179,11 @@ export default {
 			)
 		},
 		//返回顶部
-		backTop(){
+		backTop () {
 			animate(document.body, {scrollTop: '0'}, 400,'ease-out');
 		},
 		//监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
-		listenPropChange(){
+		listenPropChange () {
 			this.showLoading = true;
 			this.offset = 0;
 			let supportStr = '';
@@ -207,21 +207,21 @@ export default {
 					order_by: '',
 					'delivery_mode[]': this.deliveryMode + supportStr
 				},
-				(data)=>{
+				(data) => {
 					let res = data;
 					this.hideLoading();
 					//考虑到本地模拟数据是引用类型，所以返回一个新的数组
 					this.shopListArr = [...res];
 				},
-				()=>{},
-				()=>{}
+				() => {},
+				() => {}
 			)		
 		},
 		//开发环境与编译环境loading隐藏方式不同
-		hideLoading(){
+		hideLoading () {
 			this.showLoading = false;
 		},
-		zhunshi(supports){
+		zhunshi (supports) {
 			let zhunStatus;
 			if ((supports instanceof Array) && supports.length) {
  				supports.forEach(item => {
@@ -229,7 +229,7 @@ export default {
  						zhunStatus = true;
  					}
  				})
-			}else{
+			} else {
 				zhunStatus = false;
 			}
 			return zhunStatus
@@ -237,15 +237,15 @@ export default {
 	},
 	watch: {
 		//监听父级传来的restaurantCategoryIds，当值发生变化的时候重新获取餐馆数据，作用于排序和筛选
-		restaurantCategoryIds: function (value){
+		restaurantCategoryIds: function (value) {
 			this.listenPropChange();
 		},
 		//监听父级传来的排序方式
-		sortByType: function (value){
+		sortByType: function (value) {
 			this.listenPropChange();
 		},
 		//监听父级的确认按钮是否被点击，并且返回一个自定义事件通知父级，已经接收到数据，此时父级才可以清除已选状态
-		confirmSelect: function (value){
+		confirmSelect: function (value) {
 			this.listenPropChange();
 		}
 	}

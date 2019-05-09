@@ -53,119 +53,119 @@
 	import '@/style/swiper.min.css'
 
 	export default {
-		data(){
+		data () {
 			return {
-	    	geohash: '', // city页面传递过来的地址geohash
-	      msiteTitle: '请选择地址...', // msite页面头部标题
-	      foodTypes: [], // 食品分类列表
-	      hasGetData: false, //是否已经获取地理位置数据，成功之后再获取商铺列表信息
-	      imgBaseUrl: 'https://fuss10.elemecdn.com' //图片域名地址
-	    }
-	  },
-	  beforeMount(){
-	  	if (!this.$route.query.geohash) {
-	  		// const address = await cityGuess();
-	  		Http.get(
-        	Url.city,
-        	{
-        		type: 'guess'
-        	},
-        	(data)=>{
-        		const address = data;
-        		this.geohash = address.latitude + ',' + address.longitude;
-        	},
-        	()=>{},
-        	()=>{}
-        )
-	  	}else{
-	  		this.geohash = this.$route.query.geohash
-	  	}
+				geohash: '', // city页面传递过来的地址geohash
+				msiteTitle: '请选择地址...', // msite页面头部标题
+				foodTypes: [], // 食品分类列表
+				hasGetData: false, //是否已经获取地理位置数据，成功之后再获取商铺列表信息
+				imgBaseUrl: 'https://fuss10.elemecdn.com' //图片域名地址
+			}
+		},
+		beforeMount () {
+			if (!this.$route.query.geohash) {
+				// const address = await cityGuess();
+				Http.get(
+					Url.city,
+					{
+						type: 'guess'
+					},
+					(data) => {
+						const address = data;
+						this.geohash = address.latitude + ',' + address.longitude;
+					},
+					() => {},
+					() => {}
+				)
+			} else {
+				this.geohash = this.$route.query.geohash
+			}
 			//保存geohash 到vuex
 			this.SAVE_GEOHASH(this.geohash);
-	  	//获取位置信息
-	  	// let res = await msiteAddress(this.geohash);
-	  	Http.get(
-      	Url.msiteAddress + this.geohash,
-      	{},
-      	(data)=>{
-      		let res = data;
-      		this.msiteTitle = res.name;
-			  	// 记录当前经度纬度
-			  	this.RECORD_ADDRESS(res);
+			//获取位置信息
+			// let res = await msiteAddress(this.geohash);
+			Http.get(
+				Url.msiteAddress + this.geohash,
+				{},
+				(data) => {
+					let res = data;
+					this.msiteTitle = res.name;
+					// 记录当前经度纬度
+					this.RECORD_ADDRESS(res);
 
-			  	this.hasGetData = true;
-      	},
-      	()=>{},
-      	()=>{}
-      )
-	  },
-	  mounted(){
-	    //获取导航食品类型列表
-	    Http.get(
-      	Url.msiteFoodTypes,
-      	{
-      		geohash: this.geohash,
+					this.hasGetData = true;
+				},
+				() => {},
+				() => {}
+			)
+		},
+		mounted () {
+			//获取导航食品类型列表
+			Http.get(
+				Url.msiteFoodTypes,
+				{
+					geohash: this.geohash,
 					group_type: '1',
 					'flags[]': 'F'
-      	},
-      	(data)=>{
-      		let resLength = data.length;
-		   		let resArr = [...data]; // 返回一个新的数组
-		   		let foodArr = [];
-		   		for (let i = 0, j = 0; i < resLength; i += 8, j++) {
-		   			foodArr[j] = resArr.splice(0, 8);
-		   		}
-		   		this.foodTypes = foodArr;
-		   		//初始化swiper
-		    	new Swiper('.swiper-container', {
-		    		pagination: '.swiper-pagination',
-		    		loop: true
-		    	});
-      	},
-      	()=>{},
-      	()=>{}
-      )
-	    // msiteFoodTypes(this.geohash).then(res => {
-	    // 	let resLength = res.length;
-	   	// 	let resArr = [...res]; // 返回一个新的数组
-	   	// 	let foodArr = [];
-	   	// 	for (let i = 0, j = 0; i < resLength; i += 8, j++) {
-	   	// 		foodArr[j] = resArr.splice(0, 8);
-	   	// 	}
-	   	// 	this.foodTypes = foodArr;
-	   	// }).then(() => {
-	    // 	//初始化swiper
-	    // 	new Swiper('.swiper-container', {
-	    // 		pagination: '.swiper-pagination',
-	    // 		loop: true
-	    // 	});
-	    // })
-	  },
-	 	components: {
-	   	headTop,
-	   	shopList,
-	   	footGuide
-	   },
-	  computed: {
+				},
+				(data) => {
+					let resLength = data.length;
+					let resArr = [...data]; // 返回一个新的数组
+					let foodArr = [];
+					for (let i = 0, j = 0; i < resLength; i += 8, j++) {
+						foodArr[j] = resArr.splice(0, 8);
+					}
+					this.foodTypes = foodArr;
+					//初始化swiper
+					new Swiper('.swiper-container', {
+						pagination: '.swiper-pagination',
+						loop: true
+					});
+				},
+				() => {},
+				() => {}
+			)
+			// msiteFoodTypes(this.geohash).then(res => {
+			// 	let resLength = res.length;
+			// 	let resArr = [...res]; // 返回一个新的数组
+			// 	let foodArr = [];
+			// 	for (let i = 0, j = 0; i < resLength; i += 8, j++) {
+			// 		foodArr[j] = resArr.splice(0, 8);
+			// 	}
+			// 	this.foodTypes = foodArr;
+			// }).then(() => {
+			// 	//初始化swiper
+			// 	new Swiper('.swiper-container', {
+			// 		pagination: '.swiper-pagination',
+			// 		loop: true
+			// 	});
+			// })
+		},
+		components: {
+			headTop,
+			shopList,
+			footGuide
+		 },
+		computed: {
 
-	  },
-	  methods: {
-	   	...mapMutations([
-	   		'RECORD_ADDRESS', 'SAVE_GEOHASH'
-	   	]),
-	  	// 解码url地址，求去restaurant_category_id值
-	  	getCategoryId(url){
-	  		let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
-	  		if (/restaurant_category_id/gi.test(urlData)) {
-	  			return JSON.parse(urlData).restaurant_category_id.id
-	  		}else{
-	  			return ''
-	  		}
-	  	}
-	  },
-	  watch: {
-	  	
-	  }
+		},
+		methods: {
+			...mapMutations([
+				'RECORD_ADDRESS', 'SAVE_GEOHASH'
+			]),
+			// 解码url地址，求去restaurant_category_id值
+			getCategoryId (url) {
+				let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
+				if (/restaurant_category_id/gi.test(urlData)) {
+					return JSON.parse(urlData).restaurant_category_id.id
+				} else {
+					return ''
+				}
+			}
+		},
+		watch: {
+			
+		}
 	}
 
 </script>

@@ -57,192 +57,191 @@
 	// import {mobileCode, checkExsis, sendLogin, getcaptchas, accountLogin} from '../../service/getData'
 	import { Url, Http } from "@/tools/http"
 	export default {
-		data(){
+		data () {
 			return {
-        loginWay: false, //登录方式，默认短信登录
-        showPassword: false, // 是否显示密码
-        phoneNumber: null, //电话号码
-        mobileCode: null, //短信验证码
-        validate_token: null, //获取短信时返回的验证值，登录时需要
-        computedTime: 0, //倒数记时
-        userInfo: null, //获取到的用户信息
-        userAccount: null, //用户名
-        passWord: null, //密码
-        captchaCodeImg: null, //验证码地址
-        codeNumber: null, //验证码
-        showAlert: false, //显示提示组件
-        alertText: null //提示的内容
-      }
-    },
-    created(){
-    	this.getCaptchaCode();
-    },
-    components: {
-    	headTop,
-    	alertTip
-    },
-    computed: {
-	    //判断手机号码
-	    rightPhoneNumber: function (){
-	    	return /^1\d{10}$/gi.test(this.phoneNumber)
-	    }
-	  },
-  	methods: {
-	  	...mapMutations([
-	  		'RECORD_USERINFO'
-	  	]),
-	    //改变登录方式
-	    changeLoginWay(){
-	    	this.loginWay = !this.loginWay;
-	    },
-	    //是否显示密码
-	    changePassWordType(){
-	    	this.showPassword = !this.showPassword;
-	    },
-	    //获取验证吗，线上环境使用固定的图片，生产环境使用真实的验证码
-	    getCaptchaCode(){
-	    	// let res = await getcaptchas();
-	    	Http.post(
-      		Url.captchas,
-      		{},
-      		(data)=>{
-      			let res = data;
-      			this.captchaCodeImg = res.code;
-      		},
-      		()=>{},
-      		()=>{}
-      	)
-	    	// this.captchaCodeImg = res.code;
-	    },
-	    //获取短信验证码
-	    getVerifyCode(){
-	    	if (this.rightPhoneNumber) {
-	    		this.computedTime = 30;
-	    		this.timer = setInterval(() => {
-	    			this.computedTime --;
-	    			if (this.computedTime == 0) {
-	    				clearInterval(this.timer)
-	    			}
-	    		}, 1000)
-	        //判读用户是否存在
-	        // let exsis = await checkExsis(this.phoneNumber, 'mobile');
-	        Http.get(
-          	Url.checkExsis,
-          	{
-          		"[type]": this.phoneNumber,
+				loginWay: false, //登录方式，默认短信登录
+				showPassword: false, // 是否显示密码
+				phoneNumber: null, //电话号码
+				mobileCode: null, //短信验证码
+				validate_token: null, //获取短信时返回的验证值，登录时需要
+				computedTime: 0, //倒数记时
+				userInfo: null, //获取到的用户信息
+				userAccount: null, //用户名
+				passWord: null, //密码
+				captchaCodeImg: null, //验证码地址
+				codeNumber: null, //验证码
+				showAlert: false, //显示提示组件
+				alertText: null //提示的内容
+			}
+		},
+		created () {
+			this.getCaptchaCode();
+		},
+		components: {
+			headTop,
+			alertTip
+		},
+		computed: {
+			//判断手机号码
+			rightPhoneNumber: function () {
+				return /^1\d{10}$/gi.test(this.phoneNumber)
+			}
+		},
+		methods: {
+			...mapMutations([
+				'RECORD_USERINFO'
+			]),
+			//改变登录方式
+			changeLoginWay () {
+				this.loginWay = !this.loginWay;
+			},
+			//是否显示密码
+			changePassWordType () {
+				this.showPassword = !this.showPassword;
+			},
+			//获取验证吗，线上环境使用固定的图片，生产环境使用真实的验证码
+			getCaptchaCode () {
+				// let res = await getcaptchas();
+				Http.post(
+					Url.captchas,
+					{},
+					(data) => {
+						let res = data;
+						this.captchaCodeImg = res.code;
+					},
+					() => {},
+					() => {}
+				)
+				// this.captchaCodeImg = res.code;
+			},
+			//获取短信验证码
+			getVerifyCode () {
+				if (this.rightPhoneNumber) {
+					this.computedTime = 30;
+					this.timer = setInterval(() => {
+						this.computedTime --;
+						if (this.computedTime == 0) {
+							clearInterval(this.timer)
+						}
+					}, 1000)
+					//判读用户是否存在
+					// let exsis = await checkExsis(this.phoneNumber, 'mobile');
+					Http.get(
+						Url.checkExsis,
+						{
+							"[type]": this.phoneNumber,
 							type: 'mobile'
-          	},
-          	(data)=>{
-          		let exsis = data;
-          		if (exsis.message) {
-			        	this.showAlert = true;
-			        	this.alertText = exsis.message;
-			        	return
-			        }else if(!exsis.is_exists) {
-			        	this.showAlert = true;
-			        	this.alertText = '您输入的手机号尚未绑定';
-			        	return
-			        }
-          	},
-          	()=>{},
-          	()=>{}
-          )
-	        //发送短信验证码
-	        // let res = await mobileCode(this.phoneNumber);
-	        Http.post(
-          	Url.mobileCode,
-          	{
-          		mobile: this.phoneNumber,
+						},
+						(data) => {
+							let exsis = data;
+							if (exsis.message) {
+								this.showAlert = true;
+								this.alertText = exsis.message;
+								return
+							} else if (!exsis.is_exists) {
+								this.showAlert = true;
+								this.alertText = '您输入的手机号尚未绑定';
+								return
+							}
+						},
+						() => {},
+						() => {}
+					)
+					//发送短信验证码
+					// let res = await mobileCode(this.phoneNumber);
+					Http.post(
+						Url.mobileCode,
+						{
+							mobile: this.phoneNumber,
 							scene: 'login',
 							type: 'sms'
-          	},
-          	(data)=>{
-          		let res = data;
-          		if (res.message) {
-			        	this.showAlert = true;
-			        	this.alertText = res.message;
-			        	return
-			        }
-		        	this.validate_token = res.validate_token;
-          	},
-          	()=>{},
-          	()=>{}
-          )
-	        
-      	}
-      },
-	    //发送登录信息
-	    mobileLogin(){
-	    	if (this.loginWay) {
-	    		if (!this.rightPhoneNumber) {
-	    			this.showAlert = true;
-	    			this.alertText = '手机号码不正确';
-	    			return
-	    		}else if(!(/^\d{6}$/gi.test(this.mobileCode))){
-	    			this.showAlert = true;
-	    			this.alertText = '短信验证码不正确';
-	    			return
-	    		}
-          //手机号登录
-          // this.userInfo = await sendLogin(this.mobileCode, this.phoneNumber, this.validate_token);
-          Http.post(
-          	Url.sendLogin,
-          	{
-          		code: this.mobileCode,
+						},
+						(data) => {
+							let res = data;
+							if (res.message) {
+								this.showAlert = true;
+								this.alertText = res.message;
+								return
+							}
+							this.validate_token = res.validate_token;
+						},
+						() => {},
+						() => {}
+					)
+				}
+			},
+			//发送登录信息
+			mobileLogin () {
+				if (this.loginWay) {
+					if (!this.rightPhoneNumber) {
+						this.showAlert = true;
+						this.alertText = '手机号码不正确';
+						return
+					} else if (!(/^\d{6}$/gi.test(this.mobileCode))) {
+						this.showAlert = true;
+						this.alertText = '短信验证码不正确';
+						return
+					}
+					//手机号登录
+					// this.userInfo = await sendLogin(this.mobileCode, this.phoneNumber, this.validate_token);
+					Http.post(
+						Url.sendLogin,
+						{
+							code: this.mobileCode,
 							mobile: this.phoneNumber,
 							validate_token: this.validate_token
-          	},
-          	(data)=>{
-          		this.userInfo = data;
-          	},
-          	()=>{},
-          	()=>{}
-          )
-        }else{
-        	if (!this.userAccount) {
-        		this.showAlert = true;
-        		this.alertText = '请输入手机号/邮箱/用户名';
-        		return
-        	}else if(!this.passWord){
-        		this.showAlert = true;
-        		this.alertText = '请输入密码';
-        		return
-        	}else if(!this.codeNumber){
-        		this.showAlert = true;
-        		this.alertText = '请输入验证码';
-        		return
-        	}
-          //用户名登录
-          // this.userInfo = await accountLogin(this.userAccount, this.passWord, this.codeNumber);
-          Http.post(
-          	Url.accountLogin,
-          	{
-          		username: this.userAccount,
-          		password: this.passWord, 
-          		captcha_code: this.codeNumber
-          	},
-          	(data)=>{
-          		this.userInfo = data;
-          		//如果返回的值不正确，则弹出提示框，返回的值正确则返回上一页
-			        if (!this.userInfo.user_id) {
-			        	this.showAlert = true;
-			        	this.alertText = this.userInfo.message;
-			        	if (!this.loginWay) this.getCaptchaCode();
-			        }else{
-			        	this.RECORD_USERINFO(this.userInfo);
-			        	this.$router.go(-1);
-				      }
-          	},
-          	()=>{},
-          	()=>{}
-          )
-        }
-	    },
-      closeTip(){
-      	this.showAlert = false;
-      }
-    }
-  }
+						},
+						(data) => {
+							this.userInfo = data;
+						},
+						() => {},
+						() => {}
+					)
+				} else {
+					if (!this.userAccount) {
+						this.showAlert = true;
+						this.alertText = '请输入手机号/邮箱/用户名';
+						return
+					} else if (!this.passWord) {
+						this.showAlert = true;
+						this.alertText = '请输入密码';
+						return
+					} else if (!this.codeNumber) {
+						this.showAlert = true;
+						this.alertText = '请输入验证码';
+						return
+					}
+					//用户名登录
+					// this.userInfo = await accountLogin(this.userAccount, this.passWord, this.codeNumber);
+					Http.post(
+						Url.accountLogin,
+						{
+							username: this.userAccount,
+							password: this.passWord, 
+							captcha_code: this.codeNumber
+						},
+						(data) => {
+							this.userInfo = data;
+							//如果返回的值不正确，则弹出提示框，返回的值正确则返回上一页
+							if (!this.userInfo.user_id) {
+								this.showAlert = true;
+								this.alertText = this.userInfo.message;
+								if (!this.loginWay) this.getCaptchaCode();
+							} else {
+								this.RECORD_USERINFO(this.userInfo);
+								this.$router.go(-1);
+							}
+						},
+						() => {},
+						() => {}
+					)
+				}
+			},
+			closeTip () {
+				this.showAlert = false;
+			}
+		}
+	}
 
 </script>
 

@@ -328,7 +328,7 @@
 	import BScroll from 'better-scroll'
 
 	export default {
-		data(){
+		data () {
 			return {
 				geohash: '', //geohash位置信息
 				shopId: null, //商店id值
@@ -367,16 +367,16 @@
 				imgBaseUrl
 			}
 		},
-		created(){
+		created () {
 			this.geohash = this.$route.query.geohash;
 			this.shopId = this.$route.query.id;
 			this.INIT_BUYCART();
 		},
-		mounted(){
+		mounted () {
 			this.initData();
 			this.windowHeight = window.innerHeight;
 		},
-		beforeDestroy(){
+		beforeDestroy () {
 			// this.foodScroll.removeEventListener('scroll', )
 		},
 		mixins: [loadMore, getImgPath],
@@ -389,57 +389,57 @@
 			...mapState([
 				'latitude','longitude','cartList'
 			]),
-			promotionInfo: function (){
+			promotionInfo: function () {
 				return this.shopDetailData.promotion_info || '欢迎光临，用餐高峰期请提前下单，谢谢。'
 			},
 			//配送费
 			deliveryFee: function () {
 				if (this.shopDetailData) {
-					return this.shopDetailData.float_delivery_fee;
-				}else{
-					return null;
+					return this.shopDetailData.float_delivery_fee
+				} else {
+					return null
 				}
 			},
 			//还差多少元起送，为负数时显示去结算按钮
 			minimumOrderAmount: function () {
 				if (this.shopDetailData) {
-					return this.shopDetailData.float_minimum_order_amount - this.totalPrice;
-				}else{
-					return null;
+					return this.shopDetailData.float_minimum_order_amount - this.totalPrice
+				} else {
+					return null
 				}
 			},
 			//当前商店购物信息
-			shopCart: function (){
+			shopCart: function () {
 				return { ...this.cartList[this.shopId] };
 			},
 			//购物车中总共商品的数量
-			totalNum: function (){
+			totalNum: function () {
 				let num = 0;
 				this.cartFoodList.forEach(item => {
 					num += item.num
 				})
 				return num
-			},
+			}
 		},
 		methods: {
 			...mapMutations([
-				'RECORD_ADDRESS','ADD_CART','REDUCE_CART','INIT_BUYCART','CLEAR_CART','RECORD_SHOPDETAIL'
+				'RECORD_ADDRESS', 'ADD_CART', 'REDUCE_CART', 'INIT_BUYCART', 'CLEAR_CART', 'RECORD_SHOPDETAIL'
 			]),
 			//初始化时获取基本数据
-			initData(){
+			initData () {
 				if (!this.latitude) {
 					//获取位置信息
 					// let res = await msiteAddress(this.geohash);
 					Http.get(
 						Url.msiteAddress + this.geohash,
 						{},
-						(data)=>{
+						(data) => {
 							let res = data;
 							// 记录当前经度纬度进入vuex
 							this.RECORD_ADDRESS(res);
 						},
-						()=>{},
-						()=>{}
+						() => {},
+						() => {}
 					)
 				}
 				//获取商铺信息
@@ -450,12 +450,12 @@
 						latitude: this.latitude,
 						longitude: this.longitude + '&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics'
 					},
-					(data)=>{
+					(data) => {
 						this.shopDetailData = data;
 						this.RECORD_SHOPDETAIL(this.shopDetailData)
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 				//获取商铺食品列表
 				// this.menuList = await foodMenu(this.shopId);
@@ -464,11 +464,11 @@
 					{
 						restaurant_id: this.shopId
 					},
-					(data)=>{
+					(data) => {
 						this.menuList = data;
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 				//评论列表
 				// this.ratingList = await getRatingList(this.shopId, this.ratingOffset);
@@ -480,39 +480,39 @@
 						limit: 10,
 						tag_name: ''
 					},
-					(data)=>{
+					(data) => {
 						this.ratingList = data;
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 				//商铺评论详情
 				// this.ratingScoresData = await ratingScores(this.shopId);
 				Http.get(
 					Url.getRatingList + this.shopId + '/ratings/scores',
 					{},
-					(data)=>{
+					(data) => {
 						this.ratingScoresData = data;
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 				//评论Tag列表
 				// this.ratingTagsList = await ratingTags(this.shopId);
 				Http.get(
 					Url.getRatingList + this.shopId + '/ratings/tags',
 					{},
-					(data)=>{
+					(data) => {
 						this.ratingTagsList = data;
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 				//隐藏加载动画
 				this.hideLoading();
 			},
 			//获取食品列表的高度，存入shopListTop
-			getFoodListHeight(){
+			getFoodListHeight () {
 				const listContainer = this.$refs.menuFoodList;
 				if (listContainer) {
 					const listArr = Array.from(listContainer.children[0].children);
@@ -523,7 +523,7 @@
 				}
 			},
 			//当滑动食品列表时，监听其scrollTop值来设置对应的食品列表标题的样式
-			listenScroll(element){
+			listenScroll (element) {
 				this.foodScroll = new BScroll(element, {
 					probeType: 3,
 					deceleration: 0.001,
@@ -544,7 +544,7 @@
 					this.shopListTop.forEach((item, index) => {
 						if (this.menuIndexChange && Math.abs(Math.round(pos.y)) >= item) {
 							this.menuIndex = index;
-							const menuList=this.$refs.wrapperMenu.querySelectorAll('.activity_menu');
+							const menuList = this.$refs.wrapperMenu.querySelectorAll('.activity_menu');
 							const el = menuList[0];
 							wrapperMenu.scrollToElement(el, 800, 0, -(wrapMenuHeight/2 - 50));
 						}
@@ -552,11 +552,11 @@
 				})
 			},
 			//控制活动详情页的显示隐藏
-			showActivitiesFun(){
+			showActivitiesFun () {
 				this.showActivities = !this.showActivities;
 			},
 			//点击左侧食品列表标题，相应列表移动到最顶层
-			chooseMenu(index){
+			chooseMenu (index) {
 				this.menuIndex = index;
 				//menuIndexChange解决运动时listenScroll依然监听的bug
 				this.menuIndexChange = false;
@@ -565,38 +565,38 @@
 					this.menuIndexChange = true;
 				})
 			},
-			showTitleDetail(index){
+			showTitleDetail (index) {
 				if (this.TitleDetailIndex == index) {
 					this.TitleDetailIndex = null;
-				}else{
+				} else {
 					this.TitleDetailIndex = index;
 				}
 			},
 			//加入购物车，所需7个参数，商铺id，食品分类id，食品id，食品规格id，食品名字，食品价格，食品规格
-			addToCart(category_id, item_id, food_id, name, price, specs){
+			addToCart (category_id, item_id, food_id, name, price, specs) {
 				this.ADD_CART({shopid: this.shopId, category_id, item_id, food_id, name, price, specs});
 			},
 			//移出购物车，所需7个参数，商铺id，食品分类id，食品id，食品规格id，食品名字，食品价格，食品规格
-			removeOutCart(category_id, item_id, food_id, name, price, specs){
+			removeOutCart (category_id, item_id, food_id, name, price, specs) {
 				this.REDUCE_CART({shopid: this.shopId, category_id, item_id, food_id, name, price, specs});
 			},
 			/**
 			 * 初始化和shopCart变化时，重新获取购物车改变过的数据，赋值 categoryNum，totalPrice，cartFoodList，整个数据流是自上而下的形式，所有的购物车数据都交给vuex统一管理，包括购物车组件中自身的商品数量，使整个数据流更加清晰
 			 */
-			initCategoryNum(){
+			initCategoryNum () {
 				let newArr = [];
 				let cartFoodNum = 0;
 				this.totalPrice = 0;
 				this.cartFoodList = [];
 				this.menuList.forEach((item, index) => {
-					if (this.shopCart&&this.shopCart[item.foods[0].category_id]) {
+					if (this.shopCart && this.shopCart[item.foods[0].category_id]) {
 						let num = 0;
 						Object.keys(this.shopCart[item.foods[0].category_id]).forEach(itemid => {
 							Object.keys(this.shopCart[item.foods[0].category_id][itemid]).forEach(foodid => {
 								let foodItem = this.shopCart[item.foods[0].category_id][itemid][foodid];
 								num += foodItem.num;
 								if (item.type == 1) {
-									this.totalPrice += foodItem.num*foodItem.price;
+									this.totalPrice += foodItem.num * foodItem.price;
 									if (foodItem.num > 0) {
 										this.cartFoodList[cartFoodNum] = {};
 										this.cartFoodList[cartFoodNum].category_id = item.foods[0].category_id;
@@ -612,7 +612,7 @@
 							})
 						})
 						newArr[index] = num;
-					}else{
+					} else {
 						newArr[index] = 0;
 					}
 				})
@@ -620,16 +620,16 @@
 				this.categoryNum = [...newArr];
 			},
 			//控制购物列表是否显示
-			toggleCartList(){
+			toggleCartList () {
 				this.cartFoodList.length ? this.showCartList = !this.showCartList : true;
 			},
 			//清除购物车
-			clearCart(){
+			clearCart () {
 				this.toggleCartList();
 				this.CLEAR_CART(this.shopId);
 			},
 			//监听圆点是否进入购物车
-			listenInCart(){
+			listenInCart () {
 				if (!this.receiveInCart) {
 					this.receiveInCart = true;
 					this.$refs.cartContainer.addEventListener('animationend', () => {
@@ -641,7 +641,7 @@
 				}
 			},
 			//获取不同类型的评论列表
-			changeTgeIndex(index, name){
+			changeTgeIndex (index, name) {
 				this.ratingTageIndex = index;
 				this.ratingOffset = 0;
 				this.ratingTagName = name;
@@ -654,19 +654,19 @@
 						limit: 10,
 						tag_name: name
 					},
-					(data)=>{
+					(data) => {
 						let res = data;
 						this.ratingList = [...res];
 						this.$nextTick(() => {
 							this.ratingScroll.refresh();
 						})
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 			},
 			//加载更多评论
-			loaderMoreRating(){
+			loaderMoreRating () {
 				if (this.preventRepeatRequest) {
 					return
 				}
@@ -682,7 +682,7 @@
 						limit: 10,
 						tag_name: this.ratingTagName
 					},
-					(data)=>{
+					(data) => {
 						this.ratingDate = data;
 						this.ratingList = [...this.ratingList,...ratingDate];
 						this.loadRatings = false;
@@ -690,16 +690,16 @@
 							this.preventRepeatRequest = false;
 						}
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 			},
 			//隐藏动画
-			hideLoading(){
+			hideLoading () {
 				this.showLoading = false;
 			},
 			//显示规格列表
-			showChooseList(foods){
+			showChooseList (foods) {
 				if (foods) {
 					this.choosedFoods = foods;
 				}
@@ -707,16 +707,16 @@
 				this.specsIndex = 0;
 			},
 			//记录当前所选规格的索引值
-			chooseSpecs(index){
+			chooseSpecs (index) {
 				this.specsIndex = index;
 			},
 			//多规格商品加入购物车
-			addSpecs(category_id, item_id, food_id, name, price, specs, packing_fee, sku_id, stock){
+			addSpecs (category_id, item_id, food_id, name, price, specs, packing_fee, sku_id, stock) {
 				this.ADD_CART({shopid: this.shopId, category_id, item_id, food_id, name, price, specs, packing_fee, sku_id, stock});
 				this.showChooseList();
 			},
 			//显示提示，无法减去商品
-			showReduceTip(){
+			showReduceTip () {
 				this.showDeleteTip = true;
 				clearTimeout(this.timer);
 				this.timer = setTimeout(() => {
@@ -725,17 +725,17 @@
 				}, 3000);
 			},
 			//显示下落圆球
-			showMoveDotFun(showMoveDot, elLeft, elBottom){
+			showMoveDotFun (showMoveDot, elLeft, elBottom) {
 				this.showMoveDot = [...this.showMoveDot, ...showMoveDot];
 				this.elLeft = elLeft;
 				this.elBottom = elBottom;
 			},
-			beforeEnter(el){
+			beforeEnter (el) {
 				el.style.transform = `translate3d(0,${37 + this.elBottom - this.windowHeight}px,0)`;
 				el.children[0].style.transform = `translate3d(${this.elLeft - 30}px,0,0)`;
 				el.children[0].style.opacity = 0;
 			},
-			afterEnter(el){
+			afterEnter (el) {
 				el.style.transform = `translate3d(0,0,0)`;
 				el.children[0].style.transform = `translate3d(0,0,0)`;
 				el.style.transition = 'transform .55s cubic-bezier(0.3, -0.25, 0.7, -0.15)';
@@ -749,13 +749,13 @@
 					this.listenInCart();
 				})
 			},
-			goback(){
+			goback () {
 				this.$router.go(-1);
 			}
 		},
 		watch: {
 			//showLoading变化时说明组件已经获取初始化数据，在下一帧nextTick进行后续操作
-			showLoading: function (value){
+			showLoading: function (value) {
 				if (!value) {
 					this.$nextTick(() => {
 						this.getFoodListHeight();
@@ -763,17 +763,17 @@
 					})
 				}
 			},
-			shopCart: function (value){
+			shopCart: function (value) {
 				this.initCategoryNum();
 			},
 			//购物车列表发生变化，没有商铺时，隐藏
-			cartFoodList: function (value){
-				if(!value.length){
+			cartFoodList: function (value) {
+				if (!value.length) {
 					this.showCartList = false;
 				}
 			},
 			//商品、评论切换状态
-			changeShowType: function (value){
+			changeShowType: function (value) {
 				if (value === 'rating') {
 					this.$nextTick(() => {
 						this.ratingScroll = new BScroll('#ratingContainer', {

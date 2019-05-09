@@ -1,4 +1,4 @@
-import { APIBaseUrl }from "./config.js";
+import { APIBaseUrl } from "./config.js";
 
 const Url = {
 	//获取首页信息 type: guess(默认地址) hot(热门城市) group(所有城市) number(获取当前所在城市) 

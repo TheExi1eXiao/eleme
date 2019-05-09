@@ -1,157 +1,157 @@
 <template>
- 	<div class="order_detail_page">
- 		<head-top head-title="订单详情" go-back='true'></head-top>
- 		<section v-if="!showLoading" id="scroll_section" class="scroll_container">
- 			<section class="scroll_insert">
- 				<section class="order_titel">
- 					<img :src="imgBaseUrl + orderDetail.restaurant_image_url">
- 					<p>{{orderDetail.status_bar.title}}</p>
- 					<p>{{orderDetail.timeline_node.description}}</p>
- 					<router-link class="order_again" :to="{path: '/shop', query: {geohash, id: orderDetail.restaurant_id}}">再来一单</router-link>
- 				</section>
- 				<section class="food_list">
- 					<router-link class="food_list_header" :to="{path: '/shop', query: {geohash, id: orderDetail.restaurant_id}}">
- 						<div class="shop_name">
- 							<img :src="imgBaseUrl + orderDetail.restaurant_image_url">
- 							<span>{{orderDetail.restaurant_name}}</span>
- 						</div>
- 						<svg fill="#333" class="arrow_right">
- 							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
- 						</svg>
- 					</router-link>
- 					<ul class="food_list_ul">
- 						<li v-for="item in orderDetail.basket.group[0]">
- 							<p class="food_name ellipsis">{{item.name}}</p>
- 							<div class="quantity_price">
- 								<span>X{{item.quantity}}</span>
- 								<span>¥{{item.price}}</span>
- 							</div>
- 						</li>
- 					</ul>
- 					<div class="deliver_fee">
- 						<span>配送费</span>
- 						<span>{{orderDetail.basket.deliver_fee&&orderDetail.basket.deliver_fee.price || 0}}</span>   
- 					</div>
- 					<div class="pay_ment">实付{{orderDetail.total_amount.toFixed(2)}}</div>
- 				</section>
- 				<section class="order_detail_style">
- 					<header>配送信息</header>
- 					<section class="item_style">
- 						<p class="item_left">送达时间：</p>
- 						<div class="item_right">
- 							<p>{{orderData.deliver_time}}</p>
- 						</div>
- 					</section>
- 					<section class="item_style">
- 						<p class="item_left">送货地址：</p>
- 						<div class="item_right">
- 							<p>{{orderData.consignee}}</p>
- 							<p>{{orderData.phone}}</p>
- 							<p>{{orderData.address}}</p>
- 						</div>
- 					</section>
- 					<section class="item_style">
- 						<p class="item_left">配送方式：</p>
- 						<div class="item_right">
- 							<p>蜂鸟专送</p>
- 						</div>
- 					</section>
- 				</section>
- 				<section class="order_detail_style">
- 					<header>订单信息</header>
- 					<section class="item_style">
- 						<p class="item_left">订单号：</p>
- 						<div class="item_right">
- 							<p>{{orderDetail.id}}</p>
- 						</div>
- 					</section>
- 					<section class="item_style">
- 						<p class="item_left">支付方式：</p>
- 						<div class="item_right">
- 							<p>在线支付</p>
- 						</div>
- 					</section>
- 					<section class="item_style">
- 						<p class="item_left">下单时间：</p>
- 						<div class="item_right">
- 							<p>{{orderDetail.formatted_created_at}}</p>
- 						</div>
- 					</section>
- 				</section>
- 			</section>
- 		</section>
- 		<transition name="loading">
- 			<loading v-if="showLoading"></loading>
- 		</transition>
- 	</div>
+	<div class="order_detail_page">
+		<head-top head-title="订单详情" go-back='true'></head-top>
+		<section v-if="!showLoading" id="scroll_section" class="scroll_container">
+			<section class="scroll_insert">
+				<section class="order_titel">
+					<img :src="imgBaseUrl + orderDetail.restaurant_image_url">
+					<p>{{orderDetail.status_bar.title}}</p>
+					<p>{{orderDetail.timeline_node.description}}</p>
+					<router-link class="order_again" :to="{path: '/shop', query: {geohash, id: orderDetail.restaurant_id}}">再来一单</router-link>
+				</section>
+				<section class="food_list">
+					<router-link class="food_list_header" :to="{path: '/shop', query: {geohash, id: orderDetail.restaurant_id}}">
+						<div class="shop_name">
+							<img :src="imgBaseUrl + orderDetail.restaurant_image_url">
+							<span>{{orderDetail.restaurant_name}}</span>
+						</div>
+						<svg fill="#333" class="arrow_right">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+						</svg>
+					</router-link>
+					<ul class="food_list_ul">
+						<li v-for="item in orderDetail.basket.group[0]">
+							<p class="food_name ellipsis">{{item.name}}</p>
+							<div class="quantity_price">
+								<span>X{{item.quantity}}</span>
+								<span>¥{{item.price}}</span>
+							</div>
+						</li>
+					</ul>
+					<div class="deliver_fee">
+						<span>配送费</span>
+						<span>{{orderDetail.basket.deliver_fee&&orderDetail.basket.deliver_fee.price || 0}}</span>   
+					</div>
+					<div class="pay_ment">实付{{orderDetail.total_amount.toFixed(2)}}</div>
+				</section>
+				<section class="order_detail_style">
+					<header>配送信息</header>
+					<section class="item_style">
+						<p class="item_left">送达时间：</p>
+						<div class="item_right">
+							<p>{{orderData.deliver_time}}</p>
+						</div>
+					</section>
+					<section class="item_style">
+						<p class="item_left">送货地址：</p>
+						<div class="item_right">
+							<p>{{orderData.consignee}}</p>
+							<p>{{orderData.phone}}</p>
+							<p>{{orderData.address}}</p>
+						</div>
+					</section>
+					<section class="item_style">
+						<p class="item_left">配送方式：</p>
+						<div class="item_right">
+							<p>蜂鸟专送</p>
+						</div>
+					</section>
+				</section>
+				<section class="order_detail_style">
+					<header>订单信息</header>
+					<section class="item_style">
+						<p class="item_left">订单号：</p>
+						<div class="item_right">
+							<p>{{orderDetail.id}}</p>
+						</div>
+					</section>
+					<section class="item_style">
+						<p class="item_left">支付方式：</p>
+						<div class="item_right">
+							<p>在线支付</p>
+						</div>
+					</section>
+					<section class="item_style">
+						<p class="item_left">下单时间：</p>
+						<div class="item_right">
+							<p>{{orderDetail.formatted_created_at}}</p>
+						</div>
+					</section>
+				</section>
+			</section>
+		</section>
+		<transition name="loading">
+			<loading v-if="showLoading"></loading>
+		</transition>
+	</div>
 </template>
 
 <script>
- 	import { mapState, mapMutations } from 'vuex'
- 	import headTop from '@/components/header/Header'
- 	import { getImgPath } from '@/components/common/mixin'
- 	// import { getOrderDetail } from 'src/service/getData'
- 	import { Url, Http } from "@/tools/http"
- 	import loading from '@/components/common/Loading'
- 	import BScroll from 'better-scroll'
- 	import { imgBaseUrl } from '@/api/config'
+	import { mapState, mapMutations } from 'vuex'
+	import headTop from '@/components/header/Header'
+	import { getImgPath } from '@/components/common/mixin'
+	// import { getOrderDetail } from 'src/service/getData'
+	import { Url, Http } from "@/tools/http"
+	import loading from '@/components/common/Loading'
+	import BScroll from 'better-scroll'
+	import { imgBaseUrl } from '@/api/config'
 
 
- 	export default {
+	export default {
 
- 		data(){
- 			return {
-        showLoading: true, //显示加载动画
-        orderData: null,
-        imgBaseUrl
-      }
-    },
-    mounted(){
-    	this.initData();
-    },
-    mixins: [getImgPath],
-    components: {
-    	headTop,
-    	loading
-    },
-    computed: {
-    	...mapState([
-    		'orderDetail', 'geohash', 'userInfo'
-    	]),
-    },
-    methods: {
-    	initData(){
-    		if (this.userInfo && this.userInfo.user_id) {
-    			// this.orderData = await getOrderDetail(this.userInfo.user_id, this.orderDetail.unique_id);
-    			Http.get(
-    				Url.getOrderDetail + this.userInfo.user_id + '/orders/' + this.orderDetail.unique_id + '/snapshot',
-    				{},
-    				(data)=>{
-    					this.orderData = data;
-    					this.showLoading = false;
-		    			this.$nextTick(() => {
-		    				new BScroll('#scroll_section', {  
-		    					deceleration: 0.001,
-		    					bounce: true,
-		    					swipeTime: 1800,
-		    					click: true,
-		    				}); 
-		    			})
-    				},
-    				()=>{},
-    				()=>{}
-    			)
-    		}
-    	},
-    },
-    watch: {
-    	userInfo: function (value) {
-    		if (value && value.user_id) {
-    			this.initData();
-    		}
-    	}
-    }
-  }
+		data () {
+			return {
+				showLoading: true, //显示加载动画
+				orderData: null,
+				imgBaseUrl
+			}
+		},
+		mounted () {
+			this.initData();
+		},
+		mixins: [getImgPath],
+		components: {
+			headTop,
+			loading
+		},
+		computed: {
+			...mapState([
+				'orderDetail', 'geohash', 'userInfo'
+			])
+		},
+		methods: {
+			initData () {
+				if (this.userInfo && this.userInfo.user_id) {
+					// this.orderData = await getOrderDetail(this.userInfo.user_id, this.orderDetail.unique_id);
+					Http.get(
+						Url.getOrderDetail + this.userInfo.user_id + '/orders/' + this.orderDetail.unique_id + '/snapshot',
+						{},
+						(data) => {
+							this.orderData = data;
+							this.showLoading = false;
+							this.$nextTick(() => {
+								new BScroll('#scroll_section', {  
+									deceleration: 0.001,
+									bounce: true,
+									swipeTime: 1800,
+									click: true,
+								}); 
+							})
+						},
+						() => {},
+						() => {}
+					)
+				}
+			},
+		},
+		watch: {
+			userInfo: function (value) {
+				if (value && value.user_id) {
+					this.initData();
+				}
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>

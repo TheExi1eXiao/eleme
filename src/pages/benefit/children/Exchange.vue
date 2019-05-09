@@ -1,97 +1,97 @@
 <template>
- 	<div class="page">
- 		<head-top head-title="兑换红包" go-back='true'></head-top>
- 		<form class="exchange_code">
- 			<input type="text" placeholder="请输入兑换码" v-model="exchangeCode" class="exchange_input">
- 			<section class="input_container captcha_code_container">
- 				<input type="text" placeholder="验证码" maxlength="4" v-model="codeNumber">
- 				<div class="img_change_img">
- 					<img v-show="captchaCodeImg" :src="captchaCodeImg">
- 					<div class="change_img" @click="getCaptchaCode">
- 						<p>看不清</p>
- 						<p>换一张</p>
- 					</div>
- 				</div>
- 			</section>
- 		</form>
- 		<div class="determine" @click="exchange" :class="{active: status}">兑换</div>
- 		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
- 	</div>
+	<div class="page">
+		<head-top head-title="兑换红包" go-back='true'></head-top>
+		<form class="exchange_code">
+			<input type="text" placeholder="请输入兑换码" v-model="exchangeCode" class="exchange_input">
+			<section class="input_container captcha_code_container">
+				<input type="text" placeholder="验证码" maxlength="4" v-model="codeNumber">
+				<div class="img_change_img">
+					<img v-show="captchaCodeImg" :src="captchaCodeImg">
+					<div class="change_img" @click="getCaptchaCode">
+						<p>看不清</p>
+						<p>换一张</p>
+					</div>
+				</div>
+			</section>
+		</form>
+		<div class="determine" @click="exchange" :class="{active: status}">兑换</div>
+		<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+	</div>
 </template>
 
 <script>
- 	import headTop from '@/components/header/Header'
- 	import { mapState } from 'vuex'
- 	// import { getcaptchas, exChangeHongbao } from 'src/service/getData'
- 	import { Url, Http } from "@/tools/http"
- 	import alertTip from '@/components/common/AlertTip'
+	import headTop from '@/components/header/Header'
+	import { mapState } from 'vuex'
+	// import { getcaptchas, exChangeHongbao } from 'src/service/getData'
+	import { Url, Http } from "@/tools/http"
+	import alertTip from '@/components/common/AlertTip'
 
- 	export default {
- 		data(){
- 			return {
- 				showAlert: false,
- 				alertText: null,
- 				exchangeCode: null,
- 				codeNumber: '',
- 				captchaCodeImg: null
- 			}
- 		},
- 		mounted(){
- 			this.getCaptchaCode();
- 		},
- 		components: {
- 			headTop,
- 			alertTip
- 		},
- 		computed: {
- 			...mapState([
- 				'userInfo'
- 			]),
- 			status: function (){
- 				let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber))
- 				return status;
- 			}
- 		},
- 		methods: {
+	export default {
+		data () {
+			return {
+				showAlert: false,
+				alertText: null,
+				exchangeCode: null,
+				codeNumber: '',
+				captchaCodeImg: null
+			}
+		},
+		mounted () {
+			this.getCaptchaCode();
+		},
+		components: {
+			headTop,
+			alertTip
+		},
+		computed: {
+			...mapState([
+				'userInfo'
+			]),
+			status: function () {
+				let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber))
+				return status
+			}
+		},
+		methods: {
 			//线上环境采用固定的图片，编译环境获取真实的验证码
-			getCaptchaCode(){
+			getCaptchaCode () {
 				// let res = await getcaptchas();
 				Http.post(
 					Url.captchas,
 					{},
-					(data)=>{
+					(data) => {
 						this.captchaCodeImg = data.code;
 					},
-					()=>{},
-					()=>{}
+					() => {},
+					() => {}
 				)
 			},
 			//兑换红包
-			exchange(){
+			exchange () {
 				if (this.status) {
 					// let res = await exChangeHongbao(this.userInfo.user_id, this.exchangeCode, this.codeNumber);
 					Http.post(
 						Url.addresses + this.userInfo.user_id + '/hongbao/exchange',
 						{
-							exchange_code:this.exchangeCode,
-							captcha_code:this.codeNumber
+							exchange_code: this.exchangeCode,
+							captcha_code: this.codeNumber
 						},
-						(data)=>{
+						(data) => {
 							let res = data;
 						},
-						()=>{},
-						()=>{}
+						() => {},
+						() => {}
 					)
-	        //不成功则弹出提示框
-	        if (res.message) {
-	        	this.getCaptchaCode();
-	        	this.showAlert = true;
-	        	this.alertText = res.message;
-	        }
-			  }
+					//不成功则弹出提示框
+					if (res.message) {
+						this.getCaptchaCode();
+						this.showAlert = true;
+						this.alertText = res.message;
+					}
+				}
 			}
 		}
-  }
+	}
 </script>
 
 <style lang="scss" scoped>

@@ -84,14 +84,14 @@
 	import { imgBaseUrl } from '@/api/config'
 
 	export default {
-		data(){
+		data () {
 			return {
 				licenseImg: null,
 				showlicenseImg: false,
 				imgBaseUrl
 			}
 		},
-		mounted(){
+		mounted () {
 
 		},
 		computed: {
@@ -102,9 +102,9 @@
 		components: {
 			headTop
 		},
-		mixins:[getImgPath],
+		mixins: [getImgPath],
 		methods: {
-			showLicenseImg(img){
+			showLicenseImg (img) {
 				this.licenseImg = img;
 				this.showlicenseImg = true;
 			}

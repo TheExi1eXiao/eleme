@@ -19,8 +19,7 @@ export default {
 			},
 			()=>{},
 			()=>{}
-			)
-		
+		)
 	},
 	saveAddress({
 		commit,
@@ -28,13 +27,14 @@ export default {
 	}) {
 		if(state.removeAddress.length > 0) return;
 		Http.get(
-			Url.addresses+state.userInfo.user_id+'/addresses',
+			Url.addresses + state.userInfo.user_id + '/addresses',
 			{},
-			(data)=>{
+			(data) => {
 				let addres = data;
 				commit(SAVE_ADDRESS, addres);
 			},
-			()=>{},
-			()=>{})
+			() => {},
+			() => {}
+		)
 	},
 }
