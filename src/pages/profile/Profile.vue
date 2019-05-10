@@ -199,7 +199,7 @@
 					this.username = '登录/注册';
 					this.mobile = '暂无绑定手机号';
 				}
-			},
+			}
 		},
 		watch: {
 			userInfo: function (value) {

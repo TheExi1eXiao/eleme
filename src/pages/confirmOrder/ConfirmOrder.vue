@@ -195,7 +195,7 @@
 				//是否有自定义备注，分开处理
 				if (this.inputText) {
 					return str + this.inputText
-				}else{
+				} else {
 					return str.substr(0, str.lastIndexOf('，'))
 				}
 			},
@@ -220,7 +220,7 @@
 								quantity: item.num,
 								sku_id: item.sku_id,
 								specs: [item.specs],
-								stock: item.stock,
+								stock: item.stock
 							})
 						})
 					})
@@ -233,11 +233,11 @@
 						come_from: "web",
 						geohash: this.geohash,
 						entities: [newArr],
-						restaurant_id: this.shopId,
+						restaurant_id: this.shopId
 					},
 					(data) => {
 						this.checkoutData = data;
-						this.SAVE_CART_ID_SIG({cart_id: this.checkoutData.cart.id, sig:  this.checkoutData.sig})
+						this.SAVE_CART_ID_SIG({cart_id: this.checkoutData.cart.id, sig: this.checkoutData.sig})
 						this.initAddress();
 						this.showLoading = false;
 					},
@@ -252,11 +252,11 @@
 					Http.get(
 						Url.addresses + this.userInfo.user_id + '/addresses',
 						{},
-						(data)=>{
+						(data) => {
 							const addressRes = data;
 						},
-						()=>{},
-						()=>{}
+						() => {},
+						() => {}
 					)
 					if (addressRes instanceof Array && addressRes.length) {
 						this.CHOOSE_ADDRESS({address: addressRes[0], index: 0});
@@ -302,7 +302,7 @@
 					description: this.remarklist,
 					entities: this.checkoutData.cart.groups,
 					geohash: this.geohash,
-					sig: this.checkoutData.sig,
+					sig: this.checkoutData.sig
 				});
 				//发送订单信息
 				// let orderRes = await placeOrders(this.userInfo.user_id, this.checkoutData.cart.id, this.choosedAddress.id, this.remarklist, this.checkoutData.cart.groups, this.geohash, this.checkoutData.sig);
@@ -317,7 +317,7 @@
 						entities: this.checkoutData.cart.groups,
 						geohash: this.geohash,
 						paymethod_id: 1,
-						sig: this.checkoutData.sig,
+						sig: this.checkoutData.sig
 					},
 					(data) => {
 						var orderRes = data;

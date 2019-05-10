@@ -86,7 +86,10 @@ const Url = {
 	getRatingList: `${APIBaseUrl}/ugc/v2/restaurants/`,
 
 	//兑换会员卡
-	vipCart: `${APIBaseUrl}/member/v1/users/`
+	vipCart: `${APIBaseUrl}/member/v1/users/`,
+
+	//上传用户头像
+	uploadAvatar: `${APIBaseUrl}/eus/v1/users/`
 }
 
 export default Url;

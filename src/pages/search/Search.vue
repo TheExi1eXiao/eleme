@@ -131,7 +131,7 @@
 						} else {
 							this.searchHistory.push(this.searchValue)
 						}
-						storage.setLocalStorage('searchHistory',this.searchHistory)
+						storage.setLocalStorage('searchHistory', this.searchHistory)
 					},
 					() => {},
 					() => {}

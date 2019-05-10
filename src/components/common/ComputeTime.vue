@@ -49,8 +49,8 @@
 		computed: {
 			//转换时间成分秒
 			remaining: function () {
-				let minute = parseInt(this.countNum/60);
-				let second = parseInt(this.countNum%60);
+				let minute = parseInt(this.countNum / 60);
+				let second = parseInt(this.countNum % 60);
 				if (minute < 10) {
 					minute = '0' + minute;
 				}

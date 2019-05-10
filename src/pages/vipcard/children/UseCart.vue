@@ -43,7 +43,7 @@
 				'userInfo'
 			]),
 			couldPay: function () {
-				return (/^\d{10}$/.test(this.cartNumber))&&(/^\d{6}$/.test(this.passWord)) ;
+				return (/^\d{10}$/.test(this.cartNumber))&&(/^\d{6}$/.test(this.passWord))
 			}
 		},
 		components: {

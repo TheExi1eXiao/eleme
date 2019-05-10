@@ -12,20 +12,22 @@ export default {
 	}) {
 		Http.get(
 			Url.user,
-			{user_id:storage.getLocalStorage('user_id')},
-			(data)=>{
+			{
+				user_id: storage.getLocalStorage('user_id')
+			},
+			(data) => {
 				let res = data;
 				commit(GET_USERINFO, res)
 			},
-			()=>{},
-			()=>{}
+			() => {},
+			() => {}
 		)
 	},
 	saveAddress({
 		commit,
 		state
 	}) {
-		if(state.removeAddress.length > 0) return;
+		if (state.removeAddress.length > 0) return;
 		Http.get(
 			Url.addresses + state.userInfo.user_id + '/addresses',
 			{},
@@ -36,5 +38,5 @@ export default {
 			() => {},
 			() => {}
 		)
-	},
+	}
 }

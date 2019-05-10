@@ -27,14 +27,14 @@
 	import loading from '@/components/common/Loading'
 
 	export default {
-		data(){
+		data () {
 			return {
 
 			}
 		},
 		components: {
 			headTop
-		},
+		}
 	}
 </script>
 

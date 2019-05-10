@@ -97,7 +97,7 @@
 		computed: {
 			...mapState([
 				'shopDetail'
-			]),
+			])
 		},
 		components: {
 			headTop

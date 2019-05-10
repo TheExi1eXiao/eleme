@@ -353,11 +353,11 @@
 			selectDeliveryMode (id) {
 				//delivery_mode为空时，选中当前项，并且filterNum加一
 				if (this.delivery_mode == null) {
-					this.filterNum++;
+					this.filterNum ++;
 					this.delivery_mode = id;
 					//delivery_mode为当前已有值时，清空所选项，并且filterNum减一
 				} else if (this.delivery_mode == id) {
-					this.filterNum--;
+					this.filterNum --;
 					this.delivery_mode = null;
 					//delivery_mode已有值且不等于当前选择值，则赋值delivery_mode为当前所选id
 				} else {
@@ -375,7 +375,7 @@
 				this.filterNum = this.delivery_mode == null ? 0 : 1;
 				this.support_ids.forEach(item => {
 					if (item.status) {
-						this.filterNum++;
+						this.filterNum ++;
 					}
 				});
 			},

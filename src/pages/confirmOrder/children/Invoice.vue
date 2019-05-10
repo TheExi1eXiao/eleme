@@ -19,7 +19,7 @@
 		data () {
 			return {
 				invoice: false //是否需要发票
-			 }
+			}
 		},
 		components: {
 			headTop

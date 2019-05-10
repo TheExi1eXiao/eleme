@@ -1,33 +1,33 @@
-export function goAnchor(anchor, wrapper, gap) {
+export function goAnchor (anchor, wrapper, gap) {
 	//document.documentElement.scrollTop = anchor.offsetTop;
 	let total = anchor.offsetTop - gap;
 
 	// 平滑滚动，时长500ms，每10ms一跳，共50跳
 	// 获取当前滚动条与窗体顶部的距离
-	let distance = document.documentElement.scrollTop
-	console.log(total, distance)
+	let distance = document.documentElement.scrollTop;
+	console.log(total, distance);
 	// 计算每一小段的距离
 	let step = total / 60;
-	(function smoothDown() {
+	(function smoothDown () {
 		if (distance < total) {
-			distance += step
+			distance += step;
 
 			// 移动一小段
-			document.body.scrollTop = distance
-			document.documentElement.scrollTop = distance
+			document.body.scrollTop = distance;
+			document.documentElement.scrollTop = distance;
 			wrapper.scrollTop = distance
 			// 设定每一次跳动的时间间隔为10ms
-			setTimeout(smoothDown, 1)
+			setTimeout(smoothDown, 1);
 		} else {
 			// 限制滚动停止时的距离
 			// document.body.scrollTop = total
 			// document.documentElement.scrollTop = total
-			wrapper.scrollTop = total
+			wrapper.scrollTop = total;
 		}
 	})()
 }
 //非空判断
-export function isnull(val) {
+export function isnull (val) {
 	var str = val.replace(/(^\s*)|(\s*$)/g, ''); //去除空格;
 
 	if (str == '' || str == undefined || str == null) {
@@ -39,47 +39,47 @@ export function isnull(val) {
 	}
 }
 
-export function jump(target, that) {
+export function jump (target, that) {
 	//let that = this
 
 	// 用 class="step-jump" 添加锚点
-	let jump = document.querySelectorAll('.step-jump')
-	let total = target.offsetTop
-	let distance = this.container.scrollTop // 获取到顶部的距离(this.container便是.cate-list,为了方便存起来了)
+	let jump = document.querySelectorAll('.step-jump');
+	let total = target.offsetTop;
+	let distance = this.container.scrollTop; // 获取到顶部的距离(this.container便是.cate-list,为了方便存起来了)
 	let step = total / 50;
 	this.isActive = index; // 菜单列表显示当前样式
 	const _this = this;
 	if (total > distance) {
-		smoothDown()
+		smoothDown();
 	} else {
-		let newTotal = distance - total
-		step = newTotal / 50
-		smoothUp()
+		let newTotal = distance - total;
+		step = newTotal / 50;
+		smoothUp();
 	}
 
-	function smoothDown() {
+	function smoothDown () {
 		if (distance < total) {
-			distance += step
+			distance += step;
 			_this.scrollTop = distance;
 			setTimeout(smoothDown, 10);
 		} else {
-			_this.scrollTop = total
+			_this.scrollTop = total;
 		}
 	}
 
-	function smoothUp() {
+	function smoothUp () {
 		if (distance > total) {
-			distance -= step
-			_this.scrollTop = distance
-			setTimeout(smoothUp, 10)
+			distance -= step;
+			_this.scrollTop = distance;
+			setTimeout(smoothUp, 10);
 		} else {
-			_this.scrollTop = total
+			_this.scrollTop = total;
 		}
 	}
 
 }
 //账号验证
-export function checkUser(str) {
+export function checkUser (str) {
 	var re = /^[a-zA-z]\w{5,17}$/;
 	if (re.test(str)) {
 		return true
@@ -88,7 +88,7 @@ export function checkUser(str) {
 	}
 }
 //密码验证
-export function CheckPassWord(password) { //必须为字母加数字且长度不小于8位
+export function CheckPassWord (password) { //必须为字母加数字且长度不小于8位
 	var str = password;
 	if (str == null || str.length < 6 || str.length > 18) {
 		return false
@@ -106,12 +106,12 @@ export function CheckPassWord(password) { //必须为字母加数字且长度不
 }
 
 //md5加密
-export function md5(string) {
-	function md5_RotateLeft(lValue, iShiftBits) {
+export function md5 (string) {
+	function md5_RotateLeft (lValue, iShiftBits) {
 		return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
 	}
 
-	function md5_AddUnsigned(lX, lY) {
+	function md5_AddUnsigned (lX, lY) {
 		var lX4, lY4, lX8, lY8, lResult;
 		lX8 = (lX & 0x80000000);
 		lY8 = (lY & 0x80000000);
@@ -119,56 +119,56 @@ export function md5(string) {
 		lY4 = (lY & 0x40000000);
 		lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
 		if (lX4 & lY4) {
-			return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+			return (lResult ^ 0x80000000 ^ lX8 ^ lY8)
 		}
 		if (lX4 | lY4) {
 			if (lResult & 0x40000000) {
-				return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
+				return (lResult ^ 0xC0000000 ^ lX8 ^ lY8)
 			} else {
-				return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+				return (lResult ^ 0x40000000 ^ lX8 ^ lY8)
 			}
 		} else {
 			return (lResult ^ lX8 ^ lY8)
 		}
 	}
 
-	function md5_F(x, y, z) {
+	function md5_F (x, y, z) {
 		return (x & y) | ((~x) & z)
 	}
 
-	function md5_G(x, y, z) {
+	function md5_G (x, y, z) {
 		return (x & z) | (y & (~z))
 	}
 
-	function md5_H(x, y, z) {
+	function md5_H (x, y, z) {
 		return (x ^ y ^ z)
 	}
 
-	function md5_I(x, y, z) {
+	function md5_I (x, y, z) {
 		return (y ^ (x | (~z)))
 	}
 
-	function md5_FF(a, b, c, d, x, s, ac) {
+	function md5_FF (a, b, c, d, x, s, ac) {
 		a = md5_AddUnsigned(a, md5_AddUnsigned(md5_AddUnsigned(md5_F(b, c, d), x), ac));
 		return md5_AddUnsigned(md5_RotateLeft(a, s), b)
 	};
 
-	function md5_GG(a, b, c, d, x, s, ac) {
+	function md5_GG (a, b, c, d, x, s, ac) {
 		a = md5_AddUnsigned(a, md5_AddUnsigned(md5_AddUnsigned(md5_G(b, c, d), x), ac));
 		return md5_AddUnsigned(md5_RotateLeft(a, s), b)
 	};
 
-	function md5_HH(a, b, c, d, x, s, ac) {
+	function md5_HH (a, b, c, d, x, s, ac) {
 		a = md5_AddUnsigned(a, md5_AddUnsigned(md5_AddUnsigned(md5_H(b, c, d), x), ac));
 		return md5_AddUnsigned(md5_RotateLeft(a, s), b)
 	};
 
-	function md5_II(a, b, c, d, x, s, ac) {
+	function md5_II (a, b, c, d, x, s, ac) {
 		a = md5_AddUnsigned(a, md5_AddUnsigned(md5_AddUnsigned(md5_I(b, c, d), x), ac));
 		return md5_AddUnsigned(md5_RotateLeft(a, s), b)
 	};
 
-	function md5_ConvertToWordArray(string) {
+	function md5_ConvertToWordArray (string) {
 		var lWordCount;
 		var lMessageLength = string.length;
 		var lNumberOfWords_temp1 = lMessageLength + 8;
@@ -191,7 +191,7 @@ export function md5(string) {
 		return lWordArray
 	};
 
-	function md5_WordToHex(lValue) {
+	function md5_WordToHex (lValue) {
 		var WordToHexValue = "",
 			WordToHexValue_temp = "",
 			lByte, lCount;
@@ -203,7 +203,7 @@ export function md5(string) {
 		return WordToHexValue
 	};
 
-	function md5_Utf8Encode(string) {
+	function md5_Utf8Encode (string) {
 		string = string.replace(/\r\n/g, "\n");
 		var utftext = "";
 		for (var n = 0; n < string.length; n++) {
@@ -323,7 +323,7 @@ export function md5(string) {
 }
 
 //判断微信浏览器
-export function isWeiXin() {
+export function isWeiXin () {
 	//window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
 	var ua = window.navigator.userAgent.toLowerCase();
 	//通过正则表达式匹配ua中是否含有MicroMessenger字符串
@@ -337,7 +337,7 @@ export function isWeiXin() {
 
 
 //正则验证邮箱
-export function checkEmail(str) {
+export function checkEmail (str) {
 	var re = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/; 
 	if (re.test(str)) {
 		return true
@@ -372,14 +372,14 @@ export function clearCache () {
 							keys.splice(index, 1);
 						}
 					}
-					delete cache[key];
+					delete cache[key]
 				}
 			}
 		}
 	}
 }
 //验证手机号
-export function isPhoneAvailable(phone) {
+export function isPhoneAvailable (phone) {
 	var myreg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
 	if (!myreg.test(phone)) {
 		return false
@@ -390,7 +390,7 @@ export function isPhoneAvailable(phone) {
 
 //判断是否在APP环境
 
-export function getIsApp() {
+export function getIsApp () {
 	var ua = navigator.userAgent.toLowerCase();
 	if (ua.match(/isapp/i) == "isapp") {
 		return true
@@ -545,7 +545,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
 	//获取dom样式
 	const attrStyle = attr => {
 		if (attr === "opacity") { 
-			return Math.round(getStyle(element, attr, 'float') * 100);
+			return Math.round(getStyle(element, attr, 'float') * 100)
 		} else {
 			return getStyle(element, attr)
 		}
@@ -569,7 +569,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
 	//去掉传入的后缀单位
 	Object.keys(target).forEach(attr => {
 		if (unit[attr] == 'rem') {
-			target[attr] = Math.ceil(parseInt(target[attr])*rootSize);
+			target[attr] = Math.ceil(parseInt(target[attr]) * rootSize);
 		} else {
 			target[attr] = parseInt(target[attr]);
 		}

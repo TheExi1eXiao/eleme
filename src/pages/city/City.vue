@@ -74,7 +74,7 @@
 				//获取搜索历史记录
 				if (storage.getLocalStorage('placeHistory')) {
 					this.placelist = storage.getLocalStorage('placeHistory');
-				}else{
+				} else {
 					this.placelist = [];
 				}
 			},

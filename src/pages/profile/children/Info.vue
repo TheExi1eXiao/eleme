@@ -182,28 +182,44 @@
 				this.showAlert = true;
 				this.alertText = '请在手机APP中设置';
 			},
-			async uploadAvatar () {
+			uploadAvatar () {
 				//上传头像
 				if (this.userInfo) {
 					let input = document.querySelector('.profileinfopanel-upload')
 					let data = new FormData();
 					data.append('file', input.files[0]);
-					try {
-						let response = await fetch('/eus/v1/users/' + this.userInfo.user_id + '/avatar', {
-							method: 'POST',
-							credentials: 'include',
-							body: data
-						})
-						let res = await response.json();
+				// 	try {
+				// 		let response = await fetch('/eus/v1/users/' + this.userInfo.user_id + '/avatar', {
+				// 			method: 'POST',
+				// 			credentials: 'include',
+				// 			body: data
+				// 		})
+				// 		let res = await response.json();
+				// 		if (res.status == 1) {
+				// 			this.userInfo.avatar = res.image_path;
+				// 		}
+				// 	} catch (error) {
+				// 		this.showAlert = true;
+				// 		this.alertText = '上传失败';
+				// 		throw new Error(error);
+				// 	}
+				// }
+				Http.filePost(
+					Url.uploadAvatar + this.userInfo.user_id + '/avatar',
+					{
+						data: data
+					},
+					(data) => {
+						let res = data;
 						if (res.status == 1) {
 							this.userInfo.avatar = res.image_path;
 						}
-					} catch (error) {
+					},
+					() => {
 						this.showAlert = true;
 						this.alertText = '上传失败';
-						throw new Error(error);
 					}
-				}
+				)
 			}
 		},
 		watch: {

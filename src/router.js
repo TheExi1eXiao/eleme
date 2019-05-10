@@ -66,7 +66,7 @@ export default new Router({
 				//确认订单页
 				{
 					path: '/confirmOrder',
-					component: () => import("@/pages/confirmOrder/ConfirmOrder")
+					component: () => import("@/pages/confirmOrder/ConfirmOrder"),
 					children: [
 						{
 							path: 'remark', //订单备注

@@ -95,7 +95,7 @@
 					Url.carts + this.cart_id + '/verify_code',
 					{
 						sig: this.sig,
-						type: this.type,
+						type: this.type
 					},
 					(data) => {
 						this.reCallVerify = data;
@@ -124,7 +124,7 @@
 						paymethod_id: 1,
 						sig: this.orderParam.sig,
 						validation_code: this.orderParam.validation_code,
-						validation_token: this.orderParam.validation_token,
+						validation_token: this.orderParam.validation_token
 					},
 					(data) => {
 						var orderRes = data;

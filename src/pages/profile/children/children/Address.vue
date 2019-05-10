@@ -59,7 +59,7 @@
 		},
 		computed: {
 			...mapState([
-				'userInfo','removeAddress'
+				'userInfo', 'removeAddress'
 			])
 		},
 		props: [],
@@ -76,11 +76,11 @@
 			//编辑
 			editThing () {
 				if (this.editText == '编辑') {
-					this.editText='完成';
-					this.deletesite=true;
+					this.editText = '完成';
+					this.deletesite = true;
 				} else {
-					this.editText='编辑';
-					this.deletesite=false;
+					this.editText = '编辑';
+					this.deletesite = false;
 				}
 			},
 			//删除地址

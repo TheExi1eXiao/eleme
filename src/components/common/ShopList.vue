@@ -138,7 +138,7 @@ export default {
 			)
 		},
 		//到达底部加载更多数据
-		loaderMore(){
+		loaderMore () {
 			if (this.touchend) {
 				return
 			}
@@ -180,7 +180,7 @@ export default {
 		},
 		//返回顶部
 		backTop () {
-			animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+			animate(document.body, {scrollTop: '0'}, 400, 'ease-out');
 		},
 		//监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
 		listenPropChange () {

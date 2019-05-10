@@ -79,7 +79,7 @@
 		},
 		computed: {
 			...mapState([
-				'userInfo', 'addAddress','removeAddress','newAddress', 'geohash'
+				'userInfo', 'addAddress', 'removeAddress', 'newAddress', 'geohash'
 			]),
 		},
 		props: [],

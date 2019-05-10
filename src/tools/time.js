@@ -1,19 +1,18 @@
-export function GetTimeFormat(time, format) {
-	format = format || "yyyy-MM-dd hh:mm:ss"
-	time = time || undefined
+export function GetTimeFormat (time, format) {
+	format = format || "yyyy-MM-dd hh:mm:ss";
+	time = time || undefined;
 	if (!time) {
-		return "";
+		return ""
 	}
-	let date = new Date(time)
-	return FormatTime(date, format);
+	let date = new Date(time);
+	return FormatTime(date, format)
 }
 
 
-export function FormatTime(datetime, fmt) {
+export function FormatTime (datetime, fmt) {
 	if (!datetime) {
 		datetime =  new Date();
 	}
-
 	if (typeof datetime === "number") {
 		datetime = new Date(datetime);
 	}
@@ -32,6 +31,5 @@ export function FormatTime(datetime, fmt) {
 	for (let k in o)
 		if (new RegExp("(" + k + ")").test(fmt))
 			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-	return fmt;
-	
+	return fmt
 }

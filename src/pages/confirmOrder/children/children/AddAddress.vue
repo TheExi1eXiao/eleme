@@ -136,7 +136,7 @@
 						poi_type: 0,
 						sex: this.sex,
 						tag: this.tag,
-						tag_type: this.tag_type,
+						tag_type: this.tag_type
 					},
 					(data) => {
 						let res = data;

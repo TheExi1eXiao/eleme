@@ -135,7 +135,7 @@ export const Http = {
 		}).then((res) => {
 			var all = res.data;
 			var data = res.data.data;
-			if (all.code == 0) {
+			if (all.status == 1) {
 				success(data, all);
 			}
 			else {

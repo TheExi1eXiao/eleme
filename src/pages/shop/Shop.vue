@@ -387,7 +387,7 @@
 		},
 		computed: {
 			...mapState([
-				'latitude','longitude','cartList'
+				'latitude', 'longitude', 'cartList'
 			]),
 			promotionInfo: function () {
 				return this.shopDetailData.promotion_info || '欢迎光临，用餐高峰期请提前下单，谢谢。'
@@ -410,7 +410,7 @@
 			},
 			//当前商店购物信息
 			shopCart: function () {
-				return { ...this.cartList[this.shopId] };
+				return { ...this.cartList[this.shopId] }
 			},
 			//购物车中总共商品的数量
 			totalNum: function () {
@@ -529,11 +529,11 @@
 					deceleration: 0.001,
 					bounce: false,
 					swipeTime: 2000,
-					click: true,
+					click: true
 				});
 
 				const wrapperMenu = new BScroll('#wrapper_menu', {
-					click: true,
+					click: true
 				});
 
 				const wrapMenuHeight = this.$refs.wrapperMenu.clientHeight;
@@ -781,7 +781,7 @@
 							deceleration: 0.003,
 							bounce: false,
 							swipeTime: 2000,
-							click: true,
+							click: true
 						});
 						this.ratingScroll.on('scroll', (pos) => {
 							if (Math.abs(Math.round(pos.y)) >=  Math.abs(Math.round(this.ratingScroll.maxScrollY))) {

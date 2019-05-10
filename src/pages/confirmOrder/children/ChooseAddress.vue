@@ -102,7 +102,7 @@
 				'CHOOSE_ADDRESS'
 			]),
 			//初始化信息
-			async initData () {
+			initData () {
 				this.addressList = [];
 				this.deliverable = [];
 				this.deliverdisable = [];

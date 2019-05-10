@@ -32,7 +32,7 @@ export default {
 		let category = shop[category_id] = (shop[category_id] || {});
 		let item = category[item_id] = (category[item_id] || {});
 		if (item[food_id]) {
-			item[food_id]['num']++;
+			item[food_id]['num'] ++;
 		} else {
 			item[food_id] = {
 				"num": 1,
@@ -65,7 +65,7 @@ export default {
 		let item = (category[item_id] || {});
 		if (item && item[food_id]) {
 			if (item[food_id]['num'] > 0) {
-				item[food_id]['num']--;
+				item[food_id]['num'] --;
 				state.cartList = {...cart};
 				//存入localStorage
 				storage.setLocalStorage('buyCart', state.cartList);
@@ -97,7 +97,7 @@ export default {
 	//获取用户信息存入vuex
 	[type.GET_USERINFO](state, info) {
 		if (state.userInfo && (state.userInfo.username !== info.username)) {
-			return;
+			return
 		};
 		if (!state.login) {
 			return
@@ -193,7 +193,7 @@ export default {
 	},
 	//添加地址name
 	[type.SAVE_ADDDETAIL](state, addAddress){
-		state.addAddress=addAddress;
+		state.addAddress = addAddress;
 	},
 	//保存所选问题标题和详情
 	[type.SAVE_QUESTION](state, question) {
