@@ -9,9 +9,9 @@ axios.interceptors.response.use(
 		// 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
 		// 否则的话抛出错误
 		if (response.status === 200) {
-			return Promise.resolve(response);
+			return Promise.resolve(response)
 		} else {
-			return Promise.reject(response);
+			return Promise.reject(response)
 		}
 	},
 	error => {
@@ -21,7 +21,7 @@ axios.interceptors.response.use(
 				redirect: router.currentRoute.fullPath
 			}
 		});
-	return Promise.reject(error.response);
+	return Promise.reject(error.response)
 })
 
 let timeout = 10000;
@@ -30,7 +30,7 @@ let header = {
 	Accept: '*',
 	"Access-Control-Allow-Origin": "*",
 	"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
-}
+};
 var headerFile = {
 	"Access-Control-Allow-Origin": "*",
 	"Content-Type": "multipart/form-data"

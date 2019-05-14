@@ -25,11 +25,11 @@ export default class Storage {
 				}
 				else {
 					this.removeLocalStorage(key);
-					return undefined;
+					return undefined
 				}
 			}
 			else {
-				return data.value;
+				return data.value
 			}
 		}
 	}

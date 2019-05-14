@@ -32,7 +32,7 @@ export default {
 		let category = shop[category_id] = (shop[category_id] || {});
 		let item = category[item_id] = (category[item_id] || {});
 		if (item[food_id]) {
-			item[food_id]['num'] ++;
+			item[food_id]['num']++;
 		} else {
 			item[food_id] = {
 				"num": 1,
@@ -65,7 +65,7 @@ export default {
 		let item = (category[item_id] || {});
 		if (item && item[food_id]) {
 			if (item[food_id]['num'] > 0) {
-				item[food_id]['num'] --;
+				item[food_id]['num']--;
 				state.cartList = {...cart};
 				//存入localStorage
 				storage.setLocalStorage('buyCart', state.cartList);
@@ -109,7 +109,7 @@ export default {
 		}
 	},
 	//修改用户名
-	[type.RETSET_NAME](state,username) {
+	[type.RETSET_NAME](state, username) {
 		state.userInfo = Object.assign({}, state.userInfo,{username})
 	},
 	//保存商铺id

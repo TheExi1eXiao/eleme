@@ -27,7 +27,7 @@ export default {
 		commit,
 		state
 	}) {
-		if (state.removeAddress.length > 0) return;
+		if (state.removeAddress.length > 0) return
 		Http.get(
 			Url.addresses + state.userInfo.user_id + '/addresses',
 			{},

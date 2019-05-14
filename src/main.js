@@ -8,10 +8,10 @@ import fastClick from "fastclick"
 
 Vue.config.productionTip = false
 
-if ( "addEventListener" in document ) {
-	document.addEventListener( 'DOMContentLoaded', ()=>{
+if ("addEventListener" in document) {
+	document.addEventListener('DOMContentLoaded', () => {
 		fastClick.attach(document.body);
-	},false);
+	}, false);
 }
 
 new Vue({
